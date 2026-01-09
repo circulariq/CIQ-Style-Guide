@@ -12,12 +12,17 @@ export function HomeBlock() {
       {/* Card Section */}
       <div className="space-y-4">
         <h3 className="text-sm font-medium text-muted-foreground">Card</h3>
-        <Card className="overflow-hidden">
-          <div className="h-48 bg-gradient-to-br from-primary/40 to-primary/60" />
+        <Card className="overflow-hidden relative">
+          <div className="bg-primary absolute inset-0 z-10 h-48 opacity-50 mix-blend-color" />
+          <img
+            alt="Misty background"
+            className="h-48 w-full object-cover brightness-60 grayscale"
+            src="https://images.unsplash.com/photo-1604076850742-4c7221f3101b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0"
+          />
           <CardHeader>
             <CardTitle>Observability Plus is replacing Monitoring</CardTitle>
             <CardDescription>
-              Switch to the improved way to explore your data, with natural language. 
+              Switch to the improved way to explore your data, with natural language.
               Monitoring will no longer be available on the Pro plan in November, 2025
             </CardDescription>
           </CardHeader>
