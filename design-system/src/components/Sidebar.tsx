@@ -4,6 +4,7 @@ import { blocksData, BlockData } from '../data/blocks';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { ModeToggle } from './mode-toggle';
 import {
   Collapsible,
   CollapsibleContent,
@@ -24,11 +25,14 @@ export function Sidebar({ selectedItem, selectedType, onItemSelect }: SidebarPro
 
   return (
     <aside className="w-64 border-r border-border bg-card flex flex-col h-full">
-      <div className="p-4 border-b border-border">
-        <h1 className="text-lg font-semibold text-foreground">Design System</h1>
-        <p className="text-xs text-muted-foreground">shadcn/ui • Nova</p>
+      <div className="p-4 border-b border-border flex items-center justify-between">
+        <div>
+          <h1 className="text-lg font-semibold text-foreground">Design System</h1>
+          <p className="text-xs text-muted-foreground">shadcn/ui • Nova</p>
+        </div>
+        <ModeToggle />
       </div>
-      
+
       <ScrollArea className="flex-1">
         <div className="p-2">
           {/* Blocks Section */}
