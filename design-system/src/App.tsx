@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Sidebar, ViewType } from './components/Sidebar';
-import { componentsData, ComponentData } from './data/components';
+import { ComponentData } from './data/components';
 import { blocksData, BlockData } from './data/blocks';
 import { previewComponents } from './components/Preview';
 import * as BlockComponents from './components/Blocks';
@@ -27,7 +27,7 @@ function App() {
       'vercel': BlockComponents.VercelBlock,
       'chatgpt': BlockComponents.ChatGPTBlock,
     };
-    
+
     const BlockComponent = blockMap[blockId];
     return BlockComponent ? <BlockComponent /> : <div>Block not found</div>;
   };
@@ -48,7 +48,7 @@ function App() {
         selectedType={selectedType}
         onItemSelect={handleItemSelect}
       />
-      
+
       <main className="flex-1 flex flex-col overflow-hidden">
         <header className="h-14 border-b border-border flex items-center justify-between px-6 bg-card">
           <div>
@@ -60,7 +60,7 @@ function App() {
             )}
           </div>
         </header>
-        
+
         <ScrollArea className="flex-1">
           <div className="p-6">
             {selectedItem ? (
@@ -89,7 +89,7 @@ function App() {
           </div>
         </ScrollArea>
       </main>
-      
+
       <Toaster />
     </div>
   );
