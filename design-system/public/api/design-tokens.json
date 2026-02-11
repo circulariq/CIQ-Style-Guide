@@ -1,26 +1,241 @@
 {
     "version": "1.0.0",
-    "lastUpdated": "2026-02-11T10:32:00Z",
+    "lastUpdated": "2026-02-11T10:51:00Z",
     "tokens": {
         "color": {
             "primary": {
-                "50": "#ecfdf5",
-                "100": "#d1fae5",
-                "500": "#10b981",
-                "600": "#059669",
-                "700": "#047857"
+                "50": {
+                    "hex": "#ecfdf5",
+                    "oklch": "oklch(0.98 0.04 165)"
+                },
+                "100": {
+                    "hex": "#d1fae5",
+                    "oklch": "oklch(0.95 0.08 165)"
+                },
+                "500": {
+                    "hex": "#10b981",
+                    "oklch": "oklch(0.70 0.15 162)"
+                },
+                "600": {
+                    "hex": "#059669",
+                    "oklch": "oklch(0.60 0.14 163)"
+                },
+                "700": {
+                    "hex": "#047857",
+                    "oklch": "oklch(0.50 0.12 164)"
+                }
             },
             "gray": {
-                "50": "#f9fafb",
-                "100": "#f3f4f6",
-                "200": "#e5e7eb",
-                "300": "#d1d5db",
-                "400": "#9ca3af",
-                "500": "#6b7280",
-                "600": "#4b5563",
-                "700": "#374151",
-                "800": "#1f2937",
-                "900": "#111827"
+                "50": {
+                    "hex": "#f9fafb",
+                    "oklch": "oklch(0.985 0.002 247.839)"
+                },
+                "100": {
+                    "hex": "#f3f4f6",
+                    "oklch": "oklch(0.96 0.002 264.665)"
+                },
+                "200": {
+                    "hex": "#e5e7eb",
+                    "oklch": "oklch(0.92 0.004 261.692)"
+                },
+                "300": {
+                    "hex": "#d1d5db",
+                    "oklch": "oklch(0.85 0.008 264.665)"
+                },
+                "400": {
+                    "hex": "#9ca3af",
+                    "oklch": "oklch(0.67 0.015 261.692)"
+                },
+                "500": {
+                    "hex": "#6b7280",
+                    "oklch": "oklch(0.50 0.020 261.325)"
+                },
+                "600": {
+                    "hex": "#4b5563",
+                    "oklch": "oklch(0.37 0.022 256.848)"
+                },
+                "700": {
+                    "hex": "#374151",
+                    "oklch": "oklch(0.30 0.025 264.665)"
+                },
+                "800": {
+                    "hex": "#1f2937",
+                    "oklch": "oklch(0.21 0.034 264.665)"
+                },
+                "900": {
+                    "hex": "#111827",
+                    "oklch": "oklch(0.13 0.028 261.692)"
+                }
+            }
+        },
+        "themes": {
+            "light": {
+                "background": {
+                    "hex": "#f9fafb",
+                    "oklch": "oklch(0.985 0.002 247.839)",
+                    "token": "gray-50"
+                },
+                "foreground": {
+                    "hex": "#111827",
+                    "oklch": "oklch(0.13 0.028 261.692)",
+                    "token": "gray-900"
+                },
+                "card": {
+                    "hex": "#f9fafb",
+                    "oklch": "oklch(0.985 0.002 247.839)",
+                    "token": "gray-50"
+                },
+                "cardForeground": {
+                    "hex": "#111827",
+                    "oklch": "oklch(0.13 0.028 261.692)",
+                    "token": "gray-900"
+                },
+                "primary": {
+                    "hex": "#059669",
+                    "oklch": "oklch(0.60 0.14 163)",
+                    "token": "primary-600"
+                },
+                "primaryForeground": {
+                    "hex": "#ecfdf5",
+                    "oklch": "oklch(0.98 0.04 165)",
+                    "token": "primary-50"
+                },
+                "secondary": {
+                    "hex": "#e5e7eb",
+                    "oklch": "oklch(0.92 0.004 261.692)",
+                    "token": "gray-200"
+                },
+                "secondaryForeground": {
+                    "hex": "#1f2937",
+                    "oklch": "oklch(0.21 0.034 264.665)",
+                    "token": "gray-800"
+                },
+                "muted": {
+                    "hex": "#f3f4f6",
+                    "oklch": "oklch(0.96 0.002 264.665)",
+                    "token": "gray-100"
+                },
+                "mutedForeground": {
+                    "hex": "#4b5563",
+                    "oklch": "oklch(0.37 0.022 256.848)",
+                    "token": "gray-600"
+                },
+                "accent": {
+                    "hex": "#f3f4f6",
+                    "oklch": "oklch(0.96 0.002 264.665)",
+                    "token": "gray-100"
+                },
+                "accentForeground": {
+                    "hex": "#111827",
+                    "oklch": "oklch(0.13 0.028 261.692)",
+                    "token": "gray-900"
+                },
+                "destructive": {
+                    "hex": "#ef4444",
+                    "oklch": "oklch(0.628 0.258 29.234)"
+                },
+                "destructiveForeground": {
+                    "hex": "#ffffff",
+                    "oklch": "oklch(1 0 0)"
+                },
+                "border": {
+                    "hex": "#e5e7eb",
+                    "oklch": "oklch(0.92 0.004 261.692)",
+                    "token": "gray-200"
+                },
+                "input": {
+                    "hex": "#e5e7eb",
+                    "oklch": "oklch(0.92 0.004 261.692)",
+                    "token": "gray-200"
+                },
+                "ring": {
+                    "hex": "#10b981",
+                    "oklch": "oklch(0.70 0.15 162)",
+                    "token": "primary-500"
+                }
+            },
+            "dark": {
+                "background": {
+                    "hex": "#111827",
+                    "oklch": "oklch(0.13 0.028 261.692)",
+                    "token": "gray-900"
+                },
+                "foreground": {
+                    "hex": "#f9fafb",
+                    "oklch": "oklch(0.985 0.002 247.839)",
+                    "token": "gray-50"
+                },
+                "card": {
+                    "hex": "#1f2937",
+                    "oklch": "oklch(0.21 0.034 264.665)",
+                    "token": "gray-800"
+                },
+                "cardForeground": {
+                    "hex": "#f9fafb",
+                    "oklch": "oklch(0.985 0.002 247.839)",
+                    "token": "gray-50"
+                },
+                "primary": {
+                    "hex": "#10b981",
+                    "oklch": "oklch(0.70 0.15 162)",
+                    "token": "primary-500"
+                },
+                "primaryForeground": {
+                    "hex": "#047857",
+                    "oklch": "oklch(0.50 0.12 164)",
+                    "token": "primary-700"
+                },
+                "secondary": {
+                    "hex": "#374151",
+                    "oklch": "oklch(0.274 0.006 286.033)",
+                    "token": "gray-700"
+                },
+                "secondaryForeground": {
+                    "hex": "#f9fafb",
+                    "oklch": "oklch(0.985 0 0)",
+                    "token": "gray-50"
+                },
+                "muted": {
+                    "hex": "#374151",
+                    "oklch": "oklch(0.278 0.033 256.848)",
+                    "token": "gray-700"
+                },
+                "mutedForeground": {
+                    "hex": "#9ca3af",
+                    "oklch": "oklch(0.707 0.022 261.325)",
+                    "token": "gray-400"
+                },
+                "accent": {
+                    "hex": "#374151",
+                    "oklch": "oklch(0.278 0.033 256.848)",
+                    "token": "gray-700"
+                },
+                "accentForeground": {
+                    "hex": "#f9fafb",
+                    "oklch": "oklch(0.985 0.002 247.839)",
+                    "token": "gray-50"
+                },
+                "destructive": {
+                    "hex": "#ef4444",
+                    "oklch": "oklch(0.704 0.191 22.216)"
+                },
+                "destructiveForeground": {
+                    "hex": "#f9fafb",
+                    "oklch": "oklch(0.985 0.002 247.839)"
+                },
+                "border": {
+                    "hex": "rgba(255, 255, 255, 0.1)",
+                    "oklch": "oklch(1 0 0 / 10%)"
+                },
+                "input": {
+                    "hex": "rgba(255, 255, 255, 0.15)",
+                    "oklch": "oklch(1 0 0 / 15%)"
+                },
+                "ring": {
+                    "hex": "#6b7280",
+                    "oklch": "oklch(0.551 0.027 264.364)",
+                    "token": "gray-500"
+                }
             }
         },
         "radius": {
@@ -49,25 +264,26 @@
         }
     },
     "semantic": {
-        "background": "var(--color-gray-50)",
-        "foreground": "var(--color-gray-900)",
-        "primary": "var(--color-primary-600)",
-        "primaryForeground": "var(--color-primary-50)",
-        "secondary": "var(--color-gray-200)",
-        "secondaryForeground": "var(--color-gray-800)",
-        "muted": "var(--color-gray-100)",
-        "mutedForeground": "var(--color-gray-600)",
-        "accent": "var(--color-gray-100)",
-        "accentForeground": "var(--color-gray-900)",
-        "destructive": "#ef4444",
-        "border": "var(--color-gray-200)",
-        "input": "var(--color-gray-200)",
-        "ring": "var(--color-primary-500)"
+        "background": "var(--background)",
+        "foreground": "var(--foreground)",
+        "primary": "var(--primary)",
+        "primaryForeground": "var(--primary-foreground)",
+        "secondary": "var(--secondary)",
+        "secondaryForeground": "var(--secondary-foreground)",
+        "muted": "var(--muted)",
+        "mutedForeground": "var(--muted-foreground)",
+        "accent": "var(--accent)",
+        "accentForeground": "var(--accent-foreground)",
+        "destructive": "var(--destructive)",
+        "border": "var(--border)",
+        "input": "var(--input)",
+        "ring": "var(--ring)"
     },
     "metadata": {
         "themeName": "CIQ Style Guide",
-        "description": "Deterministic design system with token-based architecture",
+        "description": "Deterministic design system with token-based architecture and OKLCH color support",
         "license": "Proprietary",
-        "repository": "https://github.com/your-org/CIQ-Style-Guide-01"
+        "repository": "https://github.com/your-org/CIQ-Style-Guide-01",
+        "colorSpace": "OKLCH (Oklab Lightness Chroma Hue) for perceptually uniform colors"
     }
 }

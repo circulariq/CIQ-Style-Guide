@@ -31,9 +31,6 @@ export function AITipsBlock() {
                         <div className="mt-2"><span className="text-muted-foreground"># 3. Start dev server</span></div>
                         <div>npm run dev</div>
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                        → Access at <code className="bg-muted px-2 py-1 rounded">http://localhost:5174</code>
-                    </p>
                 </CardContent>
             </Card>
 
@@ -390,6 +387,120 @@ export function AITipsBlock() {
                         </div>
                     </div>
 
+                    {/* Light Theme Colors */}
+                    <div>
+                        <h4 className="font-semibold mb-3 text-base">Light Theme Colors</h4>
+                        <p className="text-sm text-muted-foreground mb-3">
+                            Color mappings for light mode (default theme)
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div className="flex items-center gap-3 p-3 border rounded-md bg-[#f9fafb]">
+                                <div className="w-10 h-10 rounded" style={{ backgroundColor: '#f9fafb' }}></div>
+                                <div className="text-sm">
+                                    <div className="font-mono font-semibold">background</div>
+                                    <div className="text-xs text-muted-foreground">#f9fafb (gray-50)</div>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-3 p-3 border rounded-md">
+                                <div className="w-10 h-10 rounded" style={{ backgroundColor: '#111827' }}></div>
+                                <div className="text-sm">
+                                    <div className="font-mono font-semibold">foreground</div>
+                                    <div className="text-xs text-muted-foreground">#111827 (gray-900)</div>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-3 p-3 border rounded-md">
+                                <div className="w-10 h-10 rounded" style={{ backgroundColor: '#059669' }}></div>
+                                <div className="text-sm">
+                                    <div className="font-mono font-semibold">primary</div>
+                                    <div className="text-xs text-muted-foreground">#059669 (primary-600)</div>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-3 p-3 border rounded-md bg-[#ecfdf5]">
+                                <div className="w-10 h-10 rounded" style={{ backgroundColor: '#ecfdf5' }}></div>
+                                <div className="text-sm">
+                                    <div className="font-mono font-semibold">primary-foreground</div>
+                                    <div className="text-xs text-muted-foreground">#ecfdf5 (primary-50)</div>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-3 p-3 border rounded-md bg-[#e5e7eb]">
+                                <div className="w-10 h-10 rounded" style={{ backgroundColor: '#e5e7eb' }}></div>
+                                <div className="text-sm">
+                                    <div className="font-mono font-semibold">border</div>
+                                    <div className="text-xs text-muted-foreground">#e5e7eb (gray-200)</div>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-3 p-3 border rounded-md">
+                                <div className="w-10 h-10 rounded" style={{ backgroundColor: '#ef4444' }}></div>
+                                <div className="text-sm">
+                                    <div className="font-mono font-semibold">destructive</div>
+                                    <div className="text-xs text-muted-foreground">#ef4444 (red)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-3 p-3 bg-gray-50 border border-gray-200 rounded-md">
+                            <p className="text-xs text-gray-700">
+                                <strong>OKLCH Values:</strong> Light theme uses standard hex colors converted to OKLCH for perceptual uniformity
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Dark Theme Colors */}
+                    <div>
+                        <h4 className="font-semibold mb-3 text-base">Dark Theme Colors</h4>
+                        <p className="text-sm text-muted-foreground mb-3">
+                            Color mappings for dark mode using OKLCH color space
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div className="flex items-center gap-3 p-3 border rounded-md" style={{ backgroundColor: '#111827' }}>
+                                <div className="w-10 h-10 rounded border border-gray-600" style={{ backgroundColor: '#111827' }}></div>
+                                <div className="text-sm text-white">
+                                    <div className="font-mono font-semibold">background</div>
+                                    <div className="text-xs text-gray-300">oklch(0.13 0.028 261.692)</div>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-3 p-3 border rounded-md" style={{ backgroundColor: '#111827' }}>
+                                <div className="w-10 h-10 rounded" style={{ backgroundColor: '#f9fafb' }}></div>
+                                <div className="text-sm text-white">
+                                    <div className="font-mono font-semibold">foreground</div>
+                                    <div className="text-xs text-gray-300">oklch(0.985 0.002 247.839)</div>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-3 p-3 border rounded-md" style={{ backgroundColor: '#111827' }}>
+                                <div className="w-10 h-10 rounded" style={{ backgroundColor: '#10b981' }}></div>
+                                <div className="text-sm text-white">
+                                    <div className="font-mono font-semibold">primary</div>
+                                    <div className="text-xs text-gray-300">oklch(0.70 0.15 162)</div>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-3 p-3 border rounded-md" style={{ backgroundColor: '#111827' }}>
+                                <div className="w-10 h-10 rounded border" style={{ backgroundColor: '#047857' }}></div>
+                                <div className="text-sm text-white">
+                                    <div className="font-mono font-semibold">primary-foreground</div>
+                                    <div className="text-xs text-gray-300">oklch(0.50 0.12 164)</div>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-3 p-3 border rounded-md" style={{ backgroundColor: '#111827' }}>
+                                <div className="w-10 h-10 rounded border border-gray-700" style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}></div>
+                                <div className="text-sm text-white">
+                                    <div className="font-mono font-semibold">border</div>
+                                    <div className="text-xs text-gray-300">oklch(1 0 0 / 10%)</div>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-3 p-3 border rounded-md" style={{ backgroundColor: '#111827' }}>
+                                <div className="w-10 h-10 rounded" style={{ backgroundColor: '#ef4444' }}></div>
+                                <div className="text-sm text-white">
+                                    <div className="font-mono font-semibold">destructive</div>
+                                    <div className="text-xs text-gray-300">oklch(0.704 0.191 22.216)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-3 p-3 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-md">
+                            <p className="text-xs text-blue-800 dark:text-blue-200">
+                                <strong>Why OKLCH?</strong> OKLCH provides perceptually uniform colors, meaning equal changes in values produce equal perceived changes in color. Better for accessibility and smooth gradients.
+                            </p>
+                        </div>
+                    </div>
+
                     {/* Token Usage Note */}
                     <div className="p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-md">
                         <h5 className="font-semibold text-amber-900 dark:text-amber-100 mb-2">💡 Token Usage Guidelines</h5>
@@ -429,6 +540,80 @@ export function AITipsBlock() {
                         <div className="bg-muted p-3 rounded-md">
                             <div className="font-mono text-sm mb-1">npx shadcn add [component-name]</div>
                             <p className="text-xs text-muted-foreground">Add new shadcn component</p>
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
+
+            {/* shadcn MCP Server */}
+            <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                        <Package className="h-5 w-5" />
+                        shadcn MCP Server
+                    </CardTitle>
+                    <CardDescription>AI-powered component generation and management</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                    <p className="text-sm text-muted-foreground">
+                        The shadcn MCP (Model Context Protocol) server enables AI assistants to interact with your shadcn/ui components programmatically.
+                    </p>
+
+                    <div>
+                        <h4 className="font-semibold mb-2 text-sm">Installation</h4>
+                        <div className="bg-muted p-3 rounded-md font-mono text-xs">
+                            npx -y @modelcontextprotocol/create-server shadcn
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 className="font-semibold mb-2 text-sm">Available Commands</h4>
+                        <div className="space-y-2 text-sm">
+                            <div className="flex items-start gap-2">
+                                <Badge variant="outline" className="mt-0.5">add</Badge>
+                                <span className="text-muted-foreground">Add new components to your project</span>
+                            </div>
+                            <div className="flex items-start gap-2">
+                                <Badge variant="outline" className="mt-0.5">list</Badge>
+                                <span className="text-muted-foreground">List all available components</span>
+                            </div>
+                            <div className="flex items-start gap-2">
+                                <Badge variant="outline" className="mt-0.5">info</Badge>
+                                <span className="text-muted-foreground">Get component information</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="p-3 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-md">
+                        <p className="text-xs text-blue-800 dark:text-blue-200">
+                            <strong>💡 Pro Tip:</strong> Use the shadcn MCP server with AI assistants like Claude Desktop to add components via natural language commands.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 className="font-semibold mb-2 text-sm">Configuration</h4>
+                        <p className="text-xs text-muted-foreground mb-2">
+                            Edit <code className="bg-muted px-1 rounded">components.json</code> to configure:
+                        </p>
+                        <ul className="text-xs text-muted-foreground space-y-1 list-disc list-inside">
+                            <li>Style variant (default, new-york, etc.)</li>
+                            <li>Base color palette</li>
+                            <li>CSS variables</li>
+                            <li>Component aliases</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 className="font-semibold mb-2 text-sm">Example Usage</h4>
+                        <div className="bg-muted p-3 rounded-md space-y-2">
+                            <div className="text-xs">
+                                <div className="text-muted-foreground mb-1">User:</div>
+                                <div className="font-mono">"Add a dialog component to my project"</div>
+                            </div>
+                            <div className="text-xs">
+                                <div className="text-muted-foreground mb-1">AI + MCP:</div>
+                                <div className="font-mono text-primary">npx shadcn add dialog</div>
+                            </div>
                         </div>
                     </div>
                 </CardContent>
@@ -631,6 +816,6 @@ export function AITipsBlock() {
                     </div>
                 </CardContent>
             </Card>
-        </div>
+        </div >
     )
 }

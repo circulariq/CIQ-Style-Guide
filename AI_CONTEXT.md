@@ -61,24 +61,20 @@ This project uses:
 ## Critical Rules
 
 ### ❌ NEVER Do This:
-1. **Never invent colors** — Only use colors defined in `/design-tokens/tokens.json`
-2. **Never use arbitrary values** — No `p-[17px]`, `w-[234px]`, etc.
-3. **Never use `transition-all`** — Always specify `transition-colors` or `transition-transform`
-4. **Never use `focus:`** — Always use `focus-visible:` for accessibility
-5. **Never stack shadows** — Use one shadow class maximum
-6. **Never use custom hex colors** — Use semantic tokens like `bg-primary`, `text-gray-600`
-7. **Never use non-standard spacing** — Stick to 4px, 8px, 16px, 24px, 32px
-8. **Never create component variants without approval** — Use existing variants only
+1. Invent colors not in tokens.json (ask for approval before using new colors)
+2. Use arbitrary values like p-[17px], w-[234px], etc.
+3. Use transition-all (always specify properties)
+4. Use focus: (always use focus-visible:)
+5. Stack multiple shadows
+6. Create component variants without approval
 
 ### ✅ ALWAYS Do This:
-1. **Always use defined token names** — `primary-500`, `gray-200`, etc.
-2. **Always use the spacing scale** — `p-4`, `gap-2`, `space-y-6`, etc.
-3. **Always default to `md` size** — Unless explicitly specified otherwise
-4. **Always use `rounded-md`** — Unless component requires different radius
-5. **Always include focus states** — `focus-visible:ring-1 focus-visible:ring-ring`
-6. **Always include disabled states** — `disabled:pointer-events-none disabled:opacity-50`
-7. **Always use `transition-colors`** — For smooth state changes
-8. **Always check `/design-specs/interaction-rules.md`** — Before creating interactive elements
+1. Use defined token names from /design-tokens/tokens.json
+2. Include focus states: focus-visible:ring-1 focus-visible:ring-ring
+3. Include disabled states: disabled:pointer-events-none disabled:opacity-50
+4. Use transition-colors for state changes
+5. Default to md size unless specified
+6. Check /design-specs/interaction-rules.md before creating interactions
 
 ---
 
