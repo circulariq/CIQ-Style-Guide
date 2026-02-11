@@ -22,6 +22,7 @@ function App() {
   const renderBlockPreview = (blockId: string) => {
     const blockMap: Record<string, React.ComponentType> = {
       'home': BlockComponents.HomeBlock,
+      'ai-tips': BlockComponents.AITipsBlock,
       'elevenlabs': BlockComponents.ElevenlabsBlock,
       'github': BlockComponents.GitHubBlock,
       'vercel': BlockComponents.VercelBlock,

@@ -1,0 +1,74 @@
+{
+    "version": "1.0.0",
+    "releaseDate": "2026-02-11",
+    "systemInfo": {
+        "name": "CIQ Style Guide",
+        "type": "Design System",
+        "architecture": "Token-based, Deterministic",
+        "status": "Stable"
+    },
+    "endpoints": {
+        "/api/design-tokens": {
+            "description": "Returns all design tokens including colors, spacing, radius, and typography",
+            "method": "GET",
+            "responseType": "application/json",
+            "cacheControl": "public, max-age=3600"
+        },
+        "/api/components": {
+            "description": "Returns component library metadata, variants, props, and usage examples",
+            "method": "GET",
+            "responseType": "application/json",
+            "cacheControl": "public, max-age=3600"
+        },
+        "/api/version": {
+            "description": "Returns version information and API metadata",
+            "method": "GET",
+            "responseType": "application/json",
+            "cacheControl": "public, max-age=300"
+        }
+    },
+    "capabilities": {
+        "designTokens": true,
+        "componentMetadata": true,
+        "interactionRules": false,
+        "themeSupport": {
+            "light": true,
+            "dark": true
+        },
+        "responsive": true
+    },
+    "dependencies": {
+        "react": "^18.2.0",
+        "tailwindcss": "^3.4.1",
+        "radix-ui": "Multiple packages",
+        "vite": "^5.1.0"
+    },
+    "compatibility": {
+        "browsers": [
+            "Chrome >= 90",
+            "Firefox >= 88",
+            "Safari >= 14",
+            "Edge >= 90"
+        ],
+        "node": ">=18.0.0"
+    },
+    "changelog": [
+        {
+            "version": "1.0.0",
+            "date": "2026-02-11",
+            "changes": [
+                "Initial release",
+                "Complete design token system",
+                "15 core components",
+                "Machine-readable API endpoints",
+                "AI-friendly documentation"
+            ]
+        }
+    ],
+    "links": {
+        "documentation": "/AI_CONTEXT.md",
+        "interactionRules": "/design-specs/interaction-rules.md",
+        "designTokens": "/design-tokens/tokens.json",
+        "repository": "https://github.com/your-org/CIQ-Style-Guide-01"
+    }
+}

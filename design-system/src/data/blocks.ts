@@ -11,6 +11,11 @@ export const blocksData: BlockData[] = [
     description: "Dashboard home page with cards, forms, and data displays"
   },
   {
+    id: "ai-tips",
+    name: "AI Tips",
+    description: "Complete guide for AI agents and developers to run and maintain this project"
+  },
+  {
     id: "elevenlabs",
     name: "Elevenlabs",
     description: "Voice synthesis interface with audio controls"

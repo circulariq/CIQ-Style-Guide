@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Nunito Sans', 'system-ui', 'sans-serif'],
+        sans: ['var(--typography-fontFamily)', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: 'var(--border)',
@@ -21,6 +21,23 @@ export default {
         primary: {
           DEFAULT: 'var(--primary)',
           foreground: 'var(--primary-foreground)',
+          50: 'var(--color-primary-50)',
+          100: 'var(--color-primary-100)',
+          500: 'var(--color-primary-500)',
+          600: 'var(--color-primary-600)',
+          700: 'var(--color-primary-700)',
+        },
+        gray: {
+          50: 'var(--color-gray-50)',
+          100: 'var(--color-gray-100)',
+          200: 'var(--color-gray-200)',
+          300: 'var(--color-gray-300)',
+          400: 'var(--color-gray-400)',
+          500: 'var(--color-gray-500)',
+          600: 'var(--color-gray-600)',
+          700: 'var(--color-gray-700)',
+          800: 'var(--color-gray-800)',
+          900: 'var(--color-gray-900)',
         },
         secondary: {
           DEFAULT: 'var(--secondary)',
@@ -65,9 +82,25 @@ export default {
         },
       },
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        lg: 'var(--radius-lg)',
+        md: 'var(--radius-md)',
+        sm: 'var(--radius-sm)',
+        xl: 'var(--radius-xl)',
+      },
+      spacing: {
+        xs: 'var(--spacing-xs)',
+        sm: 'var(--spacing-sm)',
+        md: 'var(--spacing-md)',
+        lg: 'var(--spacing-lg)',
+        xl: 'var(--spacing-xl)',
+      },
+      fontSize: {
+        xs: 'var(--typography-sizes-xs)',
+        sm: 'var(--typography-sizes-sm)',
+        base: 'var(--typography-sizes-base)',
+        lg: 'var(--typography-sizes-lg)',
+        xl: 'var(--typography-sizes-xl)',
+        '2xl': 'var(--typography-sizes-2xl)',
       },
       keyframes: {
         'accordion-down': {

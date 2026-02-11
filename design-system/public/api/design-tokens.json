@@ -1,0 +1,73 @@
+{
+    "version": "1.0.0",
+    "lastUpdated": "2026-02-11T10:32:00Z",
+    "tokens": {
+        "color": {
+            "primary": {
+                "50": "#ecfdf5",
+                "100": "#d1fae5",
+                "500": "#10b981",
+                "600": "#059669",
+                "700": "#047857"
+            },
+            "gray": {
+                "50": "#f9fafb",
+                "100": "#f3f4f6",
+                "200": "#e5e7eb",
+                "300": "#d1d5db",
+                "400": "#9ca3af",
+                "500": "#6b7280",
+                "600": "#4b5563",
+                "700": "#374151",
+                "800": "#1f2937",
+                "900": "#111827"
+            }
+        },
+        "radius": {
+            "sm": "4px",
+            "md": "8px",
+            "lg": "12px",
+            "xl": "16px"
+        },
+        "spacing": {
+            "xs": "4px",
+            "sm": "8px",
+            "md": "16px",
+            "lg": "24px",
+            "xl": "32px"
+        },
+        "typography": {
+            "fontFamily": "Figtree, sans-serif",
+            "sizes": {
+                "xs": "12px",
+                "sm": "14px",
+                "base": "16px",
+                "lg": "18px",
+                "xl": "24px",
+                "2xl": "32px"
+            }
+        }
+    },
+    "semantic": {
+        "background": "var(--color-gray-50)",
+        "foreground": "var(--color-gray-900)",
+        "primary": "var(--color-primary-600)",
+        "primaryForeground": "var(--color-primary-50)",
+        "secondary": "var(--color-gray-200)",
+        "secondaryForeground": "var(--color-gray-800)",
+        "muted": "var(--color-gray-100)",
+        "mutedForeground": "var(--color-gray-600)",
+        "accent": "var(--color-gray-100)",
+        "accentForeground": "var(--color-gray-900)",
+        "destructive": "#ef4444",
+        "border": "var(--color-gray-200)",
+        "input": "var(--color-gray-200)",
+        "ring": "var(--color-primary-500)"
+    },
+    "metadata": {
+        "themeName": "CIQ Style Guide",
+        "description": "Deterministic design system with token-based architecture",
+        "license": "Proprietary",
+        "repository": "https://github.com/your-org/CIQ-Style-Guide-01"
+    }
+}
