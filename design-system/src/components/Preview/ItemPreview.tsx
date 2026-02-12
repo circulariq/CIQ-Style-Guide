@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface ItemProps {
@@ -33,11 +34,28 @@ function Item({ title, description, selected, onClick }: ItemProps) {
 }
 
 export function ItemPreview() {
+  const [selectedId, setSelectedId] = useState<string>("opt1");
+
   return (
     <div className="space-y-2 w-full max-w-sm">
-      <Item title="Option One" description="This is the first option" selected />
-      <Item title="Option Two" description="This is the second option" />
-      <Item title="Option Three" description="This is the third option" />
+      <Item
+        title="Option One"
+        description="This is the first option"
+        selected={selectedId === "opt1"}
+        onClick={() => setSelectedId("opt1")}
+      />
+      <Item
+        title="Option Two"
+        description="This is the second option"
+        selected={selectedId === "opt2"}
+        onClick={() => setSelectedId("opt2")}
+      />
+      <Item
+        title="Option Three"
+        description="This is the third option"
+        selected={selectedId === "opt3"}
+        onClick={() => setSelectedId("opt3")}
+      />
     </div>
   );
 }
