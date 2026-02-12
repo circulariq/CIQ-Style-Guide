@@ -98,8 +98,9 @@ function App() {
 
         <main className="flex-1 flex flex-col overflow-hidden relative">
           <Routes>
-            <Route path="/" element={<Navigate to="/ai-tips" replace />} />
-            <Route path="/:blockId" element={<BlockPreview />} />
+            <Route path="/" element={<Navigate to="/component-preview" replace />} />
+            <Route path="/ai-tips" element={<Navigate to="/ai-tips/ai" replace />} />
+            <Route path="/:blockId/:subpage?" element={<BlockPreview />} />
             <Route path="/components/:componentId" element={<ComponentPreview />} />
           </Routes>
         </main>

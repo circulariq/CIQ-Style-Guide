@@ -6,11 +6,6 @@ export interface BlockData {
 
 export const blocksData: BlockData[] = [
   {
-    id: "ai-tips",
-    name: "AI Tips",
-    description: "Complete guide for AI agents and developers to run and maintain this project"
-  },
-  {
     id: "component-preview",
     name: "Component Preview",
     description: "Dashboard preview with cards, forms, and data displays"
@@ -34,6 +29,11 @@ export const blocksData: BlockData[] = [
     id: "chatgpt",
     name: "ChatGPT",
     description: "AI chat interface with conversation history"
+  },
+  {
+    id: "ai-tips",
+    name: "AI Tips",
+    description: "Complete guide for AI agents and developers to run and maintain this project"
   }
 ];
 
