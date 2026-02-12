@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 
-export function HomeBlock() {
+export function ComponentPreviewBlock() {
   return (
     <div className="grid gap-6 lg:grid-cols-2">
       {/* Card Section */}

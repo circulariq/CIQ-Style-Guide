@@ -373,10 +373,10 @@ You are integrating with the CIQ Design System.
 Before generating any UI code:
 
 1. Fetch design tokens:
-   GET http://your-domain.com/api/design-tokens.json
+   GET https://ciq-style-guide.vercel.app/api/design-tokens.json
 
 2. Fetch component metadata:
-   GET http://your-domain.com/api/components.json
+   GET https://ciq-style-guide.vercel.app/api/components.json
 
 3. Use ONLY the tokens and components defined in these APIs
 

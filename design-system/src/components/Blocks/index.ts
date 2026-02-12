@@ -1,4 +1,4 @@
-export { HomeBlock } from './HomeBlock';
+export { ComponentPreviewBlock } from './ComponentPreviewBlock';
 export { ElevenlabsBlock } from './ElevenlabsBlock';
 export { GitHubBlock } from './GitHubBlock';
 export { VercelBlock } from './VercelBlock';

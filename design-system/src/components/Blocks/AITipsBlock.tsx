@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Terminal, Package, Folder, FileCode, Zap, BookOpen, Code2, Palette } from "lucide-react"
+import { Terminal, Package, Folder, FileCode, Zap, BookOpen, Code2, Palette, Bot } from "lucide-react"
+import aiPrompt from "../../../../design-specs/ai-prompt.md?raw"
 
 export function AITipsBlock() {
     return (
@@ -644,6 +645,32 @@ export function AITipsBlock() {
                     <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 p-3 rounded-md">
                         <p className="text-xs text-blue-800 dark:text-blue-200">
                             💡 AI agents can fetch these endpoints to get real-time design system data
+                        </p>
+                    </div>
+                </CardContent>
+            </Card>
+
+            {/* AI Agent Prompt */}
+            <Card id="ai-agent-prompt">
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                        <Bot className="h-5 w-5" />
+                        Access from AI Agents
+                    </CardTitle>
+                    <CardDescription>Example LLM prompt to initialize the design system context</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <div className="bg-muted p-4 rounded-md font-mono text-sm relative group">
+                        <div className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <Badge variant="outline" className="bg-background">LLM Prompt</Badge>
+                        </div>
+                        <pre className="whitespace-pre-wrap break-all">
+                            {aiPrompt}
+                        </pre>
+                    </div>
+                    <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-md">
+                        <p className="text-xs text-blue-800 dark:text-blue-200">
+                            💡 <strong>Pro Tip:</strong> Copy this prompt into your conversation with an AI agent to ensure it follows the correct design system patterns.
                         </p>
                     </div>
                 </CardContent>
