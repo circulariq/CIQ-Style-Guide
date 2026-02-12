@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { ComponentData, componentsData } from '../data/components';
-import { blocksData, BlockData } from '../data/blocks';
+import { NavLink } from 'react-router-dom';
+import { componentsData } from '../data/components';
+import { blocksData } from '../data/blocks';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -13,13 +14,9 @@ import {
 
 export type ViewType = 'block' | 'component';
 
-interface SidebarProps {
-  selectedItem: ComponentData | BlockData | null;
-  selectedType: ViewType;
-  onItemSelect: (item: ComponentData | BlockData, type: ViewType) => void;
-}
+interface SidebarProps { }
 
-export function Sidebar({ selectedItem, selectedType, onItemSelect }: SidebarProps) {
+export function Sidebar({ }: SidebarProps) {
   const [blocksOpen, setBlocksOpen] = useState(true);
   const [componentsOpen, setComponentsOpen] = useState(true);
 
@@ -40,14 +37,14 @@ export function Sidebar({ selectedItem, selectedType, onItemSelect }: SidebarPro
             <CollapsibleTrigger asChild>
               <Button
                 variant="ghost"
-                className="w-full justify-between px-2 py-1.5 h-auto"
+                className="w-full justify-between px-2 py-1.5 h-auto text-muted-foreground"
               >
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                <span className="text-xs font-semibold uppercase tracking-wider">
                   Blocks
                 </span>
                 <svg
                   className={cn(
-                    "h-4 w-4 text-muted-foreground transition-transform",
+                    "h-4 w-4 transition-transform",
                     blocksOpen && "rotate-180"
                   )}
                   fill="none"
@@ -60,17 +57,19 @@ export function Sidebar({ selectedItem, selectedType, onItemSelect }: SidebarPro
             </CollapsibleTrigger>
             <CollapsibleContent className="space-y-0.5 mt-1">
               {blocksData.map((block) => (
-                <Button
+                <NavLink
                   key={block.id}
-                  variant={selectedType === 'block' && selectedItem?.id === block.id ? "secondary" : "ghost"}
-                  className="w-full justify-start px-2 py-1.5 h-auto text-sm font-normal"
-                  onClick={() => onItemSelect(block, 'block')}
+                  to={`/${block.id}`}
+                  className={({ isActive }) => cn(
+                    "flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground",
+                    isActive ? "bg-secondary text-secondary-foreground" : "text-foreground"
+                  )}
                 >
                   <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                   </svg>
                   {block.name}
-                </Button>
+                </NavLink>
               ))}
             </CollapsibleContent>
           </Collapsible>
@@ -80,14 +79,14 @@ export function Sidebar({ selectedItem, selectedType, onItemSelect }: SidebarPro
             <CollapsibleTrigger asChild>
               <Button
                 variant="ghost"
-                className="w-full justify-between px-2 py-1.5 h-auto"
+                className="w-full justify-between px-2 py-1.5 h-auto text-muted-foreground"
               >
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                <span className="text-xs font-semibold uppercase tracking-wider">
                   Components
                 </span>
                 <svg
                   className={cn(
-                    "h-4 w-4 text-muted-foreground transition-transform",
+                    "h-4 w-4 transition-transform",
                     componentsOpen && "rotate-180"
                   )}
                   fill="none"
@@ -100,14 +99,16 @@ export function Sidebar({ selectedItem, selectedType, onItemSelect }: SidebarPro
             </CollapsibleTrigger>
             <CollapsibleContent className="space-y-0.5 mt-1">
               {componentsData.map((component) => (
-                <Button
+                <NavLink
                   key={component.id}
-                  variant={selectedType === 'component' && selectedItem?.id === component.id ? "secondary" : "ghost"}
-                  className="w-full justify-start px-2 py-1.5 h-auto text-sm font-normal"
-                  onClick={() => onItemSelect(component, 'component')}
+                  to={`/components/${component.id}`}
+                  className={({ isActive }) => cn(
+                    "flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground",
+                    isActive ? "bg-secondary text-secondary-foreground" : "text-foreground"
+                  )}
                 >
                   {component.name}
-                </Button>
+                </NavLink>
               ))}
             </CollapsibleContent>
           </Collapsible>
@@ -116,3 +117,4 @@ export function Sidebar({ selectedItem, selectedType, onItemSelect }: SidebarPro
     </aside>
   );
 }
+
