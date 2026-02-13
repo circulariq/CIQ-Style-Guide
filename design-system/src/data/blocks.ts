@@ -34,6 +34,11 @@ export const blocksData: BlockData[] = [
     id: "ai-tips",
     name: "AI Tips",
     description: "Complete guide for AI agents and developers to run and maintain this project"
+  },
+  {
+    id: "playground",
+    name: "Playground",
+    description: "CIQ Design System Playground"
   }
 ];
 

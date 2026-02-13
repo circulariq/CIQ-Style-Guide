@@ -19,6 +19,7 @@ const BlockPreview = () => {
     'github': BlockComponents.GitHubBlock,
     'vercel': BlockComponents.VercelBlock,
     'chatgpt': BlockComponents.ChatGPTBlock,
+    'playground': BlockComponents.PlaygroundBlock,
   };
 
   const BlockComponent = blockId ? blockMap[blockId] : null;

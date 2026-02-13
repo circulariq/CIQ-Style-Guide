@@ -4,4 +4,5 @@ export { GitHubBlock } from './GitHubBlock';
 export { VercelBlock } from './VercelBlock';
 export { ChatGPTBlock } from './ChatGPTBlock';
 export { AITipsBlock } from './AITipsBlock';
+export { PlaygroundBlock } from './PlaygroundBlock';
 
