@@ -2,7 +2,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Package, Code2, Bot, BookOpen, FileCode } from "lucide-react"
 import { DesignTokensSection } from "./DesignTokensSection"
-import { DocumentationSection } from "./DocumentationSection"
+import { DecisionTreesSection } from "./DecisionTreesSection"
+import { CommonPatternsSection } from "./CommonPatternsSection"
+import { SemanticTokensSection } from "./SemanticTokensSection"
+import { OKLCHSection } from "./OKLCHSection"
 import aiPrompt from "../../../../../design-specs/ai-prompt.md?raw"
 import aiContext from "../../../../../AI_CONTEXT.md?raw"
 import interactionRules from "../../../../../design-specs/interaction-rules.md?raw"
@@ -10,7 +13,7 @@ import interactionRules from "../../../../../design-specs/interaction-rules.md?r
 export function AIContent() {
     return (
         <div className="space-y-6">
-            {/* Critical Rules */}
+            {/* 1. Critical Rules */}
             <Card className="border-primary">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
@@ -48,7 +51,72 @@ export function AIContent() {
                 </CardContent>
             </Card>
 
-            {/* AI Agent Prompt */}
+            {/* 2. Design Tokens (Complete Reference) */}
+            <DesignTokensSection />
+
+            {/* 3. AI Context Full Reference */}
+            <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                        <FileCode className="h-5 w-5" />
+                        AI Context Full Reference
+                    </CardTitle>
+                    <CardDescription>Content of /AI_CONTEXT.md</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <div className="bg-muted p-4 rounded-md font-mono text-xs">
+                        <pre className="whitespace-pre-wrap break-all">{aiContext}</pre>
+                    </div>
+                </CardContent>
+            </Card>
+
+            {/* 4. Interaction Rules Full Reference */}
+            <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                        <BookOpen className="h-5 w-5" />
+                        Interaction Rules Full Reference
+                    </CardTitle>
+                    <CardDescription>Content of /design-specs/interaction-rules.md</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <div className="bg-muted p-4 rounded-md font-mono text-xs">
+                        <pre className="whitespace-pre-wrap break-all">{interactionRules}</pre>
+                    </div>
+                </CardContent>
+            </Card>
+
+            {/* 5. Machine-Readable API */}
+            <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                        <Code2 className="h-5 w-5" />
+                        Machine-Readable API
+                    </CardTitle>
+                    <CardDescription>Fetch design system data programmatically</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                    <div className="bg-muted p-3 rounded-md">
+                        <div className="font-mono text-sm mb-1">/api/design-tokens.json</div>
+                        <p className="text-xs text-muted-foreground">All design tokens with versioning</p>
+                    </div>
+                    <div className="bg-muted p-3 rounded-md">
+                        <div className="font-mono text-sm mb-1">/api/components.json</div>
+                        <p className="text-xs text-muted-foreground">Component metadata, variants, and examples</p>
+                    </div>
+                    <div className="bg-muted p-3 rounded-md">
+                        <div className="font-mono text-sm mb-1">/api/version.json</div>
+                        <p className="text-xs text-muted-foreground">Version info and system metadata</p>
+                    </div>
+                    <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 p-3 rounded-md">
+                        <p className="text-xs text-blue-800 dark:text-blue-200">
+                            💡 AI agents can fetch these endpoints to get real-time design system data
+                        </p>
+                    </div>
+                </CardContent>
+            </Card>
+
+            {/* 6. AI Agent Prompt */}
             <Card id="ai-agent-prompt">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
@@ -74,7 +142,16 @@ export function AIContent() {
                 </CardContent>
             </Card>
 
-            {/* shadcn MCP Server */}
+            {/* 7. Quick Decision Trees */}
+            <DecisionTreesSection />
+
+            {/* 8. Common Patterns */}
+            <CommonPatternsSection />
+
+            {/* 9. Semantic Color Tokens */}
+            <SemanticTokensSection />
+
+            {/* 10. shadcn MCP Server */}
             <Card>
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
@@ -148,70 +225,8 @@ export function AIContent() {
                 </CardContent>
             </Card>
 
-            {/* API Endpoints */}
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                        <Code2 className="h-5 w-5" />
-                        Machine-Readable API
-                    </CardTitle>
-                    <CardDescription>Fetch design system data programmatically</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                    <div className="bg-muted p-3 rounded-md">
-                        <div className="font-mono text-sm mb-1">/api/design-tokens.json</div>
-                        <p className="text-xs text-muted-foreground">All design tokens with versioning</p>
-                    </div>
-                    <div className="bg-muted p-3 rounded-md">
-                        <div className="font-mono text-sm mb-1">/api/components.json</div>
-                        <p className="text-xs text-muted-foreground">Component metadata, variants, and examples</p>
-                    </div>
-                    <div className="bg-muted p-3 rounded-md">
-                        <div className="font-mono text-sm mb-1">/api/version.json</div>
-                        <p className="text-xs text-muted-foreground">Version info and system metadata</p>
-                    </div>
-                    <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 p-3 rounded-md">
-                        <p className="text-xs text-blue-800 dark:text-blue-200">
-                            💡 AI agents can fetch these endpoints to get real-time design system data
-                        </p>
-                    </div>
-                </CardContent>
-            </Card>
-
-            <DesignTokensSection />
-            <DocumentationSection />
-
-            {/* AI Context Full Reference */}
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                        <FileCode className="h-5 w-5" />
-                        AI Context Full Reference
-                    </CardTitle>
-                    <CardDescription>Content of /AI_CONTEXT.md</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <div className="bg-muted p-4 rounded-md font-mono text-xs">
-                        <pre className="whitespace-pre-wrap break-all">{aiContext}</pre>
-                    </div>
-                </CardContent>
-            </Card>
-
-            {/* Interaction Rules Full Reference */}
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                        <BookOpen className="h-5 w-5" />
-                        Interaction Rules Full Reference
-                    </CardTitle>
-                    <CardDescription>Content of /design-specs/interaction-rules.md</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <div className="bg-muted p-4 rounded-md font-mono text-xs">
-                        <pre className="whitespace-pre-wrap break-all">{interactionRules}</pre>
-                    </div>
-                </CardContent>
-            </Card>
+            {/* 11. OKLCH Explanation */}
+            <OKLCHSection />
         </div>
     )
 }

@@ -45,15 +45,33 @@ export function AITipsBlock() {
                 </TabsContent>
             </Tabs>
 
-            {/* Version Information (Shared) */}
-            <Card className="bg-muted/50">
+            {/* 12. Version Information & Quick Links (Shared) */}
+            <Card className="bg-muted/50 border-dashed">
                 <CardContent className="pt-6">
-                    <div className="flex items-center justify-between text-sm">
-                        <div>
-                            <strong>Design System Version:</strong> 1.0.0
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                        <div className="space-y-2">
+                            <div className="font-semibold flex items-center gap-2">
+                                <Bot className="h-4 w-4 text-primary" />
+                                System Info
+                            </div>
+                            <div className="text-muted-foreground">
+                                <strong>Version:</strong> 1.0.0
+                            </div>
+                            <div className="text-muted-foreground">
+                                <strong>Last Updated:</strong> 2026-02-14
+                            </div>
                         </div>
-                        <div className="text-muted-foreground">
-                            Last Updated: 2026-02-12
+                        <div className="space-y-2">
+                            <div className="font-semibold flex items-center gap-2">
+                                <Code2 className="h-4 w-4 text-primary" />
+                                Quick Links
+                            </div>
+                            <div className="flex flex-wrap gap-x-4 gap-y-1">
+                                <code className="text-xs">/AI_CONTEXT.md</code>
+                                <code className="text-xs">/design-tokens/tokens.json</code>
+                                <code className="text-xs">/design-specs/interaction-rules.md</code>
+                                <code className="text-xs">/API_DOCUMENTATION.md</code>
+                            </div>
                         </div>
                     </div>
                 </CardContent>

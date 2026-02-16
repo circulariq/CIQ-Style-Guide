@@ -1,0 +1,18 @@
+{
+  "always": [
+    "Use defined token names from /design-tokens/tokens.json",
+    "Include focus states: focus-visible:ring-1 focus-visible:ring-ring",
+    "Include disabled states: disabled:pointer-events-none disabled:opacity-50",
+    "Use transition-colors for state changes",
+    "Default to md size unless specified",
+    "Check /design-specs/interaction-rules.md before creating interactions"
+  ],
+  "never": [
+    "Invent colors not in tokens.json (ask for approval before using new colors)",
+    "Use arbitrary values like p-[17px], w-[234px], etc.",
+    "Use transition-all (always specify properties)",
+    "Use focus: (always use focus-visible:)",
+    "Stack multiple shadows",
+    "Create component variants without approval"
+  ]
+}

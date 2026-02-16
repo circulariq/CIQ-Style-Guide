@@ -1,0 +1,339 @@
+{
+    "version": "1.0.0",
+    "lastUpdated": "2026-02-11T10:32:00Z",
+    "components": [
+        {
+            "id": "button",
+            "name": "Button",
+            "category": "Interactive",
+            "description": "Primary interactive element for user actions",
+            "path": "@/components/ui/button",
+            "variants": {
+                "variant": {
+                    "type": "enum",
+                    "default": "default",
+                    "options": [
+                        "default",
+                        "destructive",
+                        "outline",
+                        "secondary",
+                        "ghost",
+                        "link"
+                    ],
+                    "description": "Visual style variant"
+                },
+                "size": {
+                    "type": "enum",
+                    "default": "default",
+                    "options": [
+                        "sm",
+                        "default",
+                        "lg",
+                        "icon"
+                    ],
+                    "description": "Size variant"
+                }
+            },
+            "props": {
+                "asChild": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Render as a child component using Slot"
+                }
+            },
+            "interactionStates": {
+                "hover": "bg-primary/90",
+                "focus": "focus-visible:ring-1 focus-visible:ring-ring",
+                "disabled": "disabled:pointer-events-none disabled:opacity-50"
+            },
+            "examples": [
+                {
+                    "title": "Default Button",
+                    "code": "<Button>Click me</Button>"
+                },
+                {
+                    "title": "Destructive Button",
+                    "code": "<Button variant=\"destructive\">Delete</Button>"
+                },
+                {
+                    "title": "Small Outline Button",
+                    "code": "<Button variant=\"outline\" size=\"sm\">Cancel</Button>"
+                }
+            ]
+        },
+        {
+            "id": "card",
+            "name": "Card",
+            "category": "Layout",
+            "description": "Container component for grouping related content",
+            "path": "@/components/ui/card",
+            "subComponents": [
+                "CardHeader",
+                "CardTitle",
+                "CardDescription",
+                "CardContent",
+                "CardFooter"
+            ],
+            "defaultStyles": {
+                "padding": "p-6",
+                "radius": "rounded-lg",
+                "border": "border",
+                "background": "bg-card",
+                "shadow": "shadow"
+            },
+            "examples": [
+                {
+                    "title": "Basic Card",
+                    "code": "<Card>\n  <CardHeader>\n    <CardTitle>Title</CardTitle>\n    <CardDescription>Description</CardDescription>\n  </CardHeader>\n  <CardContent>Content here</CardContent>\n</Card>"
+                }
+            ]
+        },
+        {
+            "id": "input",
+            "name": "Input",
+            "category": "Forms",
+            "description": "Text input field for user data entry",
+            "path": "@/components/ui/input",
+            "defaultStyles": {
+                "height": "h-9",
+                "padding": "px-3 py-1",
+                "radius": "rounded-md",
+                "border": "border-input",
+                "background": "bg-transparent"
+            },
+            "interactionStates": {
+                "focus": "focus-visible:ring-1 focus-visible:ring-ring",
+                "disabled": "disabled:cursor-not-allowed disabled:opacity-50"
+            },
+            "props": {
+                "type": {
+                    "type": "string",
+                    "default": "text",
+                    "description": "HTML input type"
+                },
+                "placeholder": {
+                    "type": "string",
+                    "description": "Placeholder text"
+                }
+            },
+            "examples": [
+                {
+                    "title": "Basic Input",
+                    "code": "<Input type=\"text\" placeholder=\"Enter text...\" />"
+                },
+                {
+                    "title": "Email Input",
+                    "code": "<Input type=\"email\" placeholder=\"email@example.com\" />"
+                }
+            ]
+        },
+        {
+            "id": "badge",
+            "name": "Badge",
+            "category": "Display",
+            "description": "Small label for status or categorization",
+            "path": "@/components/ui/badge",
+            "variants": {
+                "variant": {
+                    "type": "enum",
+                    "default": "default",
+                    "options": [
+                        "default",
+                        "secondary",
+                        "destructive",
+                        "outline"
+                    ],
+                    "description": "Visual style variant"
+                }
+            },
+            "defaultStyles": {
+                "padding": "px-2.5 py-0.5",
+                "radius": "rounded-md",
+                "fontSize": "text-xs",
+                "fontWeight": "font-semibold"
+            },
+            "examples": [
+                {
+                    "title": "Default Badge",
+                    "code": "<Badge>New</Badge>"
+                },
+                {
+                    "title": "Outline Badge",
+                    "code": "<Badge variant=\"outline\">Draft</Badge>"
+                }
+            ]
+        },
+        {
+            "id": "accordion",
+            "name": "Accordion",
+            "category": "Interactive",
+            "description": "Collapsible content sections",
+            "path": "@/components/ui/accordion",
+            "subComponents": [
+                "AccordionItem",
+                "AccordionTrigger",
+                "AccordionContent"
+            ],
+            "interactionStates": {
+                "hover": "hover:underline",
+                "expanded": "data-state=\"open\"",
+                "collapsed": "data-state=\"closed\""
+            },
+            "examples": [
+                {
+                    "title": "Basic Accordion",
+                    "code": "<Accordion type=\"single\" collapsible>\n  <AccordionItem value=\"item-1\">\n    <AccordionTrigger>Section 1</AccordionTrigger>\n    <AccordionContent>Content 1</AccordionContent>\n  </AccordionItem>\n</Accordion>"
+                }
+            ]
+        },
+        {
+            "id": "alert",
+            "name": "Alert",
+            "category": "Feedback",
+            "description": "Notification message component",
+            "path": "@/components/ui/alert",
+            "variants": {
+                "variant": {
+                    "type": "enum",
+                    "default": "default",
+                    "options": [
+                        "default",
+                        "destructive"
+                    ],
+                    "description": "Visual style variant"
+                }
+            },
+            "subComponents": [
+                "AlertTitle",
+                "AlertDescription"
+            ]
+        },
+        {
+            "id": "dialog",
+            "name": "Dialog",
+            "category": "Overlay",
+            "description": "Modal dialog overlay",
+            "path": "@/components/ui/dialog",
+            "subComponents": [
+                "DialogTrigger",
+                "DialogContent",
+                "DialogHeader",
+                "DialogTitle",
+                "DialogDescription",
+                "DialogFooter"
+            ],
+            "defaultStyles": {
+                "shadow": "shadow-lg",
+                "radius": "rounded-lg"
+            }
+        },
+        {
+            "id": "dropdown-menu",
+            "name": "Dropdown Menu",
+            "category": "Interactive",
+            "description": "Contextual menu triggered by user action",
+            "path": "@/components/ui/dropdown-menu",
+            "subComponents": [
+                "DropdownMenuTrigger",
+                "DropdownMenuContent",
+                "DropdownMenuItem",
+                "DropdownMenuSeparator",
+                "DropdownMenuLabel"
+            ]
+        },
+        {
+            "id": "select",
+            "name": "Select",
+            "category": "Forms",
+            "description": "Dropdown selection component",
+            "path": "@/components/ui/select",
+            "subComponents": [
+                "SelectTrigger",
+                "SelectContent",
+                "SelectItem",
+                "SelectValue"
+            ]
+        },
+        {
+            "id": "checkbox",
+            "name": "Checkbox",
+            "category": "Forms",
+            "description": "Binary selection input",
+            "path": "@/components/ui/checkbox",
+            "interactionStates": {
+                "checked": "data-state=\"checked\"",
+                "unchecked": "data-state=\"unchecked\"",
+                "focus": "focus-visible:ring-1 focus-visible:ring-ring"
+            }
+        },
+        {
+            "id": "switch",
+            "name": "Switch",
+            "category": "Forms",
+            "description": "Toggle switch for boolean values",
+            "path": "@/components/ui/switch",
+            "interactionStates": {
+                "checked": "data-state=\"checked\"",
+                "unchecked": "data-state=\"unchecked\""
+            }
+        },
+        {
+            "id": "tabs",
+            "name": "Tabs",
+            "category": "Navigation",
+            "description": "Tabbed content organization",
+            "path": "@/components/ui/tabs",
+            "subComponents": [
+                "TabsList",
+                "TabsTrigger",
+                "TabsContent"
+            ]
+        },
+        {
+            "id": "toast",
+            "name": "Toast",
+            "category": "Feedback",
+            "description": "Temporary notification message",
+            "path": "@/components/ui/sonner",
+            "note": "Using Sonner library for toast notifications"
+        },
+        {
+            "id": "tooltip",
+            "name": "Tooltip",
+            "category": "Overlay",
+            "description": "Contextual hint on hover",
+            "path": "@/components/ui/tooltip",
+            "subComponents": [
+                "TooltipTrigger",
+                "TooltipContent",
+                "TooltipProvider"
+            ]
+        },
+        {
+            "id": "popover",
+            "name": "Popover",
+            "category": "Overlay",
+            "description": "Floating content container",
+            "path": "@/components/ui/popover",
+            "subComponents": [
+                "PopoverTrigger",
+                "PopoverContent"
+            ]
+        }
+    ],
+    "metadata": {
+        "totalComponents": 15,
+        "categories": [
+            "Interactive",
+            "Layout",
+            "Forms",
+            "Display",
+            "Feedback",
+            "Overlay",
+            "Navigation"
+        ],
+        "baseLibrary": "shadcn/ui (Radix UI)",
+        "styleFramework": "Tailwind CSS",
+        "repository": "https://github.com/your-org/CIQ-Style-Guide-01"
+    }
+}

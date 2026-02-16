@@ -1,0 +1,561 @@
+<!DOCTYPE html><html lang="en" class="dark"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;display=swap" rel="stylesheet">
+    <script type="module" crossorigin="" src="/assets/index-BBxF8CXL.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-cA9BqSnq.css">
+  <style type="text/css">[data-vaul-drawer]{touch-action:none;will-change:transform;transition:transform .5s cubic-bezier(.32, .72, 0, 1);animation-duration:.5s;animation-timing-function:cubic-bezier(0.32,0.72,0,1)}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=bottom][data-state=open]{animation-name:slideFromBottom}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=bottom][data-state=closed]{animation-name:slideToBottom}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=top][data-state=open]{animation-name:slideFromTop}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=top][data-state=closed]{animation-name:slideToTop}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=left][data-state=open]{animation-name:slideFromLeft}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=left][data-state=closed]{animation-name:slideToLeft}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=right][data-state=open]{animation-name:slideFromRight}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=right][data-state=closed]{animation-name:slideToRight}[data-vaul-drawer][data-vaul-snap-points=true][data-vaul-drawer-direction=bottom]{transform:translate3d(0,var(--initial-transform,100%),0)}[data-vaul-drawer][data-vaul-snap-points=true][data-vaul-drawer-direction=top]{transform:translate3d(0,calc(var(--initial-transform,100%) * -1),0)}[data-vaul-drawer][data-vaul-snap-points=true][data-vaul-drawer-direction=left]{transform:translate3d(calc(var(--initial-transform,100%) * -1),0,0)}[data-vaul-drawer][data-vaul-snap-points=true][data-vaul-drawer-direction=right]{transform:translate3d(var(--initial-transform,100%),0,0)}[data-vaul-drawer][data-vaul-delayed-snap-points=true][data-vaul-drawer-direction=top]{transform:translate3d(0,var(--snap-point-height,0),0)}[data-vaul-drawer][data-vaul-delayed-snap-points=true][data-vaul-drawer-direction=bottom]{transform:translate3d(0,var(--snap-point-height,0),0)}[data-vaul-drawer][data-vaul-delayed-snap-points=true][data-vaul-drawer-direction=left]{transform:translate3d(var(--snap-point-height,0),0,0)}[data-vaul-drawer][data-vaul-delayed-snap-points=true][data-vaul-drawer-direction=right]{transform:translate3d(var(--snap-point-height,0),0,0)}[data-vaul-overlay][data-vaul-snap-points=false]{animation-duration:.5s;animation-timing-function:cubic-bezier(0.32,0.72,0,1)}[data-vaul-overlay][data-vaul-snap-points=false][data-state=open]{animation-name:fadeIn}[data-vaul-overlay][data-state=closed]{animation-name:fadeOut}[data-vaul-animate=false]{animation:none!important}[data-vaul-overlay][data-vaul-snap-points=true]{opacity:0;transition:opacity .5s cubic-bezier(.32, .72, 0, 1)}[data-vaul-overlay][data-vaul-snap-points=true]{opacity:1}[data-vaul-drawer]:not([data-vaul-custom-container=true])::after{content:'';position:absolute;background:inherit;background-color:inherit}[data-vaul-drawer][data-vaul-drawer-direction=top]::after{top:initial;bottom:100%;left:0;right:0;height:200%}[data-vaul-drawer][data-vaul-drawer-direction=bottom]::after{top:100%;bottom:initial;left:0;right:0;height:200%}[data-vaul-drawer][data-vaul-drawer-direction=left]::after{left:initial;right:100%;top:0;bottom:0;width:200%}[data-vaul-drawer][data-vaul-drawer-direction=right]::after{left:100%;right:initial;top:0;bottom:0;width:200%}[data-vaul-overlay][data-vaul-snap-points=true]:not([data-vaul-snap-points-overlay=true]):not(
+[data-state=closed]
+){opacity:0}[data-vaul-overlay][data-vaul-snap-points-overlay=true]{opacity:1}[data-vaul-handle]{display:block;position:relative;opacity:.7;background:#e2e2e4;margin-left:auto;margin-right:auto;height:5px;width:32px;border-radius:1rem;touch-action:pan-y}[data-vaul-handle]:active,[data-vaul-handle]:hover{opacity:1}[data-vaul-handle-hitarea]{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:max(100%,2.75rem);height:max(100%,2.75rem);touch-action:inherit}@media (hover:hover) and (pointer:fine){[data-vaul-drawer]{user-select:none}}@media (pointer:fine){[data-vaul-handle-hitarea]:{width:100%;height:100%}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeOut{to{opacity:0}}@keyframes slideFromBottom{from{transform:translate3d(0,var(--initial-transform,100%),0)}to{transform:translate3d(0,0,0)}}@keyframes slideToBottom{to{transform:translate3d(0,var(--initial-transform,100%),0)}}@keyframes slideFromTop{from{transform:translate3d(0,calc(var(--initial-transform,100%) * -1),0)}to{transform:translate3d(0,0,0)}}@keyframes slideToTop{to{transform:translate3d(0,calc(var(--initial-transform,100%) * -1),0)}}@keyframes slideFromLeft{from{transform:translate3d(calc(var(--initial-transform,100%) * -1),0,0)}to{transform:translate3d(0,0,0)}}@keyframes slideToLeft{to{transform:translate3d(calc(var(--initial-transform,100%) * -1),0,0)}}@keyframes slideFromRight{from{transform:translate3d(var(--initial-transform,100%),0,0)}to{transform:translate3d(0,0,0)}}@keyframes slideToRight{to{transform:translate3d(var(--initial-transform,100%),0,0)}}</style><style type="text/css">[data-sonner-toaster][dir=ltr],html[dir=ltr]{--toast-icon-margin-start:-3px;--toast-icon-margin-end:4px;--toast-svg-margin-start:-1px;--toast-svg-margin-end:0px;--toast-button-margin-start:auto;--toast-button-margin-end:0;--toast-close-button-start:0;--toast-close-button-end:unset;--toast-close-button-transform:translate(-35%, -35%)}[data-sonner-toaster][dir=rtl],html[dir=rtl]{--toast-icon-margin-start:4px;--toast-icon-margin-end:-3px;--toast-svg-margin-start:0px;--toast-svg-margin-end:-1px;--toast-button-margin-start:0;--toast-button-margin-end:auto;--toast-close-button-start:unset;--toast-close-button-end:0;--toast-close-button-transform:translate(35%, -35%)}[data-sonner-toaster]{position:fixed;width:var(--width);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;--gray1:hsl(0, 0%, 99%);--gray2:hsl(0, 0%, 97.3%);--gray3:hsl(0, 0%, 95.1%);--gray4:hsl(0, 0%, 93%);--gray5:hsl(0, 0%, 90.9%);--gray6:hsl(0, 0%, 88.7%);--gray7:hsl(0, 0%, 85.8%);--gray8:hsl(0, 0%, 78%);--gray9:hsl(0, 0%, 56.1%);--gray10:hsl(0, 0%, 52.3%);--gray11:hsl(0, 0%, 43.5%);--gray12:hsl(0, 0%, 9%);--border-radius:8px;box-sizing:border-box;padding:0;margin:0;list-style:none;outline:0;z-index:999999999;transition:transform .4s ease}@media (hover:none) and (pointer:coarse){[data-sonner-toaster][data-lifted=true]{transform:none}}[data-sonner-toaster][data-x-position=right]{right:var(--offset-right)}[data-sonner-toaster][data-x-position=left]{left:var(--offset-left)}[data-sonner-toaster][data-x-position=center]{left:50%;transform:translateX(-50%)}[data-sonner-toaster][data-y-position=top]{top:var(--offset-top)}[data-sonner-toaster][data-y-position=bottom]{bottom:var(--offset-bottom)}[data-sonner-toast]{--y:translateY(100%);--lift-amount:calc(var(--lift) * var(--gap));z-index:var(--z-index);position:absolute;opacity:0;transform:var(--y);touch-action:none;transition:transform .4s,opacity .4s,height .4s,box-shadow .2s;box-sizing:border-box;outline:0;overflow-wrap:anywhere}[data-sonner-toast][data-styled=true]{padding:16px;background:var(--normal-bg);border:1px solid var(--normal-border);color:var(--normal-text);border-radius:var(--border-radius);box-shadow:0 4px 12px rgba(0,0,0,.1);width:var(--width);font-size:13px;display:flex;align-items:center;gap:6px}[data-sonner-toast]:focus-visible{box-shadow:0 4px 12px rgba(0,0,0,.1),0 0 0 2px rgba(0,0,0,.2)}[data-sonner-toast][data-y-position=top]{top:0;--y:translateY(-100%);--lift:1;--lift-amount:calc(1 * var(--gap))}[data-sonner-toast][data-y-position=bottom]{bottom:0;--y:translateY(100%);--lift:-1;--lift-amount:calc(var(--lift) * var(--gap))}[data-sonner-toast][data-styled=true] [data-description]{font-weight:400;line-height:1.4;color:#3f3f3f}[data-rich-colors=true][data-sonner-toast][data-styled=true] [data-description]{color:inherit}[data-sonner-toaster][data-sonner-theme=dark] [data-description]{color:#e8e8e8}[data-sonner-toast][data-styled=true] [data-title]{font-weight:500;line-height:1.5;color:inherit}[data-sonner-toast][data-styled=true] [data-icon]{display:flex;height:16px;width:16px;position:relative;justify-content:flex-start;align-items:center;flex-shrink:0;margin-left:var(--toast-icon-margin-start);margin-right:var(--toast-icon-margin-end)}[data-sonner-toast][data-promise=true] [data-icon]>svg{opacity:0;transform:scale(.8);transform-origin:center;animation:sonner-fade-in .3s ease forwards}[data-sonner-toast][data-styled=true] [data-icon]>*{flex-shrink:0}[data-sonner-toast][data-styled=true] [data-icon] svg{margin-left:var(--toast-svg-margin-start);margin-right:var(--toast-svg-margin-end)}[data-sonner-toast][data-styled=true] [data-content]{display:flex;flex-direction:column;gap:2px}[data-sonner-toast][data-styled=true] [data-button]{border-radius:4px;padding-left:8px;padding-right:8px;height:24px;font-size:12px;color:var(--normal-bg);background:var(--normal-text);margin-left:var(--toast-button-margin-start);margin-right:var(--toast-button-margin-end);border:none;font-weight:500;cursor:pointer;outline:0;display:flex;align-items:center;flex-shrink:0;transition:opacity .4s,box-shadow .2s}[data-sonner-toast][data-styled=true] [data-button]:focus-visible{box-shadow:0 0 0 2px rgba(0,0,0,.4)}[data-sonner-toast][data-styled=true] [data-button]:first-of-type{margin-left:var(--toast-button-margin-start);margin-right:var(--toast-button-margin-end)}[data-sonner-toast][data-styled=true] [data-cancel]{color:var(--normal-text);background:rgba(0,0,0,.08)}[data-sonner-toaster][data-sonner-theme=dark] [data-sonner-toast][data-styled=true] [data-cancel]{background:rgba(255,255,255,.3)}[data-sonner-toast][data-styled=true] [data-close-button]{position:absolute;left:var(--toast-close-button-start);right:var(--toast-close-button-end);top:0;height:20px;width:20px;display:flex;justify-content:center;align-items:center;padding:0;color:var(--gray12);background:var(--normal-bg);border:1px solid var(--gray4);transform:var(--toast-close-button-transform);border-radius:50%;cursor:pointer;z-index:1;transition:opacity .1s,background .2s,border-color .2s}[data-sonner-toast][data-styled=true] [data-close-button]:focus-visible{box-shadow:0 4px 12px rgba(0,0,0,.1),0 0 0 2px rgba(0,0,0,.2)}[data-sonner-toast][data-styled=true] [data-disabled=true]{cursor:not-allowed}[data-sonner-toast][data-styled=true]:hover [data-close-button]:hover{background:var(--gray2);border-color:var(--gray5)}[data-sonner-toast][data-swiping=true]::before{content:'';position:absolute;left:-100%;right:-100%;height:100%;z-index:-1}[data-sonner-toast][data-y-position=top][data-swiping=true]::before{bottom:50%;transform:scaleY(3) translateY(50%)}[data-sonner-toast][data-y-position=bottom][data-swiping=true]::before{top:50%;transform:scaleY(3) translateY(-50%)}[data-sonner-toast][data-swiping=false][data-removed=true]::before{content:'';position:absolute;inset:0;transform:scaleY(2)}[data-sonner-toast][data-expanded=true]::after{content:'';position:absolute;left:0;height:calc(var(--gap) + 1px);bottom:100%;width:100%}[data-sonner-toast][data-mounted=true]{--y:translateY(0);opacity:1}[data-sonner-toast][data-expanded=false][data-front=false]{--scale:var(--toasts-before) * 0.05 + 1;--y:translateY(calc(var(--lift-amount) * var(--toasts-before))) scale(calc(-1 * var(--scale)));height:var(--front-toast-height)}[data-sonner-toast]>*{transition:opacity .4s}[data-sonner-toast][data-x-position=right]{right:0}[data-sonner-toast][data-x-position=left]{left:0}[data-sonner-toast][data-expanded=false][data-front=false][data-styled=true]>*{opacity:0}[data-sonner-toast][data-visible=false]{opacity:0;pointer-events:none}[data-sonner-toast][data-mounted=true][data-expanded=true]{--y:translateY(calc(var(--lift) * var(--offset)));height:var(--initial-height)}[data-sonner-toast][data-removed=true][data-front=true][data-swipe-out=false]{--y:translateY(calc(var(--lift) * -100%));opacity:0}[data-sonner-toast][data-removed=true][data-front=false][data-swipe-out=false][data-expanded=true]{--y:translateY(calc(var(--lift) * var(--offset) + var(--lift) * -100%));opacity:0}[data-sonner-toast][data-removed=true][data-front=false][data-swipe-out=false][data-expanded=false]{--y:translateY(40%);opacity:0;transition:transform .5s,opacity .2s}[data-sonner-toast][data-removed=true][data-front=false]::before{height:calc(var(--initial-height) + 20%)}[data-sonner-toast][data-swiping=true]{transform:var(--y) translateY(var(--swipe-amount-y,0)) translateX(var(--swipe-amount-x,0));transition:none}[data-sonner-toast][data-swiped=true]{user-select:none}[data-sonner-toast][data-swipe-out=true][data-y-position=bottom],[data-sonner-toast][data-swipe-out=true][data-y-position=top]{animation-duration:.2s;animation-timing-function:ease-out;animation-fill-mode:forwards}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=left]{animation-name:swipe-out-left}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=right]{animation-name:swipe-out-right}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=up]{animation-name:swipe-out-up}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=down]{animation-name:swipe-out-down}@keyframes swipe-out-left{from{transform:var(--y) translateX(var(--swipe-amount-x));opacity:1}to{transform:var(--y) translateX(calc(var(--swipe-amount-x) - 100%));opacity:0}}@keyframes swipe-out-right{from{transform:var(--y) translateX(var(--swipe-amount-x));opacity:1}to{transform:var(--y) translateX(calc(var(--swipe-amount-x) + 100%));opacity:0}}@keyframes swipe-out-up{from{transform:var(--y) translateY(var(--swipe-amount-y));opacity:1}to{transform:var(--y) translateY(calc(var(--swipe-amount-y) - 100%));opacity:0}}@keyframes swipe-out-down{from{transform:var(--y) translateY(var(--swipe-amount-y));opacity:1}to{transform:var(--y) translateY(calc(var(--swipe-amount-y) + 100%));opacity:0}}@media (max-width:600px){[data-sonner-toaster]{position:fixed;right:var(--mobile-offset-right);left:var(--mobile-offset-left);width:100%}[data-sonner-toaster][dir=rtl]{left:calc(var(--mobile-offset-left) * -1)}[data-sonner-toaster] [data-sonner-toast]{left:0;right:0;width:calc(100% - var(--mobile-offset-left) * 2)}[data-sonner-toaster][data-x-position=left]{left:var(--mobile-offset-left)}[data-sonner-toaster][data-y-position=bottom]{bottom:var(--mobile-offset-bottom)}[data-sonner-toaster][data-y-position=top]{top:var(--mobile-offset-top)}[data-sonner-toaster][data-x-position=center]{left:var(--mobile-offset-left);right:var(--mobile-offset-right);transform:none}}[data-sonner-toaster][data-sonner-theme=light]{--normal-bg:#fff;--normal-border:var(--gray4);--normal-text:var(--gray12);--success-bg:hsl(143, 85%, 96%);--success-border:hsl(145, 92%, 87%);--success-text:hsl(140, 100%, 27%);--info-bg:hsl(208, 100%, 97%);--info-border:hsl(221, 91%, 93%);--info-text:hsl(210, 92%, 45%);--warning-bg:hsl(49, 100%, 97%);--warning-border:hsl(49, 91%, 84%);--warning-text:hsl(31, 92%, 45%);--error-bg:hsl(359, 100%, 97%);--error-border:hsl(359, 100%, 94%);--error-text:hsl(360, 100%, 45%)}[data-sonner-toaster][data-sonner-theme=light] [data-sonner-toast][data-invert=true]{--normal-bg:#000;--normal-border:hsl(0, 0%, 20%);--normal-text:var(--gray1)}[data-sonner-toaster][data-sonner-theme=dark] [data-sonner-toast][data-invert=true]{--normal-bg:#fff;--normal-border:var(--gray3);--normal-text:var(--gray12)}[data-sonner-toaster][data-sonner-theme=dark]{--normal-bg:#000;--normal-bg-hover:hsl(0, 0%, 12%);--normal-border:hsl(0, 0%, 20%);--normal-border-hover:hsl(0, 0%, 25%);--normal-text:var(--gray1);--success-bg:hsl(150, 100%, 6%);--success-border:hsl(147, 100%, 12%);--success-text:hsl(150, 86%, 65%);--info-bg:hsl(215, 100%, 6%);--info-border:hsl(223, 43%, 17%);--info-text:hsl(216, 87%, 65%);--warning-bg:hsl(64, 100%, 6%);--warning-border:hsl(60, 100%, 9%);--warning-text:hsl(46, 87%, 65%);--error-bg:hsl(358, 76%, 10%);--error-border:hsl(357, 89%, 16%);--error-text:hsl(358, 100%, 81%)}[data-sonner-toaster][data-sonner-theme=dark] [data-sonner-toast] [data-close-button]{background:var(--normal-bg);border-color:var(--normal-border);color:var(--normal-text)}[data-sonner-toaster][data-sonner-theme=dark] [data-sonner-toast] [data-close-button]:hover{background:var(--normal-bg-hover);border-color:var(--normal-border-hover)}[data-rich-colors=true][data-sonner-toast][data-type=success]{background:var(--success-bg);border-color:var(--success-border);color:var(--success-text)}[data-rich-colors=true][data-sonner-toast][data-type=success] [data-close-button]{background:var(--success-bg);border-color:var(--success-border);color:var(--success-text)}[data-rich-colors=true][data-sonner-toast][data-type=info]{background:var(--info-bg);border-color:var(--info-border);color:var(--info-text)}[data-rich-colors=true][data-sonner-toast][data-type=info] [data-close-button]{background:var(--info-bg);border-color:var(--info-border);color:var(--info-text)}[data-rich-colors=true][data-sonner-toast][data-type=warning]{background:var(--warning-bg);border-color:var(--warning-border);color:var(--warning-text)}[data-rich-colors=true][data-sonner-toast][data-type=warning] [data-close-button]{background:var(--warning-bg);border-color:var(--warning-border);color:var(--warning-text)}[data-rich-colors=true][data-sonner-toast][data-type=error]{background:var(--error-bg);border-color:var(--error-border);color:var(--error-text)}[data-rich-colors=true][data-sonner-toast][data-type=error] [data-close-button]{background:var(--error-bg);border-color:var(--error-border);color:var(--error-text)}.sonner-loading-wrapper{--size:16px;height:var(--size);width:var(--size);position:absolute;inset:0;z-index:10}.sonner-loading-wrapper[data-visible=false]{transform-origin:center;animation:sonner-fade-out .2s ease forwards}.sonner-spinner{position:relative;top:50%;left:50%;height:var(--size);width:var(--size)}.sonner-loading-bar{animation:sonner-spin 1.2s linear infinite;background:var(--gray11);border-radius:6px;height:8%;left:-10%;position:absolute;top:-3.9%;width:24%}.sonner-loading-bar:first-child{animation-delay:-1.2s;transform:rotate(.0001deg) translate(146%)}.sonner-loading-bar:nth-child(2){animation-delay:-1.1s;transform:rotate(30deg) translate(146%)}.sonner-loading-bar:nth-child(3){animation-delay:-1s;transform:rotate(60deg) translate(146%)}.sonner-loading-bar:nth-child(4){animation-delay:-.9s;transform:rotate(90deg) translate(146%)}.sonner-loading-bar:nth-child(5){animation-delay:-.8s;transform:rotate(120deg) translate(146%)}.sonner-loading-bar:nth-child(6){animation-delay:-.7s;transform:rotate(150deg) translate(146%)}.sonner-loading-bar:nth-child(7){animation-delay:-.6s;transform:rotate(180deg) translate(146%)}.sonner-loading-bar:nth-child(8){animation-delay:-.5s;transform:rotate(210deg) translate(146%)}.sonner-loading-bar:nth-child(9){animation-delay:-.4s;transform:rotate(240deg) translate(146%)}.sonner-loading-bar:nth-child(10){animation-delay:-.3s;transform:rotate(270deg) translate(146%)}.sonner-loading-bar:nth-child(11){animation-delay:-.2s;transform:rotate(300deg) translate(146%)}.sonner-loading-bar:nth-child(12){animation-delay:-.1s;transform:rotate(330deg) translate(146%)}@keyframes sonner-fade-in{0%{opacity:0;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}@keyframes sonner-fade-out{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.8)}}@keyframes sonner-spin{0%{opacity:1}100%{opacity:.15}}@media (prefers-reduced-motion){.sonner-loading-bar,[data-sonner-toast],[data-sonner-toast]>*{transition:none!important;animation:none!important}}.sonner-loader{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transform-origin:center;transition:opacity .2s,transform .2s}.sonner-loader[data-visible=false]{opacity:0;transform:scale(.8) translate(-50%,-50%)}</style></head>
+  <body>
+    <div id="root"><div class="flex h-screen bg-background text-foreground overflow-hidden"><aside class="w-64 border-r border-border bg-card flex flex-col h-full"><div class="p-4 border-b border-border flex items-center justify-between"><div><h1 class="text-lg font-semibold text-foreground">Design System</h1><p class="text-xs text-muted-foreground">shadcn/ui • Nova</p></div><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-8 w-8" type="button" id="radix-:r0:" aria-haspopup="menu" aria-expanded="false" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg><span class="sr-only">Toggle theme</span></button></div><div dir="ltr" class="relative overflow-hidden flex-1" style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;"><style>[data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}</style><div data-radix-scroll-area-viewport="" class="h-full w-full rounded-[inherit]" style="overflow: hidden scroll;"><div style="min-width: 100%; display: table;"><div class="p-2"><div data-state="open"><button class="inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground w-full justify-between px-2 py-1.5 h-auto text-muted-foreground" type="button" aria-controls="radix-:r2:" aria-expanded="true" data-state="open"><span class="text-xs font-semibold uppercase tracking-wider">Blocks</span><svg class="h-4 w-4 transition-transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div data-state="open" id="radix-:r2:" class="space-y-0.5 mt-1" style="transition-duration: 0s; animation-name: none; --radix-collapsible-content-height: 243px; --radix-collapsible-content-width: 239px;"><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/component-preview" data-discover="true"><svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>Component Preview</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/elevenlabs" data-discover="true"><svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>Elevenlabs</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/github" data-discover="true"><svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>GitHub</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/vercel" data-discover="true"><svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>Vercel</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/chatgpt" data-discover="true"><svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>ChatGPT</a><a aria-current="page" class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground bg-secondary text-secondary-foreground" href="/ai-tips" data-discover="true"><svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>AI Tips</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/playground" data-discover="true"><svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>Playground</a></div></div><div data-state="open" class="mt-2"><button class="inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground w-full justify-between px-2 py-1.5 h-auto text-muted-foreground" type="button" aria-controls="radix-:r3:" aria-expanded="true" data-state="open"><span class="text-xs font-semibold uppercase tracking-wider">Components</span><svg class="h-4 w-4 transition-transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div data-state="open" id="radix-:r3:" class="space-y-0.5 mt-1" style="transition-duration: 0s; animation-name: none; --radix-collapsible-content-height: 2028px; --radix-collapsible-content-width: 239px;"><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/accordion" data-discover="true">Accordion</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/alert" data-discover="true">Alert</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/alert-dialog" data-discover="true">Alert Dialog</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/aspect-ratio" data-discover="true">Aspect Ratio</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/avatar" data-discover="true">Avatar</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/badge" data-discover="true">Badge</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/breadcrumb" data-discover="true">Breadcrumb</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/button" data-discover="true">Button</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/button-group" data-discover="true">Button Group</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/calendar" data-discover="true">Calendar</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/card" data-discover="true">Card</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/carousel" data-discover="true">Carousel</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/chart" data-discover="true">Chart</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/checkbox" data-discover="true">Checkbox</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/collapsible" data-discover="true">Collapsible</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/combobox" data-discover="true">Combobox</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/command" data-discover="true">Command</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/context-menu" data-discover="true">Context Menu</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/dialog" data-discover="true">Dialog</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/drawer" data-discover="true">Drawer</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/dropdown-menu" data-discover="true">Dropdown Menu</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/empty" data-discover="true">Empty</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/field" data-discover="true">Field</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/hover-card" data-discover="true">Hover Card</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/input" data-discover="true">Input</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/input-group" data-discover="true">Input Group</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/input-otp" data-discover="true">Input OTP</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/item" data-discover="true">Item</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/kbd" data-discover="true">Kbd</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/label" data-discover="true">Label</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/menubar" data-discover="true">Menubar</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/native-select" data-discover="true">Native Select</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/navigation-menu" data-discover="true">Navigation Menu</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/pagination" data-discover="true">Pagination</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/popover" data-discover="true">Popover</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/progress" data-discover="true">Progress</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/radio-group" data-discover="true">Radio Group</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/resizable" data-discover="true">Resizable</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/scroll-area" data-discover="true">Scroll Area</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/select" data-discover="true">Select</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/separator" data-discover="true">Separator</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/sheet" data-discover="true">Sheet</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/sidebar" data-discover="true">Sidebar</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/sidebar-icon" data-discover="true">Sidebar (Icon)</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/sidebar-inset" data-discover="true">Sidebar (Inset)</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/sidebar-floating" data-discover="true">Sidebar (Floating)</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/skeleton" data-discover="true">Skeleton</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/slider" data-discover="true">Slider</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/sonner" data-discover="true">Sonner</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/spinner" data-discover="true">Spinner</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/switch" data-discover="true">Switch</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/table" data-discover="true">Table</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/tabs" data-discover="true">Tabs</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/textarea" data-discover="true">Textarea</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/toggle" data-discover="true">Toggle</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/toggle-group" data-discover="true">Toggle Group</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/tooltip" data-discover="true">Tooltip</a><a class="flex items-center w-full px-2 py-1.5 rounded-md text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground text-foreground" href="/components/example" data-discover="true">Example</a></div></div></div></div></div></div></aside><main class="flex-1 flex flex-col overflow-hidden relative"><div class="flex-1 flex flex-col overflow-hidden"><header class="h-14 border-b border-border flex items-center justify-between px-6 bg-card shrink-0"><div><h2 class="text-lg font-semibold">AI Tips</h2><p class="text-xs text-muted-foreground">Complete guide for AI agents and developers to run and maintain this project</p></div></header><div dir="ltr" class="relative overflow-hidden flex-1" style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;"><style>[data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}</style><div data-radix-scroll-area-viewport="" class="h-full w-full rounded-[inherit]" style="overflow: hidden scroll;"><div style="min-width: 100%; display: table;"><div class="p-6"><div class="space-y-6"><div class="space-y-6"><div><h1 class="text-3xl font-bold mb-2">AI Tips &amp; Developer Guide</h1><p class="text-muted-foreground">Everything an AI agent or developer needs to run and maintain this design system</p></div><div dir="ltr" data-orientation="horizontal" class="w-full"><div role="tablist" aria-orientation="horizontal" class="h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground grid w-full grid-cols-2 max-w-[400px]" tabindex="0" data-orientation="horizontal" style="outline: none;"><button type="button" role="tab" aria-selected="true" aria-controls="radix-:r4:-content-ai" data-state="active" id="radix-:r4:-trigger-ai" class="justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow flex items-center gap-2" tabindex="-1" data-orientation="horizontal" data-radix-collection-item=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot h-4 w-4" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>AI Agent Guide</button><button type="button" role="tab" aria-selected="false" aria-controls="radix-:r4:-content-devs" data-state="inactive" id="radix-:r4:-trigger-devs" class="justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow flex items-center gap-2" tabindex="-1" data-orientation="horizontal" data-radix-collection-item=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code-xml h-4 w-4" aria-hidden="true"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>Developer Guide</button></div><div data-state="active" data-orientation="horizontal" role="tabpanel" aria-labelledby="radix-:r4:-trigger-ai" id="radix-:r4:-content-ai" tabindex="0" class="ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 mt-6" style="animation-duration: 0s;"><div class="space-y-6"><div class="rounded-lg border bg-card text-card-foreground shadow border-primary"><div class="flex flex-col space-y-1.5 p-6"><div class="font-semibold leading-none tracking-tight flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open h-5 w-5" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg>Critical Rules for AI</div><div class="text-sm text-muted-foreground">Follow these to maintain consistency</div></div><div class="p-6 pt-0"><div class="space-y-3"><div><h4 class="font-semibold text-green-600 dark:text-green-400 mb-2">✅ ALWAYS</h4><ul class="space-y-1 text-sm list-disc list-inside"><li>Use defined token names from <code class="bg-muted px-1 rounded">/design-tokens/tokens.json</code></li><li>Include focus states: <code class="bg-muted px-1 rounded">focus-visible:ring-1 focus-visible:ring-ring</code></li><li>Include disabled states: <code class="bg-muted px-1 rounded">disabled:pointer-events-none disabled:opacity-50</code></li><li>Use <code class="bg-muted px-1 rounded">transition-colors</code> for state changes</li><li>Default to <code class="bg-muted px-1 rounded">md</code> size unless specified</li><li>Check <code class="bg-muted px-1 rounded">/design-specs/interaction-rules.md</code> before creating interactions</li></ul></div><div><h4 class="font-semibold text-red-600 dark:text-red-400 mb-2">❌ NEVER</h4><ul class="space-y-1 text-sm list-disc list-inside"><li>Invent colors not in tokens.json</li><li>Use arbitrary values like <code class="bg-muted px-1 rounded">p-[17px]</code></li><li>Use <code class="bg-muted px-1 rounded">transition-all</code> (always specify properties)</li><li>Use <code class="bg-muted px-1 rounded">focus:</code> (always use <code class="bg-muted px-1 rounded">focus-visible:</code>)</li><li>Stack multiple shadows</li><li>Create component variants without approval</li></ul></div></div></div></div><div class="rounded-lg border bg-card text-card-foreground shadow"><div class="flex flex-col space-y-1.5 p-6"><div class="font-semibold leading-none tracking-tight flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette h-5 w-5" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg>Design Tokens</div><div class="text-sm text-muted-foreground">Complete visual reference of all design tokens</div></div><div class="p-6 pt-0 space-y-6"><div><h4 class="font-semibold mb-3 text-base">Primary Colors (Emerald)</h4><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"><div class="flex items-center gap-3 p-3 bg-muted rounded-md"><div class="w-12 h-12 rounded-md shadow-sm" style="background-color: rgb(236, 253, 245);"></div><div class="text-sm"><div class="font-mono font-semibold">primary-50</div><div class="text-xs text-muted-foreground">#ecfdf5</div></div></div><div class="flex items-center gap-3 p-3 bg-muted rounded-md"><div class="w-12 h-12 rounded-md shadow-sm" style="background-color: rgb(209, 250, 229);"></div><div class="text-sm"><div class="font-mono font-semibold">primary-100</div><div class="text-xs text-muted-foreground">#d1fae5</div></div></div><div class="flex items-center gap-3 p-3 bg-muted rounded-md"><div class="w-12 h-12 rounded-md shadow-sm" style="background-color: rgb(16, 185, 129);"></div><div class="text-sm"><div class="font-mono font-semibold">primary-500</div><div class="text-xs text-muted-foreground">#10b981</div></div></div><div class="flex items-center gap-3 p-3 bg-muted rounded-md"><div class="w-12 h-12 rounded-md shadow-sm" style="background-color: rgb(5, 150, 105);"></div><div class="text-sm"><div class="font-mono font-semibold">primary-600 ⭐</div><div class="text-xs text-muted-foreground">#059669</div></div></div><div class="flex items-center gap-3 p-3 bg-muted rounded-md"><div class="w-12 h-12 rounded-md shadow-sm" style="background-color: rgb(4, 120, 87);"></div><div class="text-sm"><div class="font-mono font-semibold">primary-700</div><div class="text-xs text-muted-foreground">#047857</div></div></div></div></div><div><h4 class="font-semibold mb-3 text-base">Gray Scale (Neutral)</h4><div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3"><div class="flex items-center gap-2 p-3 bg-muted rounded-md"><div class="w-10 h-10 rounded-md shadow-sm border" style="background-color: rgb(249, 250, 251);"></div><div class="text-xs"><div class="font-mono font-semibold">gray-50</div><div class="text-muted-foreground">#f9fafb</div></div></div><div class="flex items-center gap-2 p-3 bg-muted rounded-md"><div class="w-10 h-10 rounded-md shadow-sm border" style="background-color: rgb(243, 244, 246);"></div><div class="text-xs"><div class="font-mono font-semibold">gray-100</div><div class="text-muted-foreground">#f3f4f6</div></div></div><div class="flex items-center gap-2 p-3 bg-muted rounded-md"><div class="w-10 h-10 rounded-md shadow-sm" style="background-color: rgb(229, 231, 235);"></div><div class="text-xs"><div class="font-mono font-semibold">gray-200</div><div class="text-muted-foreground">#e5e7eb</div></div></div><div class="flex items-center gap-2 p-3 bg-muted rounded-md"><div class="w-10 h-10 rounded-md shadow-sm" style="background-color: rgb(209, 213, 219);"></div><div class="text-xs"><div class="font-mono font-semibold">gray-300</div><div class="text-muted-foreground">#d1d5db</div></div></div><div class="flex items-center gap-2 p-3 bg-muted rounded-md"><div class="w-10 h-10 rounded-md shadow-sm" style="background-color: rgb(156, 163, 175);"></div><div class="text-xs"><div class="font-mono font-semibold">gray-400</div><div class="text-muted-foreground">#9ca3af</div></div></div><div class="flex items-center gap-2 p-3 bg-muted rounded-md"><div class="w-10 h-10 rounded-md shadow-sm" style="background-color: rgb(107, 114, 128);"></div><div class="text-xs"><div class="font-mono font-semibold">gray-500</div><div class="text-muted-foreground">#6b7280</div></div></div><div class="flex items-center gap-2 p-3 bg-muted rounded-md"><div class="w-10 h-10 rounded-md shadow-sm" style="background-color: rgb(75, 85, 99);"></div><div class="text-xs"><div class="font-mono font-semibold text-white">gray-600</div><div class="text-gray-300">#4b5563</div></div></div><div class="flex items-center gap-2 p-3 bg-muted rounded-md"><div class="w-10 h-10 rounded-md shadow-sm" style="background-color: rgb(55, 65, 81);"></div><div class="text-xs"><div class="font-mono font-semibold text-white">gray-700</div><div class="text-gray-300">#374151</div></div></div><div class="flex items-center gap-2 p-3 bg-muted rounded-md"><div class="w-10 h-10 rounded-md shadow-sm" style="background-color: rgb(31, 41, 55);"></div><div class="text-xs"><div class="font-mono font-semibold text-white">gray-800</div><div class="text-gray-300">#1f2937</div></div></div><div class="flex items-center gap-2 p-3 bg-muted rounded-md"><div class="w-10 h-10 rounded-md shadow-sm" style="background-color: rgb(17, 24, 39);"></div><div class="text-xs"><div class="font-mono font-semibold text-white">gray-900</div><div class="text-gray-300">#111827</div></div></div></div></div><div><h4 class="font-semibold mb-3 text-base">Spacing Scale</h4><div class="space-y-3"><div class="flex items-center gap-4"><div class="w-24 text-sm font-mono font-semibold">xs (4px)</div><div class="h-8 bg-primary rounded" style="width: 4px;"></div><code class="text-xs text-muted-foreground">p-1 / gap-1</code></div><div class="flex items-center gap-4"><div class="w-24 text-sm font-mono font-semibold">sm (8px)</div><div class="h-8 bg-primary rounded" style="width: 8px;"></div><code class="text-xs text-muted-foreground">p-2 / gap-2</code></div><div class="flex items-center gap-4"><div class="w-24 text-sm font-mono font-semibold">md (16px) ⭐</div><div class="h-8 bg-primary rounded" style="width: 16px;"></div><code class="text-xs text-muted-foreground">p-4 / gap-4</code></div><div class="flex items-center gap-4"><div class="w-24 text-sm font-mono font-semibold">lg (24px)</div><div class="h-8 bg-primary rounded" style="width: 24px;"></div><code class="text-xs text-muted-foreground">p-6 / gap-6</code></div><div class="flex items-center gap-4"><div class="w-24 text-sm font-mono font-semibold">xl (32px)</div><div class="h-8 bg-primary rounded" style="width: 32px;"></div><code class="text-xs text-muted-foreground">p-8 / gap-8</code></div></div></div><div><h4 class="font-semibold mb-3 text-base">Border Radius</h4><div class="grid grid-cols-2 md:grid-cols-4 gap-4"><div class="text-center"><div class="w-20 h-20 mx-auto bg-primary mb-2" style="border-radius: 4px;"></div><div class="text-sm font-mono font-semibold">sm (4px)</div><code class="text-xs text-muted-foreground">rounded-sm</code></div><div class="text-center"><div class="w-20 h-20 mx-auto bg-primary mb-2" style="border-radius: 8px;"></div><div class="text-sm font-mono font-semibold">md (8px) ⭐</div><code class="text-xs text-muted-foreground">rounded-md</code></div><div class="text-center"><div class="w-20 h-20 mx-auto bg-primary mb-2" style="border-radius: 12px;"></div><div class="text-sm font-mono font-semibold">lg (12px)</div><code class="text-xs text-muted-foreground">rounded-lg</code></div><div class="text-center"><div class="w-20 h-20 mx-auto bg-primary mb-2" style="border-radius: 16px;"></div><div class="text-sm font-mono font-semibold">xl (16px)</div><code class="text-xs text-muted-foreground">rounded-xl</code></div></div></div><div><h4 class="font-semibold mb-3 text-base">Typography Scale</h4><div class="space-y-3"><div class="flex items-baseline gap-4 p-3 bg-muted rounded-md"><div class="w-24 text-sm font-mono font-semibold">xs (12px)</div><div style="font-size: 12px;">The quick brown fox jumps</div><code class="ml-auto text-xs text-muted-foreground">text-xs</code></div><div class="flex items-baseline gap-4 p-3 bg-muted rounded-md"><div class="w-24 text-sm font-mono font-semibold">sm (14px) ⭐</div><div style="font-size: 14px;">The quick brown fox jumps</div><code class="ml-auto text-xs text-muted-foreground">text-sm</code></div><div class="flex items-baseline gap-4 p-3 bg-muted rounded-md"><div class="w-24 text-sm font-mono font-semibold">base (16px)</div><div style="font-size: 16px;">The quick brown fox jumps</div><code class="ml-auto text-xs text-muted-foreground">text-base</code></div><div class="flex items-baseline gap-4 p-3 bg-muted rounded-md"><div class="w-24 text-sm font-mono font-semibold">lg (18px)</div><div style="font-size: 18px;">The quick brown fox jumps</div><code class="ml-auto text-xs text-muted-foreground">text-lg</code></div><div class="flex items-baseline gap-4 p-3 bg-muted rounded-md"><div class="w-24 text-sm font-mono font-semibold">xl (24px)</div><div style="font-size: 24px;">The quick brown fox</div><code class="ml-auto text-xs text-muted-foreground">text-xl</code></div><div class="flex items-baseline gap-4 p-3 bg-muted rounded-md"><div class="w-24 text-sm font-mono font-semibold">2xl (32px)</div><div style="font-size: 32px;">The quick brown</div><code class="ml-auto text-xs text-muted-foreground">text-2xl</code></div></div></div></div></div><div class="rounded-lg border bg-card text-card-foreground shadow"><div class="flex flex-col space-y-1.5 p-6"><div class="font-semibold leading-none tracking-tight flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-code h-5 w-5" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 12.5 8 15l2 2.5"></path><path d="m14 12.5 2 2.5-2 2.5"></path></svg>AI Context Full Reference</div><div class="text-sm text-muted-foreground">Content of /AI_CONTEXT.md</div></div><div class="p-6 pt-0"><div class="bg-muted p-4 rounded-md font-mono text-xs"><pre class="whitespace-pre-wrap break-all"># AI Context: CIQ Style Guide
+
+**📋 Paste this into any LLM before requesting UI work to ensure consistency.**
+
+---
+
+## Tech Stack
+
+This project uses:
+
+- **Framework**: React 18 + TypeScript
+- **Build Tool**: Vite
+- **CSS Framework**: Tailwind CSS (JIT mode)
+- **Component Library**: shadcn/ui (Radix UI primitives)
+- **Icons**: Lucide React, Radix Icons, Huge Icons
+- **Form Management**: React Hook Form + Zod
+- **Styling Utilities**: CVA (Class Variance Authority)
+- **Typography**: Figtree (primary font)
+
+---
+
+## Design System Tokens
+
+### Color System
+**Primary Scale**: Emerald/Green
+- `primary-50`: `#ecfdf5` (lightest)
+- `primary-100`: `#d1fae5`
+- `primary-500`: `#10b981` (base)
+- `primary-600`: `#059669` (default interactive)
+- `primary-700`: `#047857` (dark)
+
+**Gray Scale**: Full 50-900 range
+- Complete neutral palette from `gray-50` to `gray-900`
+- See `/design-tokens/tokens.json` for exact values
+
+### Spacing Scale
+- `xs`: 4px
+- `sm`: 8px  
+- `md`: 16px ⭐ (default)
+- `lg`: 24px
+- `xl`: 32px
+
+### Border Radius System
+- `sm`: 4px
+- `md`: 8px ⭐ (default)
+- `lg`: 12px
+- `xl`: 16px
+
+### Typography Scale
+- **Font Family**: Figtree, sans-serif
+- **Sizes**:
+  - `xs`: 12px
+  - `sm`: 14px ⭐ (most UI text)
+  - `base`: 16px
+  - `lg`: 18px
+  - `xl`: 24px
+  - `2xl`: 32px
+
+---
+
+## Critical Rules
+
+### ❌ NEVER Do This:
+1. Invent colors not in tokens.json (ask for approval before using new colors)
+2. Use arbitrary values like p-[17px], w-[234px], etc.
+3. Use transition-all (always specify properties)
+4. Use focus: (always use focus-visible:)
+5. Stack multiple shadows
+6. Create component variants without approval
+
+### ✅ ALWAYS Do This:
+1. Use defined token names from /design-tokens/tokens.json
+2. Include focus states: focus-visible:ring-1 focus-visible:ring-ring
+3. Include disabled states: disabled:pointer-events-none disabled:opacity-50
+4. Use transition-colors for state changes
+5. Default to md size unless specified
+6. Check /design-specs/interaction-rules.md before creating interactions
+
+---
+
+## File Structure
+
+```
+CIQ-Style-Guide-01/
+├── design-tokens/
+│   └── tokens.json              ← Source of truth for all design values
+├── design-specs/
+│   └── interaction-rules.md     ← Interaction patterns and state rules
+├── design-system/
+│   ├── src/
+│   │   ├── components/
+│   │   │   └── ui/              ← shadcn components (Button, Card, etc.)
+│   │   ├── index.css            ← Global styles + CSS variables
+│   │   └── tailwind.config.ts   ← Tailwind configuration
+│   └── scripts/
+│       └── sync-tokens.cjs      ← Generates tokens.css from tokens.json
+```
+
+---
+
+## Component Standards
+
+### Button
+```tsx
+&lt;Button variant="default" size="md"&gt;
+  Click me
+&lt;/Button&gt;
+```
+
+**Available Variants**: `default`, `destructive`, `outline`, `secondary`, `ghost`, `link`  
+**Available Sizes**: `sm`, `default`, `lg`, `icon`
+
+### Card
+```tsx
+&lt;Card&gt;
+  &lt;CardHeader&gt;
+    &lt;CardTitle&gt;Title&lt;/CardTitle&gt;
+    &lt;CardDescription&gt;Description&lt;/CardDescription&gt;
+  &lt;/CardHeader&gt;
+  &lt;CardContent&gt;Content&lt;/CardContent&gt;
+&lt;/Card&gt;
+```
+
+**Standard Padding**: `p-6` (24px)
+
+### Input
+```tsx
+&lt;Input type="text" placeholder="Enter text..." /&gt;
+```
+
+**Standard Height**: `h-9` (36px)  
+**Standard Padding**: `px-3 py-1`
+
+---
+
+## Quick Decision Tree
+
+### "What spacing should I use?"
+1. Check if it's internal padding → Use `p-6` (24px)
+2. Check if it's gap between elements → Use `gap-2` (8px)
+3. Check if it's vertical spacing → Use `space-y-4` (16px)
+4. **Default**: Use `md` value from spacing scale (16px)
+
+### "What color should I use?"
+1. Is it a primary action? → `bg-primary` + `text-primary-foreground`
+2. Is it a secondary action? → `bg-secondary` + `text-secondary-foreground`
+3. Is it destructive? → `bg-destructive` + `text-destructive-foreground`
+4. Is it neutral/subtle? → `bg-muted` + `text-muted-foreground`
+5. Is it text? → `text-foreground` (default) or `text-muted-foreground` (subtle)
+
+### "What radius should I use?"
+1. Buttons, inputs, small cards → `rounded-md` (8px)
+2. Large cards, containers → `rounded-lg` (12px)
+3. Pills, badges → `rounded-full`
+4. **Default**: `rounded-md`
+
+### "What hover state should I use?"
+1. Solid background → Reduce opacity to `/90` or `/80`
+   - Example: `hover:bg-primary/90`
+2. Ghost/transparent → Add accent background
+   - Example: `hover:bg-accent hover:text-accent-foreground`
+3. Links → Add underline
+   - Example: `hover:underline`
+
+---
+
+## Common Patterns
+
+### Focus Ring (Required for all interactive elements)
+```tsx
+className="focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+```
+
+### Disabled State (Required for all interactive elements)
+```tsx
+className="disabled:pointer-events-none disabled:opacity-50"
+```
+
+### Icon in Button
+```tsx
+className="[&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0"
+```
+
+### Responsive Text Size
+```tsx
+className="text-base md:text-sm"
+```
+
+---
+
+## Workflow for Making Changes
+
+### Adding a New Component
+1. ✅ Check if shadcn has it: `npx shadcn add [component-name]`
+2. ✅ Review `/design-specs/interaction-rules.md` for state patterns
+3. ✅ Use only colors from `/design-tokens/tokens.json`
+4. ✅ Follow existing component patterns in `src/components/ui/`
+5. ✅ Test all variants and states
+
+### Modifying Design Tokens
+1. ✅ Edit `/design-tokens/tokens.json`
+2. ✅ Run `npm run sync-tokens` to regenerate CSS
+3. ✅ Verify changes in browser at `http://localhost:5174`
+
+### Adding a New Color
+1. ❌ **STOP** — Do not add colors without design approval
+2. ✅ If approved, add to `/design-tokens/tokens.json`
+3. ✅ Run `npm run sync-tokens`
+4. ✅ Update this document with new color
+
+---
+
+## Semantic Token Mappings
+
+These variables are mapped to design tokens and should be used as semantic aliases:
+
+- `--background` → `gray-50` (light mode)
+- `--foreground` → `gray-900` (light mode)
+- `--primary` → `primary-600`
+- `--secondary` → `gray-200`
+- `--muted` → `gray-100`
+- `--accent` → `gray-100`
+- `--destructive` → `#ef4444` (red)
+- `--border` → `gray-200`
+- `--ring` → `primary-500`
+
+**Use semantic names** (`bg-primary`) instead of raw tokens (`bg-primary-600`) when possible.
+
+---
+
+## Testing Checklist
+
+Before submitting any UI work, verify:
+
+- [ ] All colors come from design tokens
+- [ ] All spacing uses the defined scale
+- [ ] Focus states are visible and use `focus-visible:`
+- [ ] Disabled states use `disabled:pointer-events-none disabled:opacity-50`
+- [ ] Hover states follow the interaction rules
+- [ ] No arbitrary values (`[17px]`, `[#abc123]`, etc.)
+- [ ] Component works in both light and dark mode (if applicable)
+- [ ] Responsive behavior is correct
+- [ ] No console errors or warnings
+
+---
+
+## Version
+
+**Version**: 1.0.0  
+**Last Updated**: 2026-02-11  
+**Status**: Active
+
+---
+
+## Quick Links
+
+- **Design Tokens**: `/design-tokens/tokens.json`
+- **Interaction Rules**: `/design-specs/interaction-rules.md`
+- **Component Library**: `design-system/src/components/ui/`
+- **Tailwind Config**: `design-system/tailwind.config.ts`
+- **Live Demo**: `http://localhost:5174`
+
+---
+
+## Example Prompt for AI
+
+When asking an AI to create a component:
+
+```
+Create a Button component following the CIQ Style Guide.
+
+Requirements:
+- Use the Button component from /src/components/ui/button.tsx
+- Variant: "default"
+- Size: "md" (default)
+- Include an icon from lucide-react
+- Follow interaction rules from /design-specs/interaction-rules.md
+- Only use colors and spacing from /design-tokens/tokens.json
+
+Do NOT:
+- Invent new colors
+- Use arbitrary spacing values
+- Create custom variants
+```
+
+---
+
+**🎯 Key Takeaway**: This design system is **deterministic**. Every value, every pattern, every interaction is defined. When in doubt, check the source files. Never improvise.
+</pre></div></div></div><div class="rounded-lg border bg-card text-card-foreground shadow"><div class="flex flex-col space-y-1.5 p-6"><div class="font-semibold leading-none tracking-tight flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open h-5 w-5" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg>Interaction Rules Full Reference</div><div class="text-sm text-muted-foreground">Content of /design-specs/interaction-rules.md</div></div><div class="p-6 pt-0"><div class="bg-muted p-4 rounded-md font-mono text-xs"><pre class="whitespace-pre-wrap break-all"># Interaction Rules
+
+This document defines the **deterministic interaction patterns** for the CIQ Style Guide. All components must follow these rules to ensure consistency and predictability. These rules are designed to be **LLM-friendly** and eliminate improvisation.
+
+---
+
+## Focus States
+
+### Standard Focus Ring
+All interactive elements (buttons, inputs, links, etc.) must use the following focus pattern:
+
+```css
+focus-visible:outline-none 
+focus-visible:ring-1 
+focus-visible:ring-ring
+```
+
+**Exception for Inputs:**
+```css
+focus-visible:outline-none 
+focus-visible:ring-1 
+focus-visible:ring-ring
+```
+
+### Focus Ring Properties
+- **Ring Width**: `1px` (use `ring-1`)
+- **Ring Color**: `var(--ring)` (use `ring-ring`)
+- **Ring Offset**: `0px` (default, no offset)
+- **Outline**: Always remove with `outline-none`
+
+**Rule**: Never use `focus:` — always use `focus-visible:` to respect keyboard-only focus.
+
+---
+
+## Hover States
+
+### Background Hover
+When hovering over elements with backgrounds, **darken by reducing opacity**:
+
+- **Primary Background**: `hover:bg-primary/90` (90% opacity)
+- **Secondary Background**: `hover:bg-secondary/80` (80% opacity)
+- **Destructive Background**: `hover:bg-destructive/90` (90% opacity)
+- **Accent Background**: `hover:bg-accent`
+
+### Text Hover
+- **Link Text**: `hover:underline`
+- **Ghost Buttons**: `hover:bg-accent hover:text-accent-foreground`
+
+### Scale Pattern
+Never use scale transforms on hover for buttons. Use opacity changes only.
+
+---
+
+## Disabled States
+
+All disabled interactive elements must follow this pattern:
+
+```css
+disabled:pointer-events-none 
+disabled:opacity-50
+```
+
+### Properties
+- **Opacity**: `50%` (use `opacity-50`)
+- **Pointer Events**: Remove all interactions with `pointer-events-none`
+- **Cursor**: Automatically handled by `pointer-events-none`
+
+**Rule**: Never use `disabled:cursor-not-allowed` — it's redundant with `pointer-events-none`.
+
+---
+
+## Active/Pressed States
+
+### Interactive Elements
+- **Buttons**: Use slight opacity reduction on the background
+  ```css
+  active:scale-95
+  ```
+  **Note**: Only use for specific button variants if needed. Default is no active state.
+
+### Links
+- No active state styling required
+
+---
+
+## Transition Rules
+
+All interactive state changes must be animated with:
+
+```css
+transition-colors
+```
+
+### Properties
+- **Duration**: `150ms` (Tailwind default)
+- **Easing**: `cubic-bezier(0.4, 0, 0.2, 1)` (Tailwind default)
+- **Properties**: Only animate colors, not transforms or dimensions
+
+**Rule**: Never animate `all` — always specify `transition-colors` or `transition-transform`.
+
+---
+
+## Loading States
+
+### Spinners
+- Use `animate-spin` on icons
+- Disable the element with the standard disabled pattern
+- Optionally show loading text
+
+### Skeleton Loaders
+- Use `animate-pulse` on placeholder elements
+- Background: `bg-muted`
+
+---
+
+## Shadow Patterns
+
+### Elevation Levels
+- **Flat** (no shadow): Default for ghost and link variants
+- **Subtle**: `shadow-sm` for secondary and outline buttons
+- **Default**: `shadow` for primary and destructive buttons
+- **Elevated**: `shadow-md` (reserved for popovers, dropdowns)
+- **Overlay**: `shadow-lg` (reserved for modals, dialogs)
+
+**Rule**: Never stack shadows. Use only one shadow class per element.
+
+---
+
+## Border Patterns
+
+### Input Borders
+- **Default**: `border-input`
+- **Focus**: Ring only, no border color change
+- **Error**: `border-destructive`
+
+### Card Borders
+- **Default**: `border` (uses `border-border` from globals)
+- **Hover**: No change
+- **Selected**: `border-primary`
+
+---
+
+## Icon Sizing
+
+All icons within interactive elements must follow these rules:
+
+```css
+[&amp;_svg]:pointer-events-none 
+[&amp;_svg]:size-4 
+[&amp;_svg]:shrink-0
+```
+
+### Properties
+- **Size**: `16px` (4 units)
+- **Pointer Events**: None (parent handles clicks)
+- **Flex Shrink**: `0` (never shrink in flex containers)
+
+---
+
+## Gap and Spacing
+
+### Internal Element Spacing
+- **Buttons with icons**: `gap-2` (8px between text and icon)
+- **Card sections**: `space-y-1.5` (6px vertical spacing)
+- **Form fields**: `space-y-2` (8px vertical spacing)
+
+---
+
+## Text Patterns
+
+### Font Weights
+- **Button Text**: `font-medium`
+- **Card Titles**: `font-semibold`
+- **Card Descriptions**: `font-normal`
+- **Labels**: `font-medium`
+
+### Text Sizes
+- **Button Text**: `text-sm`
+- **Input Text**: `text-base` (desktop), `text-sm` (mobile with `md:text-sm`)
+- **Card Titles**: Default size (16px)
+- **Card Descriptions**: `text-sm`
+
+---
+
+## Accessibility Rules
+
+### Keyboard Navigation
+1. All interactive elements must be keyboard accessible
+2. Focus states must be visible
+3. Tab order must be logical
+
+### ARIA Patterns
+- Disabled elements: Add `aria-disabled="true"` when using `disabled:` classes
+- Loading states: Add `aria-busy="true"` during loading
+- Required fields: Add `aria-required="true"`
+
+---
+
+## Component-Specific Rules
+
+### Button
+- **Base classes**: `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md`
+- **Interactive states**: `transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50`
+- **Icon handling**: `[&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0`
+
+### Input
+- **Base classes**: `flex h-9 w-full rounded-md border border-input bg-transparent`
+- **Interactive states**: `focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50`
+- **Typography**: `text-base md:text-sm`
+
+### Card
+- **Base classes**: `rounded-lg border bg-card text-card-foreground shadow`
+- **No interactive states** (unless clickable variant)
+- **Internal padding**: `p-6` for all sections
+
+---
+
+## Version
+
+**Version**: 1.0.0  
+**Last Updated**: 2026-02-11  
+**Status**: Stable
+
+---
+
+## AI Instruction Summary
+
+When building components:
+
+1. ✅ **Always** use `focus-visible:ring-1 focus-visible:ring-ring`
+2. ✅ **Always** use `disabled:pointer-events-none disabled:opacity-50`
+3. ✅ **Always** use `transition-colors` for state changes
+4. ✅ **Always** darken backgrounds on hover with `/90` or `/80` opacity
+5. ❌ **Never** use `focus:` — use `focus-visible:`
+6. ❌ **Never** animate `all` — specify properties
+7. ❌ **Never** stack multiple shadows
+8. ❌ **Never** use custom timing functions without approval
+</pre></div></div></div><div class="rounded-lg border bg-card text-card-foreground shadow"><div class="flex flex-col space-y-1.5 p-6"><div class="font-semibold leading-none tracking-tight flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code-xml h-5 w-5" aria-hidden="true"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>Machine-Readable API</div><div class="text-sm text-muted-foreground">Fetch design system data programmatically</div></div><div class="p-6 pt-0 space-y-3"><div class="bg-muted p-3 rounded-md"><div class="font-mono text-sm mb-1">/api/design-tokens.json</div><p class="text-xs text-muted-foreground">All design tokens with versioning</p></div><div class="bg-muted p-3 rounded-md"><div class="font-mono text-sm mb-1">/api/components.json</div><p class="text-xs text-muted-foreground">Component metadata, variants, and examples</p></div><div class="bg-muted p-3 rounded-md"><div class="font-mono text-sm mb-1">/api/version.json</div><p class="text-xs text-muted-foreground">Version info and system metadata</p></div><div class="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 p-3 rounded-md"><p class="text-xs text-blue-800 dark:text-blue-200">💡 AI agents can fetch these endpoints to get real-time design system data</p></div></div></div><div class="rounded-lg border bg-card text-card-foreground shadow" id="ai-agent-prompt"><div class="flex flex-col space-y-1.5 p-6"><div class="font-semibold leading-none tracking-tight flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot h-5 w-5" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>Access from AI Agents</div><div class="text-sm text-muted-foreground">Example LLM prompt to initialize the design system context</div></div><div class="p-6 pt-0"><div class="bg-muted p-4 rounded-md font-mono text-sm relative group"><div class="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity"><div class="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground bg-background">LLM Prompt</div></div><pre class="whitespace-pre-wrap break-all">You are integrating with the CIQ Design System.
+
+Before generating any UI code:
+
+1. Fetch design tokens:
+   GET https://ciq-style-guide.vercel.app/api/design-tokens.json
+
+2. Fetch component metadata:
+   GET https://ciq-style-guide.vercel.app/api/components.json
+
+3. Use ONLY the tokens and components defined in these APIs
+
+4. Reference /AI_CONTEXT.md for additional rules
+
+Never invent colors, spacing, or components not present in the API.
+</pre></div><div class="mt-4 p-3 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-md"><p class="text-xs text-blue-800 dark:text-blue-200">💡 <strong>Pro Tip:</strong> Copy this prompt into your conversation with an AI agent to ensure it follows the correct design system patterns.</p></div></div></div><div class="rounded-lg border bg-card text-card-foreground shadow"><div class="flex flex-col space-y-1.5 p-6"><div class="font-semibold leading-none tracking-tight flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-question-mark h-5 w-5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>Quick Decision Trees</div><div class="text-sm text-muted-foreground">Instant answers to common implementation questions</div></div><div class="p-6 pt-0 space-y-4"><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="p-4 bg-muted rounded-lg border"><h4 class="font-semibold mb-2 flex items-center gap-2">What color should I use?</h4><ul class="space-y-2 text-sm"><li class="flex items-center gap-2"><span class="w-20 text-muted-foreground font-medium">Brand:</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right h-3 w-3" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg><code class="bg-primary/20 text-primary-foreground px-1.5 rounded">primary</code></li><li class="flex items-center gap-2"><span class="w-20 text-muted-foreground font-medium">Text:</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right h-3 w-3" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg><code class="bg-muted px-1.5 rounded">foreground</code></li><li class="flex items-center gap-2"><span class="w-20 text-muted-foreground font-medium">Action:</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right h-3 w-3" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg><code class="bg-primary/20 text-primary-foreground px-1.5 rounded">primary</code></li><li class="flex items-center gap-2"><span class="w-20 text-muted-foreground font-medium">Error:</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right h-3 w-3" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg><code class="bg-destructive/20 text-destructive px-1.5 rounded">destructive</code></li><li class="flex items-center gap-2"><span class="w-20 text-muted-foreground font-medium">Help/Subtle:</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right h-3 w-3" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg><code class="bg-muted px-1.5 rounded">muted-foreground</code></li></ul></div><div class="p-4 bg-muted rounded-lg border"><h4 class="font-semibold mb-2 flex items-center gap-2">What radius should I use?</h4><ul class="space-y-2 text-sm"><li class="flex items-center gap-2"><span class="w-24 text-muted-foreground font-medium">Components:</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right h-3 w-3" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg><code class="bg-muted px-1.5 rounded">rounded-sm</code> (4px)</li><li class="flex items-center gap-2"><span class="w-24 text-muted-foreground font-medium">Cards/Blocks:</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right h-3 w-3" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg><code class="bg-muted px-1.5 rounded">rounded-md</code> (8px)</li><li class="flex items-center gap-2"><span class="w-24 text-muted-foreground font-medium">Overlays:</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right h-3 w-3" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg><code class="bg-muted px-1.5 rounded">rounded-lg</code> (12px)</li></ul></div></div></div></div><div class="rounded-lg border bg-card text-card-foreground shadow"><div class="flex flex-col space-y-1.5 p-6"><div class="font-semibold leading-none tracking-tight flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-check h-5 w-5" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"></path><path d="m9 12 2 2 4-4"></path></svg>Common Patterns (Code Snippets)</div><div class="text-sm text-muted-foreground">Reusable code blocks for consistent implementation</div></div><div class="p-6 pt-0 space-y-4"><div class="space-y-4"><div><h4 class="text-sm font-semibold mb-2">Focus Ring Pattern</h4><div class="bg-muted p-3 rounded-md font-mono text-xs">focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring</div></div><div><h4 class="text-sm font-semibold mb-2">Disabled State Pattern</h4><div class="bg-muted p-3 rounded-md font-mono text-xs">disabled:pointer-events-none disabled:opacity-50</div></div><div><h4 class="text-sm font-semibold mb-2">Icon in Button Pattern</h4><div class="bg-muted p-3 rounded-md font-mono text-xs">&lt;Button className="flex items-center gap-2"&gt;
+  &lt;Plus className="h-4 w-4" /&gt;
+  Add Item
+&lt;/Button&gt;</div></div><div><h4 class="text-sm font-semibold mb-2">Subtle Transition</h4><div class="bg-muted p-3 rounded-md font-mono text-xs">transition-colors duration-200</div></div></div></div></div><div class="rounded-lg border bg-card text-card-foreground shadow"><div class="flex flex-col space-y-1.5 p-6"><div class="font-semibold leading-none tracking-tight flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-type h-5 w-5" aria-hidden="true"><path d="M12 4v16"></path><path d="M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2"></path><path d="M9 20h6"></path></svg>Semantic Color Tokens</div><div class="text-sm text-muted-foreground">Abstract mappings from names to raw color values</div></div><div class="p-6 pt-0"><div class="grid grid-cols-1 md:grid-cols-2 gap-3"><div class="flex items-center gap-3 p-3 border rounded-md"><div class="w-10 h-10 rounded bg-background border"></div><div class="text-sm"><div class="font-mono font-semibold">background</div><div class="text-xs text-muted-foreground">→ gray-50</div></div></div><div class="flex items-center gap-3 p-3 border rounded-md"><div class="w-10 h-10 rounded bg-foreground"></div><div class="text-sm"><div class="font-mono font-semibold">foreground</div><div class="text-xs text-muted-foreground">→ gray-900</div></div></div><div class="flex items-center gap-3 p-3 border rounded-md"><div class="w-10 h-10 rounded bg-primary"></div><div class="text-sm"><div class="font-mono font-semibold">primary</div><div class="text-xs text-muted-foreground">→ primary-600</div></div></div><div class="flex items-center gap-3 p-3 border rounded-md"><div class="w-10 h-10 rounded bg-secondary border"></div><div class="text-sm"><div class="font-mono font-semibold">secondary</div><div class="text-xs text-muted-foreground">→ gray-200</div></div></div><div class="flex items-center gap-3 p-3 border rounded-md"><div class="w-10 h-10 rounded bg-muted border"></div><div class="text-sm"><div class="font-mono font-semibold">muted</div><div class="text-xs text-muted-foreground">→ gray-100</div></div></div><div class="flex items-center gap-3 p-3 border rounded-md"><div class="w-10 h-10 rounded bg-accent border"></div><div class="text-sm"><div class="font-mono font-semibold">accent</div><div class="text-xs text-muted-foreground">→ gray-100</div></div></div><div class="flex items-center gap-3 p-3 border rounded-md"><div class="w-10 h-10 rounded bg-destructive"></div><div class="text-sm"><div class="font-mono font-semibold">destructive</div><div class="text-xs text-muted-foreground">→ #ef4444 (red)</div></div></div><div class="flex items-center gap-3 p-3 border rounded-md"><div class="w-10 h-10 rounded border-2 border-border bg-background"></div><div class="text-sm"><div class="font-mono font-semibold">border</div><div class="text-xs text-muted-foreground">→ gray-200</div></div></div></div></div></div><div class="rounded-lg border bg-card text-card-foreground shadow"><div class="flex flex-col space-y-1.5 p-6"><div class="font-semibold leading-none tracking-tight flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package h-5 w-5" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"></path><path d="M12 22V12"></path><polyline points="3.29 7 12 12 20.71 7"></polyline><path d="m7.5 4.27 9 5.15"></path></svg>shadcn MCP Server</div><div class="text-sm text-muted-foreground">AI-powered component generation and management</div></div><div class="p-6 pt-0 space-y-4"><p class="text-sm text-muted-foreground">The shadcn MCP (Model Context Protocol) server enables AI assistants to interact with your shadcn/ui components programmatically.</p><div><h4 class="font-semibold mb-2 text-sm">Installation</h4><div class="bg-muted p-3 rounded-md font-mono text-xs">npx -y @modelcontextprotocol/create-server shadcn</div></div><div><h4 class="font-semibold mb-2 text-sm">Available Commands</h4><div class="space-y-2 text-sm"><div class="flex items-start gap-2"><div class="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground mt-0.5">add</div><span class="text-muted-foreground">Add new components to your project</span></div><div class="flex items-start gap-2"><div class="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground mt-0.5">list</div><span class="text-muted-foreground">List all available components</span></div><div class="flex items-start gap-2"><div class="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground mt-0.5">info</div><span class="text-muted-foreground">Get component information</span></div></div></div><div class="p-3 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-md"><p class="text-xs text-blue-800 dark:text-blue-200"><strong>💡 Pro Tip:</strong> Use the shadcn MCP server with AI assistants like Claude Desktop to add components via natural language commands.</p></div><div><h4 class="font-semibold mb-2 text-sm">Configuration</h4><p class="text-xs text-muted-foreground mb-2">Edit <code class="bg-muted px-1 rounded">components.json</code> to configure:</p><ul class="text-xs text-muted-foreground space-y-1 list-disc list-inside"><li>Style variant (default, new-york, etc.)</li><li>Base color palette</li><li>CSS variables</li><li>Component aliases</li></ul></div><div><h4 class="font-semibold mb-2 text-sm">Example Usage</h4><div class="bg-muted p-3 rounded-md space-y-2"><div class="text-xs"><div class="text-muted-foreground mb-1">User:</div><div class="font-mono">"Add a dialog component to my project"</div></div><div class="text-xs"><div class="text-muted-foreground mb-1">AI + MCP:</div><div class="font-mono text-primary">npx shadcn add dialog</div></div></div></div></div></div><div class="rounded-lg border bg-card text-card-foreground shadow"><div class="flex flex-col space-y-1.5 p-6"><div class="font-semibold leading-none tracking-tight flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info h-5 w-5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>OKLCH Explanation</div><div class="text-sm text-muted-foreground">Why we use the OKLCH color space for themes</div></div><div class="p-6 pt-0 space-y-4"><div class="grid grid-cols-1 md:grid-cols-2 gap-3"><div class="flex items-center gap-3 p-3 border rounded-md" style="background-color: rgb(17, 24, 39);"><div class="w-10 h-10 rounded border border-gray-600" style="background-color: rgb(17, 24, 39);"></div><div class="text-sm text-white"><div class="font-mono font-semibold">Dark Background</div><div class="text-xs text-gray-300">oklch(0.13 0.028 261.692)</div></div></div><div class="flex items-center gap-3 p-3 border rounded-md" style="background-color: rgb(17, 24, 39);"><div class="w-10 h-10 rounded border" style="background-color: rgb(4, 120, 87);"></div><div class="text-sm text-white"><div class="font-mono font-semibold">Dark Primary</div><div class="text-xs text-gray-300">oklch(0.50 0.12 164)</div></div></div></div><div class="p-4 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-md"><p class="text-sm text-blue-800 dark:text-blue-200"><strong>Why OKLCH?</strong> OKLCH provides perceptually uniform colors, meaning equal changes in values produce equal perceived changes in color.</p><ul class="mt-2 text-xs text-blue-700 dark:text-blue-300 space-y-1 list-disc list-inside"><li><strong>Accessibility:</strong> Easier to maintain contrast ratios across themes.</li><li><strong>Gradients:</strong> Smoother, more natural transitions between colors.</li><li><strong>Uniformity:</strong> Consistent lightness perception across different hues.</li></ul></div></div></div></div></div><div data-state="inactive" data-orientation="horizontal" role="tabpanel" aria-labelledby="radix-:r4:-trigger-devs" hidden="" id="radix-:r4:-content-devs" tabindex="0" class="ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 mt-6"></div></div><div class="rounded-lg border text-card-foreground shadow bg-muted/50 border-dashed"><div class="p-6 pt-6"><div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm"><div class="space-y-2"><div class="font-semibold flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot h-4 w-4 text-primary" aria-hidden="true"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>System Info</div><div class="text-muted-foreground"><strong>Version:</strong> 1.0.0</div><div class="text-muted-foreground"><strong>Last Updated:</strong> 2026-02-14</div></div><div class="space-y-2"><div class="font-semibold flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code-xml h-4 w-4 text-primary" aria-hidden="true"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>Quick Links</div><div class="flex flex-wrap gap-x-4 gap-y-1"><code class="text-xs">/AI_CONTEXT.md</code><code class="text-xs">/design-tokens/tokens.json</code><code class="text-xs">/design-specs/interaction-rules.md</code><code class="text-xs">/API_DOCUMENTATION.md</code></div></div></div></div></div></div></div></div></div></div></div></div></main><section aria-label="Notifications alt+T" tabindex="-1" aria-live="polite" aria-relevant="additions text" aria-atomic="false"></section></div></div>
+  
+
+</body></html>

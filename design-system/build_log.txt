@@ -1,0 +1,15 @@
+
+> design-system-demo@0.0.0 build
+> vite build
+
+failed to load config from /Users/oatakol/Documents/GitHub/CIQ-Style-Guide-01/design-system/vite.config.ts
+error during build:
+ReferenceError: require is not defined in ES module scope, you can use import instead
+    at file:///Users/oatakol/Documents/GitHub/CIQ-Style-Guide-01/design-system/node_modules/vite-plugin-prerender/dist/index.mjs:6:21
+    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+    at async loadConfigFromBundledFile (file:///Users/oatakol/Documents/GitHub/CIQ-Style-Guide-01/design-system/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:66975:15)
+    at async loadConfigFromFile (file:///Users/oatakol/Documents/GitHub/CIQ-Style-Guide-01/design-system/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:66816:24)
+    at async resolveConfig (file:///Users/oatakol/Documents/GitHub/CIQ-Style-Guide-01/design-system/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:66416:24)
+    at async build (file:///Users/oatakol/Documents/GitHub/CIQ-Style-Guide-01/design-system/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:65503:18)
+    at async CAC.<anonymous> (file:///Users/oatakol/Documents/GitHub/CIQ-Style-Guide-01/design-system/node_modules/vite/dist/node/cli.js:829:5)

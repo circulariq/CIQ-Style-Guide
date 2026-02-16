@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import {
     Trash2,
     ChevronRight,
@@ -20,7 +20,6 @@ import {
     DialogFooter,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -53,7 +52,6 @@ interface MaterialRow {
     isParent?: boolean;
     children?: MaterialRow[];
 }
-
 
 const MATERIAL_DATA: MaterialRow[] = [
     {
@@ -139,22 +137,10 @@ const MATERIAL_DATA: MaterialRow[] = [
     }
 ];
 
-interface Scenario {
-    id: string;
-    name: string;
-    improvements: Record<string, { mass?: number, linear?: number }>;
-}
-
-
 type SortDirection = 'asc' | 'desc' | null;
 type SortKey = 'name' | 'mass' | 'linear' | 'linearMass';
 
-// Helper to format large numbers like "262, 030000" or just use locale string
 const formatMass = (val: number) => {
-    // Return format matching "262, 030000" style if possible, or standard.
-    // Given the input format is unconventional, let's use standardtoLocaleString
-    // but try to mimic the "comma decimal" style if desired.
-    // For simplicity, let's use standard fixed:
     return val.toLocaleString('de-DE', { minimumFractionDigits: 6, maximumFractionDigits: 6 });
 };
 
@@ -166,30 +152,17 @@ export const PlaygroundBlock = () => {
     const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({});
     const [sortState, setSortState] = useState<Record<string, SortDirection>>({});
     const [activeSortKey, setActiveSortKey] = useState<SortKey | null>(null);
-
-    // Scenario State
-    const [scenarios, setScenarios] = useState<Scenario[]>([
-        { id: 'default', name: 'Baseline Scenario', improvements: {} }
-    ]);
-    const [activeScenarioId, setActiveScenarioId] = useState<string>('default');
-    const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
-    const [newScenarioName, setNewScenarioName] = useState("");
-
-    const activeScenario = scenarios.find(s => s.id === activeScenarioId) || scenarios[0];
-    const improvements = activeScenario.improvements;
-
-    // Dialog State
+    const [improvements, setImprovements] = useState<Record<string, { mass?: number, linear?: number }>>({});
     const [editingRow, setEditingRow] = useState<MaterialRow | null>(null);
     const [editMass, setEditMass] = useState<string>("");
     const [editLinear, setEditLinear] = useState<string>("");
     const [focusField, setFocusField] = useState<'mass' | 'linear'>('mass');
 
-    const massInputRef = React.useRef<HTMLInputElement>(null);
-    const linearInputRef = React.useRef<HTMLInputElement>(null);
+    const massInputRef = useRef<HTMLInputElement>(null);
+    const linearInputRef = useRef<HTMLInputElement>(null);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (editingRow) {
-            // Small timeout to allow dialog animation/mounting
             setTimeout(() => {
                 if (focusField === 'linear') {
                     linearInputRef.current?.focus();
@@ -201,17 +174,13 @@ export const PlaygroundBlock = () => {
     }, [editingRow, focusField]);
 
     const toggleRow = (id: string) => {
-        setExpandedRows(prev => ({
-            ...prev,
-            [id]: !prev[id]
-        }));
+        setExpandedRows(prev => ({ ...prev, [id]: !prev[id] }));
     };
 
     const handleSort = (key: SortKey) => {
         const isCurrent = activeSortKey === key;
         const currentDir = sortState[key];
         const nextDir = isCurrent && currentDir === 'asc' ? 'desc' : 'asc';
-
         setSortState({ [key]: nextDir });
         setActiveSortKey(key);
     };
@@ -224,89 +193,47 @@ export const PlaygroundBlock = () => {
         if (!editingRow) return;
         const mass = parseFloat(editMass);
         let linear = parseFloat(editLinear);
-
         if (!isNaN(mass) && !isNaN(linear)) {
-            // Validate linear %
             if (linear > 100) linear = 100;
             if (linear < 0) linear = 0;
-
-            setScenarios(prev => prev.map(s => {
-                if (s.id === activeScenarioId) {
-                    return {
-                        ...s,
-                        improvements: {
-                            ...s.improvements,
-                            [editingRow.id]: { mass, linear }
-                        }
-                    };
-                }
-                return s;
-            }));
+            setImprovements(prev => ({ ...prev, [editingRow.id]: { mass, linear } }));
         }
         setEditingRow(null);
     };
 
-    // calculate derived data
-    const processedData = React.useMemo(() => {
-        // Deep clone first to avoid mutations
+    const processedData = useMemo(() => {
         let data = JSON.parse(JSON.stringify(MATERIAL_DATA)) as MaterialRow[];
-
-        // Helper to apply improvements and recalculate
-        const processRow = (row: MaterialRow): MaterialRow & { isImproved?: boolean, isCalculated?: boolean, isBad?: boolean, isMassChanged?: boolean, isLinearChanged?: boolean, isLinearMassChanged?: boolean, originalLinearMass?: number, displayMass: number, displayLinear: number, displayLinearMass: number, displayCircular: number } => {
+        const processRow = (row: MaterialRow): any => {
             const modification = improvements[row.id];
             let isImproved = !!modification;
             let currentMass = modification?.mass !== undefined ? modification.mass : parseValue(row.mass);
             let currentLinear = modification?.linear !== undefined ? modification.linear : parseValue(row.linear);
-
-            // Process children first (bottom-up for calculation)
             let childrenMass = 0;
             let childrenLinearMass = 0;
             let isChildrenChanged = false;
-
-            let processedChildren: (MaterialRow & { isImproved?: boolean, isCalculated?: boolean, isBad?: boolean, isMassChanged?: boolean, isLinearChanged?: boolean, isLinearMassChanged?: boolean, displayMass: number, displayLinear: number, displayLinearMass: number, displayCircular: number })[] | undefined = undefined;
+            let processedChildren = undefined;
 
             if (row.children) {
                 processedChildren = row.children.map(child => processRow(child));
-
-                // If parent is improved, lock children (conceptually, we keep their original values but maybe ignore them for parent calc? 
-                // The prompt says "if parent is improved, children cannot be improved". 
-                // It implies parent override takes precedence.
-                // However, for calculation:
-                // If Parent is IMPROVED (manual override), we use that.
-                // If Parent is NOT improved, but Children ARE, we recalculate parent.
-
                 if (!isImproved) {
-                    // Check if any child is improved or calculated
-                    if (processedChildren.some(c => c.isImproved || c.isCalculated)) {
+                    if (processedChildren.some((c: any) => c.isImproved || c.isCalculated)) {
                         isChildrenChanged = true;
-                        // Recalculate based on children
-                        childrenMass = processedChildren.reduce((sum, c) => sum + c.displayMass, 0);
-                        childrenLinearMass = processedChildren.reduce((sum, c) => sum + c.displayLinearMass, 0);
-
+                        childrenMass = processedChildren.reduce((sum: number, c: any) => sum + c.displayMass, 0);
+                        childrenLinearMass = processedChildren.reduce((sum: number, c: any) => sum + c.displayLinearMass, 0);
                         currentMass = childrenMass;
-                        // Linear % = (Total Linear Mass / Total Mass) * 100
                         currentLinear = currentMass > 0 ? (childrenLinearMass / currentMass) * 100 : 0;
                     }
                 }
             }
 
-
             const currentLinearMass = (currentMass * currentLinear) / 100;
             const currentCircular = 100 - currentLinear;
-
-            // Check if modification made it worse (higher linear % OR higher linear mass)
-            // Use a small epsilon for float comparison
-            // Check if modification made it worse (higher linear % OR higher linear mass)
-            // Use a small epsilon for float comparison
             const originalLinearVal = parseValue(row.linear);
-            // Calculate original linear mass from original values instead of relying on potentially incorrect data field
             const originalLinearMassVal = (parseValue(row.mass) * originalLinearVal) / 100;
             const isBad = (isImproved || (!isImproved && isChildrenChanged)) && (
                 (currentLinear > originalLinearVal + 0.001) ||
                 (currentLinearMass > originalLinearMassVal + 0.001)
             );
-
-            // Check individual changes
             const originalMassVal = parseValue(row.mass);
             const isMassChanged = Math.abs(currentMass - originalMassVal) > 0.001;
             const isLinearChanged = Math.abs(currentLinear - originalLinearVal) > 0.001;
@@ -314,7 +241,7 @@ export const PlaygroundBlock = () => {
 
             return {
                 ...row,
-                children: processedChildren, // Update with processed children
+                children: processedChildren,
                 isImproved,
                 isCalculated: !isImproved && isChildrenChanged,
                 isBad,
@@ -330,38 +257,21 @@ export const PlaygroundBlock = () => {
         };
 
         const processed = data.map(processRow);
-
-        // Sort Logic (applied to processed data)
         const sortFn = (a: any, b: any) => {
             if (!activeSortKey || !sortState[activeSortKey]) return 0;
             const dir = sortState[activeSortKey];
-
-            let valA = 0;
-            let valB = 0;
-
+            let valA = 0, valB = 0;
             switch (activeSortKey) {
-                case 'name':
-                    return dir === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
-                case 'mass':
-                    valA = a.displayMass;
-                    valB = b.displayMass;
-                    break;
-                case 'linear':
-                    valA = a.displayLinear;
-                    valB = b.displayLinear;
-                    break;
-                case 'linearMass':
-                    valA = a.displayLinearMass;
-                    valB = b.displayLinearMass;
-                    break;
+                case 'name': return dir === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
+                case 'mass': valA = a.displayMass; valB = b.displayMass; break;
+                case 'linear': valA = a.displayLinear; valB = b.displayLinear; break;
+                case 'linearMass': valA = a.displayLinearMass; valB = b.displayLinearMass; break;
             }
-
             if (valA < valB) return dir === 'asc' ? -1 : 1;
             if (valA > valB) return dir === 'asc' ? 1 : -1;
             return 0;
         };
 
-        // Recursive Sort
         const sortRecursive = (items: any[]): any[] => {
             if (!items) return [];
             const sorted = [...items].sort(sortFn);
@@ -370,49 +280,22 @@ export const PlaygroundBlock = () => {
                 children: item.children ? sortRecursive(item.children) : undefined
             }));
         };
-
         return sortRecursive(processed);
-
     }, [improvements, activeSortKey, sortState]);
 
-    const handleCreateScenario = () => {
-        if (!newScenarioName.trim()) return;
-        const newId = Date.now().toString();
-        setScenarios(prev => [
-            ...prev,
-            { id: newId, name: newScenarioName, improvements: {} }
-        ]);
-        setActiveScenarioId(newId);
-        setNewScenarioName("");
-        setIsCreateDialogOpen(false);
-    };
-
-    const handleDeleteScenario = (id: string) => {
-        if (scenarios.length === 1) return; // Prevent deleting the last scenario
-        const newScenarios = scenarios.filter(s => s.id !== id);
-        setScenarios(newScenarios);
-        if (activeScenarioId === id) {
-            setActiveScenarioId(newScenarios[0].id);
-        }
-    };
-
-    // Calculate counts
-    const improvedCount = React.useMemo(() => {
+    const improvedCount = useMemo(() => {
         let count = 0;
         const countRecursive = (items: any[]) => {
             items.forEach(item => {
                 if (item.isImproved && !item.isBad) count++;
-                if (item.children) countRecursive(item.children); // Use recursion to check children
+                if (item.children) countRecursive(item.children);
             });
         };
-        // We need to operate on the potentially filtered/sorted 'processedData' OR calculate from improvements directly.
-        // But 'processedData' has the 'isBad' flag computed.
-        // processedData is a dependency of this useMemo, so we can iterate it.
         countRecursive(processedData);
         return count;
     }, [processedData]);
 
-    const regressedCount = React.useMemo(() => {
+    const regressedCount = useMemo(() => {
         let count = 0;
         const countRecursive = (items: any[]) => {
             items.forEach(item => {
@@ -424,21 +307,11 @@ export const PlaygroundBlock = () => {
         return count;
     }, [processedData]);
 
-    const renderSortIcon = (key: string) => {
+    const renderSortIcon = (key: SortKey) => {
         const direction = sortState[key];
-
         return (
-            <div className={cn(
-                "ml-2 transition-opacity duration-200",
-                direction ? "opacity-100 text-primary" : "opacity-0 group-hover:opacity-50"
-            )}>
-                {direction === 'asc' ? (
-                    <ArrowUp className="h-3 w-3" />
-                ) : direction === 'desc' ? (
-                    <ArrowDown className="h-3 w-3" />
-                ) : (
-                    <ArrowUpDown className="h-3 w-3" />
-                )}
+            <div className={cn("ml-2 transition-opacity duration-200", direction ? "opacity-100 text-primary" : "opacity-0 group-hover:opacity-50")}>
+                {direction === 'asc' ? <ArrowUp className="h-3 w-3" /> : direction === 'desc' ? <ArrowDown className="h-3 w-3" /> : <ArrowUpDown className="h-3 w-3" />}
             </div>
         );
     };
@@ -446,432 +319,244 @@ export const PlaygroundBlock = () => {
     return (
         <div className="dark min-h-screen -m-6 p-6 bg-[#0f111a] text-foreground transition-colors overflow-x-hidden">
             <div className="space-y-[var(--spacing-lg)] max-w-[1200px] mx-auto pb-24">
-                {/* Header */}
                 <div className="flex flex-col gap-1">
                     <h1 className="text-3xl font-bold tracking-tight text-white">Analyze and improve</h1>
-                    <p className="text-muted-foreground">
-                        Analyze the circular performance of your flows, adjust their values, and explore improvement scenarios
-                    </p>
+                    <p className="text-muted-foreground">Analyze the circular performance of your flows, adjust their values, and explore improvement scenarios</p>
                 </div>
 
                 <Dialog open={!!editingRow} onOpenChange={(open) => !open && setEditingRow(null)}>
-                    <DialogContent className="sm:max-w-[425px] bg-[#1a1d2e] border-white/10 text-white">
+                    <DialogContent className="sm:max-w-[425px] bg-[#1a1d2e] border-white/10 text-white shadow-2xl rounded-2xl">
                         <DialogHeader>
                             <DialogTitle>Improve Values</DialogTitle>
-                            <DialogDescription className="text-muted-foreground">
-                                Adjust the values for {editingRow?.name}.
-                            </DialogDescription>
+                            <DialogDescription className="text-muted-foreground">Adjust the values for {editingRow?.name}.</DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
                             <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="mass" className="text-right">
-                                    Mass (kg)
-                                </Label>
-                                <Input
-                                    id="mass"
-                                    ref={massInputRef}
-                                    type="number"
-                                    value={editMass}
-                                    onChange={(e) => setEditMass(e.target.value)}
-                                    className="col-span-3 bg-[#0f111a] border-white/10 text-white"
-                                />
+                                <Label htmlFor="mass" className="text-right text-sm">Mass (kg)</Label>
+                                <Input id="mass" ref={massInputRef} type="number" value={editMass} onChange={(e) => setEditMass(e.target.value)} className="col-span-3 bg-[#0f111a] border-white/10 text-white rounded-lg focus-visible:ring-primary" />
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="linear" className="text-right">
-                                    Linear %
-                                </Label>
-                                <Input
-                                    id="linear"
-                                    ref={linearInputRef}
-                                    type="number"
-                                    min="0"
-                                    max="100"
-                                    value={editLinear}
-                                    onChange={(e) => {
-                                        let val = parseFloat(e.target.value);
-                                        if (val > 100) val = 100;
-                                        if (val < 0) val = 0;
-                                        setEditLinear(isNaN(val) ? e.target.value : val.toString());
-                                    }}
-                                    className="col-span-3 bg-[#0f111a] border-white/10 text-white"
-                                />
+                                <Label htmlFor="linear" className="text-right text-sm">Linear %</Label>
+                                <Input id="linear" ref={linearInputRef} type="number" min="0" max="100" value={editLinear} onChange={(e) => setEditLinear(e.target.value)} className="col-span-3 bg-[#0f111a] border-white/10 text-white rounded-lg focus-visible:ring-primary" />
                             </div>
                         </div>
                         <DialogFooter>
-                            <Button variant="outline" onClick={() => setEditingRow(null)} className="border-white/10 text-white hover:bg-white/5">Cancel</Button>
-                            <Button onClick={handleSaveImprovement} className="bg-primary text-primary-foreground hover:bg-primary/90">Save changes</Button>
+                            <Button variant="outline" onClick={() => setEditingRow(null)} className="border-white/10 text-white hover:bg-white/5 rounded-lg">Cancel</Button>
+                            <Button onClick={handleSaveImprovement} className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg">Save changes</Button>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
 
-                {/* Main Content Card */}
                 <Card className="border border-white/5 shadow-2xl overflow-hidden bg-[#161926] rounded-3xl">
                     <CardContent className="p-8 space-y-8">
-                        {/* Top Selection Row and Filters... (Unchanged) */}
                         <div className="flex items-start justify-between">
                             <div className="space-y-4 w-full max-w-md">
                                 <h3 className="text-lg font-bold uppercase tracking-wider text-white">INFLOWS</h3>
                                 <div className="flex gap-2 items-center">
                                     <Select defaultValue="black-plastics">
-                                        <SelectTrigger className="w-full h-12 rounded-[var(--radius-lg)] border-white/10 bg-[#1e2235] text-white transition-colors focus-visible:ring-1 focus-visible:ring-ring">
+                                        <SelectTrigger className="w-full h-12 rounded-xl border-white/10 bg-[#1e2235] text-white transition-colors focus-visible:ring-1 focus-visible:ring-ring">
                                             <SelectValue placeholder="Select inflow" />
                                         </SelectTrigger>
                                         <SelectContent className="bg-[#1e2235] border-white/10 text-white">
                                             <SelectItem value="black-plastics">Eliminated black plastics</SelectItem>
                                         </SelectContent>
                                     </Select>
-                                    <Button variant="outline" size="icon" className="h-12 w-12 rounded-[var(--radius-lg)] bg-[#1e2235] border-white/10 text-white shrink-0 transition-colors hover:bg-white/5 focus-visible:ring-1 focus-visible:ring-ring">
+                                    <Button variant="outline" size="icon" className="h-12 w-12 rounded-xl bg-[#1e2235] border-white/10 text-white shrink-0 hover:bg-white/5">
                                         <Trash2 className="h-4 w-4 text-muted-foreground" />
                                     </Button>
                                 </div>
                             </div>
-
-                            <div className="w-72 border border-white/5 bg-[#1e2235]/50 rounded-[var(--radius-lg)] p-4 space-y-1">
+                            <div className="w-72 border border-white/5 bg-[#1e2235]/50 rounded-xl p-4 space-y-1">
                                 <div className="flex items-center justify-between">
                                     <span className="text-sm font-semibold text-white">Material category</span>
                                     <ChevronRight className="h-4 w-4 text-muted-foreground rotate-90" />
                                 </div>
-                                <p className="text-xs text-muted-foreground leading-snug">
-                                    Grouping the flows in your assessments per material group
-                                </p>
+                                <p className="text-xs text-muted-foreground leading-snug">Grouping the flows in your assessments per material group</p>
                             </div>
                         </div>
 
-                        {/* Filters Row */}
                         <div className="flex flex-wrap items-center gap-4">
                             <div className="flex gap-4 flex-1">
-                                <div className="space-y-1.5 flex-1">
-                                    <Select>
-                                        <SelectTrigger className="w-full h-20 rounded-[var(--radius-lg)] bg-[#1e2235] border-white/5 px-4 flex flex-col items-start justify-center gap-0.5 transition-colors focus-visible:ring-1 focus-visible:ring-ring text-white">
-                                            <span className="text-xs font-bold text-white">Product, packaging and waste</span>
-                                            <span className="text-xs text-muted-foreground">Discover product and packaging hotpoints</span>
-                                        </SelectTrigger>
-                                        <SelectContent className="bg-[#1e2235] border-white/10 text-white">
-                                            <SelectItem value="1">Option 1</SelectItem>
-                                        </SelectContent>
-                                    </Select>
+                                <Select>
+                                    <SelectTrigger className="w-full h-20 rounded-xl bg-[#1e2235] border-white/5 px-4 flex flex-col items-start justify-center gap-0.5 text-white">
+                                        <span className="text-xs font-bold text-white uppercase tracking-tight">Product, packaging and waste</span>
+                                        <span className="text-[10px] text-muted-foreground">Discover product and packaging hotpoints</span>
+                                    </SelectTrigger>
+                                    <SelectContent className="bg-[#1e2235] border-white/10 text-white">
+                                        <SelectItem value="1">Option 1</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                                <div className="w-full h-20 rounded-xl border border-white/5 px-4 flex flex-col items-start justify-center gap-0.5 bg-[#1e2235]/30 opacity-40 cursor-not-allowed">
+                                    <span className="text-xs font-bold text-muted-foreground/80 uppercase tracking-tight">Suppliers</span>
+                                    <span className="text-[10px] text-muted-foreground/40">Discover product and packaging hotpoints</span>
                                 </div>
-                                <div className="space-y-1.5 flex-1 opacity-40">
-                                    <div className="w-full h-20 rounded-[var(--radius-lg)] border border-white/5 px-4 flex flex-col items-start justify-center gap-0.5 bg-[#1e2235]/30 cursor-not-allowed">
-                                        <span className="text-xs font-bold text-muted-foreground/80">Suppliers</span>
-                                        <span className="text-xs text-muted-foreground/40">Discover product and packaging hotpoints</span>
-                                    </div>
-                                </div>
-                                <Button variant="ghost" className="h-20 px-6 rounded-[var(--radius-lg)] text-xs font-bold tracking-widest uppercase text-muted-foreground/60 transition-colors hover:bg-white/5 focus-visible:ring-1 focus-visible:ring-ring">
-                                    ADVANCED FILTERS
-                                </Button>
+                                <Button variant="ghost" className="h-20 px-6 rounded-xl text-xs font-bold tracking-widest uppercase text-muted-foreground/60 hover:bg-white/5 transition-colors">ADVANCED FILTERS</Button>
                             </div>
-                            <Button variant="outline" className="h-12 rounded-[var(--radius-lg)] border-white/10 bg-[#1e2235] gap-2 font-bold text-white transition-colors hover:bg-white/5 focus-visible:ring-1 focus-visible:ring-ring">
-                                <Eye className="h-4 w-4" />
-                                ONLY CHANGES
+                            <Button variant="outline" className="h-12 rounded-xl border-white/10 bg-[#1e2235] gap-2 font-bold text-white hover:bg-white/5 transition-colors">
+                                <Eye className="h-4 w-4" /> ONLY CHANGES
                             </Button>
                         </div>
 
-                        {/* Table */}
-                        <div className="rounded-[var(--radius-lg)] border border-white/5 overflow-hidden bg-[#1a1d2e]/30">
+                        <div className="rounded-2xl border border-white/5 overflow-hidden bg-[#1a1d2e]/30">
                             <Table>
                                 <TableHeader className="bg-white/5">
                                     <TableRow className="hover:bg-transparent border-white/5">
                                         <TableHead className="w-[30%]">
-                                            <div
-                                                className="group flex items-center cursor-pointer select-none text-[10px] h-10 font-bold uppercase text-muted-foreground/70"
-                                                onClick={() => handleSort('name')}
-                                            >
-                                                Material category
-                                                {renderSortIcon('name')}
+                                            <div className="group flex items-center cursor-pointer select-none text-[10px] h-10 font-bold uppercase text-muted-foreground/70" onClick={() => handleSort('name')}>
+                                                Material category {renderSortIcon('name')}
                                             </div>
                                         </TableHead>
                                         <TableHead>
-                                            <div
-                                                className="group flex items-center cursor-pointer select-none text-[10px] h-10 font-bold uppercase text-muted-foreground/70"
-                                                onClick={() => handleSort('mass')}
-                                            >
-                                                Total mass (kg)
-                                                {renderSortIcon('mass')}
+                                            <div className="group flex items-center cursor-pointer select-none text-[10px] h-10 font-bold uppercase text-muted-foreground/70" onClick={() => handleSort('mass')}>
+                                                Total mass (kg) {renderSortIcon('mass')}
                                             </div>
                                         </TableHead>
                                         <TableHead>
-                                            <div
-                                                className="group flex items-center cursor-pointer select-none text-[10px] h-10 font-bold uppercase text-muted-foreground/70"
-                                                onClick={() => handleSort('linear')}
-                                            >
-                                                Linear %
-                                                {renderSortIcon('linear')}
+                                            <div className="group flex items-center cursor-pointer select-none text-[10px] h-10 font-bold uppercase text-muted-foreground/70" onClick={() => handleSort('linear')}>
+                                                Linear % {renderSortIcon('linear')}
                                             </div>
                                         </TableHead>
                                         <TableHead>
-                                            <div
-                                                className="group flex items-center cursor-pointer select-none text-[10px] h-10 font-bold uppercase text-muted-foreground/70"
-                                                onClick={() => handleSort('linearMass')}
-                                            >
-                                                Linear mass (kg)
-                                                {renderSortIcon('linearMass')}
+                                            <div className="group flex items-center cursor-pointer select-none text-[10px] h-10 font-bold uppercase text-muted-foreground/70" onClick={() => handleSort('linearMass')}>
+                                                Linear mass (kg) {renderSortIcon('linearMass')}
                                             </div>
                                         </TableHead>
-                                        <TableHead className="w-[300px] h-10">
+                                        <TableHead className="w-[300px]">
                                             <div className="flex gap-4 items-center justify-end mr-4">
-                                                <div className="flex items-center gap-1.5">
+                                                <div className="flex items-center gap-1.5 pt-4">
                                                     <div className="w-4 h-1.5 bg-primary rounded-full"></div>
-                                                    <span className="text-[10px] font-bold text-muted-foreground/70 uppercase">Circular inflow</span>
+                                                    <span className="text-[10px] font-bold text-muted-foreground/70 uppercase pt-0.5">Circular inflow</span>
                                                 </div>
-                                                <div className="flex items-center gap-1.5">
+                                                <div className="flex items-center gap-1.5 pt-4">
                                                     <div className="w-4 h-1.5 bg-white/10 rounded-full"></div>
-                                                    <span className="text-[10px] font-bold text-muted-foreground/70 uppercase">Linear inflow</span>
+                                                    <span className="text-[10px] font-bold text-muted-foreground/70 uppercase pt-0.5">Linear inflow</span>
                                                 </div>
                                             </div>
                                         </TableHead>
-                                        <TableHead className="w-12 h-10"></TableHead>
+                                        <TableHead className="w-12"></TableHead>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
                                     {processedData.map((row: any) => (
                                         <React.Fragment key={row.id}>
-                                            <TableRow
-                                                className={cn(
-                                                    "group border-white/[0.03] h-16 transition-colors border-b relative",
-                                                    row.children && "cursor-pointer",
-                                                    row.isBad
-                                                        ? "bg-red-500/10 hover:bg-red-500/20"
-                                                        : row.isImproved
-                                                            ? "bg-emerald-900/10 hover:bg-emerald-900/20"
-                                                            : row.isCalculated
-                                                                ? "bg-purple-900/10 hover:bg-purple-900/20"
-                                                                : "hover:bg-white/[0.02]"
-                                                )}
-                                                onClick={() => row.children && toggleRow(row.id)}
-                                            >
-                                                {/* Badges */}
-
-
+                                            <TableRow className={cn("group border-white/[0.03] h-16 transition-colors border-b relative", row.children && "cursor-pointer", row.isBad ? "bg-red-500/10 hover:bg-red-500/20" : row.isImproved ? "bg-emerald-500/10 hover:bg-emerald-500/20" : row.isCalculated ? "bg-purple-500/10 hover:bg-purple-500/20" : "hover:bg-white/[0.02]")} onClick={() => row.children && toggleRow(row.id)}>
                                                 <TableCell>
                                                     <div className="flex items-center gap-3">
-                                                        {row.children ? (
-                                                            <ChevronRight className={cn(
-                                                                "h-4 w-4 text-primary fill-primary/10 transition-transform duration-200",
-                                                                expandedRows[row.id] && "rotate-90"
-                                                            )} />
-                                                        ) : (
-                                                            <div className="w-4 h-4" />
-                                                        )}
-                                                        <Badge className="bg-white text-[#0f111a] hover:bg-white/90 rounded-sm border-none px-1.5 py-0.5 text-[10px] font-bold">
-                                                            {row.id}
-                                                        </Badge>
+                                                        {row.children ? <ChevronRight className={cn("h-4 w-4 text-primary transition-transform duration-200", expandedRows[row.id] && "rotate-90")} /> : <div className="w-4 h-4" />}
+                                                        <Badge className="bg-white text-[#0f111a] hover:bg-white/90 rounded-sm border-none px-1.5 py-0.5 text-[10px] font-bold">{row.id}</Badge>
                                                         <span className="font-bold text-white/90">{row.name}</span>
-                                                        {row.isImproved && (
-                                                            <Badge className={cn(
-                                                                "ml-2 h-5 w-5 group-hover:w-auto hover:w-auto text-white border-none p-0 flex items-center justify-start overflow-hidden transition-all duration-300 shadow-md",
-                                                                row.isBad ? "bg-red-600" : "bg-emerald-600"
-                                                            )}>
+                                                        {(row.isImproved || row.isCalculated) && (
+                                                            <Badge className={cn("ml-2 h-5 w-5 group-hover:w-auto text-white border-none p-0 flex items-center justify-start overflow-hidden transition-all duration-300 shadow-md", row.isBad ? "bg-red-600" : row.isImproved ? "bg-emerald-600" : "bg-purple-600")}>
                                                                 <div className="w-5 h-5 flex items-center justify-center shrink-0">
-                                                                    <Plus className={cn("h-3 w-3", row.isBad && "rotate-45")} />
+                                                                    {row.isImproved ? <Plus className={cn("h-3 w-3", row.isBad && "rotate-45")} /> : <Calculator className="h-3 w-3" />}
                                                                 </div>
-                                                                <span className="max-w-0 group-hover:max-w-[100px] hover:max-w-[100px] opacity-0 group-hover:opacity-100 hover:opacity-100 pr-0 group-hover:pr-2 hover:pr-2 whitespace-nowrap text-[8px] font-bold uppercase transition-all duration-300 ease-in-out">
-                                                                    {row.isBad ? "Regressed" : "Improved"}
-                                                                </span>
-                                                            </Badge>
-                                                        )}
-                                                        {row.isCalculated && (
-                                                            <Badge className={cn(
-                                                                "ml-2 h-5 w-5 group-hover:w-auto hover:w-auto text-white hover:bg-purple-600 border-none p-0 flex items-center justify-start overflow-hidden transition-all duration-300 shadow-md",
-                                                                row.isBad ? "bg-red-500 hover:bg-red-600" : "bg-purple-500 hover:bg-purple-600"
-                                                            )}>
-                                                                <div className="w-5 h-5 flex items-center justify-center shrink-0">
-                                                                    <Calculator className="h-3 w-3" />
-                                                                </div>
-                                                                <span className="max-w-0 group-hover:max-w-[100px] hover:max-w-[100px] opacity-0 group-hover:opacity-100 hover:opacity-100 pr-0 group-hover:pr-2 hover:pr-2 whitespace-nowrap text-[8px] font-bold uppercase transition-all duration-300 ease-in-out">
-                                                                    {row.isBad ? "Regressed" : "Calculated"}
+                                                                <span className="max-w-0 group-hover:max-w-[100px] opacity-0 group-hover:opacity-100 pr-0 group-hover:pr-2 whitespace-nowrap text-[8px] font-bold uppercase transition-all duration-300">
+                                                                    {row.isBad ? "Regressed" : row.isImproved ? "Improved" : "Calculated"}
                                                                 </span>
                                                             </Badge>
                                                         )}
                                                     </div>
                                                 </TableCell>
-                                                <TableCell className="font-bold text-white/90 group/cell relative">
+                                                <TableCell className="font-bold text-white group/cell relative">
                                                     <div className="flex flex-col">
-                                                        {(row.isImproved || row.isCalculated) && row.isMassChanged && (
-                                                            <span className="text-[10px] text-white/40 line-through mb-0.5">
-                                                                {row.mass}
-                                                            </span>
-                                                        )}
+                                                        {(row.isImproved || row.isCalculated) && row.isMassChanged && <span className="text-[10px] text-white/40 line-through mb-0.5">{row.mass}</span>}
                                                         <span>{formatMass(row.displayMass)}</span>
                                                     </div>
-                                                    {/* Edit Button */}
                                                     <div className="absolute left-4 -bottom-3 opacity-0 group-hover/cell:opacity-100 transition-opacity z-20">
-                                                        <Button
-                                                            size="sm"
-                                                            variant="default"
-                                                            className="h-6 text-[10px] bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg px-2 rounded-full"
-                                                            onClick={(e) => {
-                                                                e.stopPropagation();
-                                                                setEditingRow(row);
-                                                                setEditMass(row.displayMass.toString());
-                                                                setEditLinear(row.displayLinear.toString());
-                                                                setFocusField('mass');
-                                                            }}
-                                                        >
-                                                            Improve
-                                                        </Button>
+                                                        <Button size="sm" className="h-6 text-[10px] bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg px-2 rounded-full font-bold" onClick={(e) => { e.stopPropagation(); setEditingRow(row); setEditMass(row.displayMass.toString()); setEditLinear(row.displayLinear.toString()); setFocusField('mass'); }}>Improve</Button>
                                                     </div>
                                                 </TableCell>
-                                                <TableCell className="font-bold text-white/90 group/cell relative">
+                                                <TableCell className="font-bold text-white group/cell relative">
                                                     <div className="flex flex-col">
-                                                        {(row.isImproved || row.isCalculated) && row.isLinearChanged && (
-                                                            <span className="text-[10px] text-white/40 line-through mb-0.5">
-                                                                {row.linear.split(',')[0]},{row.linear.split(',')[1]}
-                                                            </span>
-                                                        )}
-                                                        <span>{formatPercent(row.displayLinear)}</span>
+                                                        {(row.isImproved || row.isCalculated) && row.isLinearChanged && <span className="text-[10px] text-white/40 line-through mb-0.5">{row.linear}</span>}
+                                                        <span>{formatPercent(row.displayLinear)}%</span>
                                                     </div>
                                                     <div className="absolute left-4 -bottom-3 opacity-0 group-hover/cell:opacity-100 transition-opacity z-20">
-                                                        <Button
-                                                            size="sm"
-                                                            variant="default"
-                                                            className="h-6 text-[10px] bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg px-2 rounded-full"
-                                                            onClick={(e) => {
-                                                                e.stopPropagation();
-                                                                setEditingRow(row);
-                                                                setEditMass(row.displayMass.toString());
-                                                                setEditLinear(row.displayLinear.toString());
-                                                                setFocusField('linear');
-                                                            }}
-                                                        >
-                                                            Improve
-                                                        </Button>
+                                                        <Button size="sm" className="h-6 text-[10px] bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg px-2 rounded-full font-bold" onClick={(e) => { e.stopPropagation(); setEditingRow(row); setEditMass(row.displayMass.toString()); setEditLinear(row.displayLinear.toString()); setFocusField('linear'); }}>Improve</Button>
                                                     </div>
                                                 </TableCell>
-                                                <TableCell className="font-bold text-white/90">
+                                                <TableCell className="font-bold text-white">
                                                     <div className="flex flex-col">
-                                                        {(row.isImproved || row.isCalculated) && row.isLinearMassChanged && (
-                                                            <span className="text-[10px] text-white/40 mb-0.5">
-                                                                {formatMass(row.originalLinearMass || 0)}
-                                                            </span>
-                                                        )}
+                                                        {(row.isImproved || row.isCalculated) && row.isLinearMassChanged && <span className="text-[10px] text-white/40 mb-0.5">{formatMass(row.originalLinearMass || 0)}</span>}
                                                         <span>{formatMass(row.displayLinearMass)}</span>
                                                     </div>
                                                 </TableCell>
                                                 <TableCell>
                                                     <div className="flex items-center justify-end gap-4 mr-4">
-                                                        <div className="h-5 w-36 flex bg-white/5 rounded-full overflow-hidden p-0.5">
-                                                            <div className="h-full bg-primary rounded-full transition-all duration-700 ease-out" style={{ width: `${row.displayCircular}%` }}></div>
+                                                        <div className="h-5 w-36 bg-white/5 rounded-full overflow-hidden p-0.5">
+                                                            <div className="h-full bg-primary rounded-full transition-all duration-700" style={{ width: `${row.displayCircular}%` }}></div>
                                                         </div>
-                                                        <div className="text-[10px] font-bold text-white/60 min-w-[65px] leading-tight">
-                                                            <div className="flex justify-between gap-2">{formatPercent(row.displayCircular)}% <span className="text-[8px] font-normal opacity-40">C-I</span></div>
-                                                            <div className="flex justify-between gap-2">{formatPercent(row.displayLinear)}% <span className="text-[8px] font-normal opacity-40">L-I</span></div>
+                                                        <div className="text-[10px] font-bold text-white/60 min-w-[70px] leading-tight flex flex-col gap-0.5">
+                                                            <div className="flex justify-between">{formatPercent(row.displayCircular)}% <span className="text-[8px] font-normal opacity-40">C-I</span></div>
+                                                            <div className="flex justify-between">{formatPercent(row.displayLinear)}% <span className="text-[8px] font-normal opacity-40">L-I</span></div>
                                                         </div>
                                                     </div>
                                                 </TableCell>
                                                 <TableCell>
-                                                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full border border-white/10 text-white/60 transition-all hover:bg-primary/20 hover:text-primary hover:border-primary/50 focus-visible:ring-1 focus-visible:ring-ring">
+                                                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full border border-white/10 text-white/60 hover:bg-primary/20 hover:text-primary hover:border-primary/50 transition-all">
                                                         <FileText className="h-4 w-4" />
                                                     </Button>
                                                 </TableCell>
                                             </TableRow>
                                             {row.children && expandedRows[row.id] && row.children.map((child: any) => (
-                                                <TableRow key={child.id} className={cn(
-                                                    "group border-white/[0.01] h-14 transition-colors relative",
-                                                    child.isBad ? "bg-red-900/10 hover:bg-red-900/20" : child.isImproved ? "bg-emerald-900/10 hover:bg-emerald-900/20" : "bg-white/[0.01] hover:bg-white/[0.03]"
-                                                )}>
-
+                                                <TableRow key={child.id} className={cn("group border-white/[0.01] h-14 bg-white/[0.01] hover:bg-white/[0.03] transition-colors relative", child.isBad && "bg-red-500/5 hover:bg-red-500/10", child.isImproved && !child.isBad && "bg-emerald-500/5 hover:bg-emerald-500/10")}>
                                                     <TableCell className="pl-12">
                                                         <div className="flex items-center gap-3">
-                                                            <Badge className="bg-white/10 text-white hover:bg-white/20 rounded-sm border-none px-1.5 py-0.5 text-[10px] font-bold">
-                                                                {child.id}
-                                                            </Badge>
-                                                            <span className="text-sm text-white/70">{child.name}</span>
+                                                            <Badge className="bg-white/10 text-white/70 hover:bg-white/20 rounded-sm border-none px-1.5 py-0.5 text-[10px] font-bold">{child.id}</Badge>
+                                                            <span className="text-sm text-white/60">{child.name}</span>
                                                             {child.isImproved && (
-                                                                <Badge className={cn(
-                                                                    "ml-2 h-5 w-5 group-hover:w-auto hover:w-auto text-white border-none p-0 flex items-center justify-start overflow-hidden transition-all duration-300 shadow-md",
-                                                                    child.isBad ? "bg-red-600" : "bg-emerald-600"
-                                                                )}>
+                                                                <Badge className={cn("ml-2 h-5 w-5 group-hover:w-auto text-white border-none p-0 flex items-center justify-start overflow-hidden transition-all duration-300 shadow-md", child.isBad ? "bg-red-600" : "bg-emerald-600")}>
                                                                     <div className="w-5 h-5 flex items-center justify-center shrink-0">
                                                                         <Plus className={cn("h-3 w-3", child.isBad && "rotate-45")} />
                                                                     </div>
-                                                                    <span className="max-w-0 group-hover:max-w-[100px] hover:max-w-[100px] opacity-0 group-hover:opacity-100 hover:opacity-100 pr-0 group-hover:pr-2 hover:pr-2 whitespace-nowrap text-[8px] font-bold uppercase transition-all duration-300 ease-in-out">
+                                                                    <span className="max-w-0 group-hover:max-w-[100px] opacity-0 group-hover:opacity-100 pr-0 group-hover:pr-2 whitespace-nowrap text-[8px] font-bold uppercase transition-all duration-300">
                                                                         {child.isBad ? "Regressed" : "Improved"}
                                                                     </span>
                                                                 </Badge>
                                                             )}
                                                         </div>
                                                     </TableCell>
-                                                    <TableCell className="text-sm text-white/60 group/cell relative">
+                                                    <TableCell className="text-sm text-white/40 group/cell relative">
                                                         <div className="flex flex-col">
-                                                            {child.isImproved && child.isMassChanged && (
-                                                                <span className="text-[10px] text-white/40 line-through mb-0.5">
-                                                                    {child.mass}
-                                                                </span>
-                                                            )}
+                                                            {child.isImproved && child.isMassChanged && <span className="text-[10px] text-white/20 line-through mb-0.5">{child.mass}</span>}
                                                             <span>{formatMass(child.displayMass)}</span>
                                                         </div>
-                                                        {/* Disable edit if parent is improved */}
                                                         {!row.isImproved && (
                                                             <div className="absolute left-4 -bottom-3 opacity-0 group-hover/cell:opacity-100 transition-opacity z-20">
-                                                                <Button
-                                                                    size="sm"
-                                                                    variant="default"
-                                                                    className="h-5 text-[9px] bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg px-2 rounded-full"
-                                                                    onClick={(e) => {
-                                                                        e.stopPropagation();
-                                                                        setEditingRow(child);
-                                                                        setEditMass(child.displayMass.toString());
-                                                                        setEditLinear(child.displayLinear.toString());
-                                                                        setFocusField('mass');
-                                                                    }}
-                                                                >
-                                                                    Improve
-                                                                </Button>
+                                                                <Button size="sm" className="h-5 text-[9px] bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg px-2 rounded-full font-bold" onClick={(e) => { e.stopPropagation(); setEditingRow(child); setEditMass(child.displayMass.toString()); setEditLinear(child.displayLinear.toString()); setFocusField('mass'); }}>Improve</Button>
                                                             </div>
                                                         )}
                                                     </TableCell>
-                                                    <TableCell className="text-sm text-white/60 group/cell relative">
+                                                    <TableCell className="text-sm text-white/40 group/cell relative">
                                                         <div className="flex flex-col">
-                                                            {child.isImproved && child.isLinearChanged && (
-                                                                <span className="text-[10px] text-white/40 line-through mb-0.5">
-                                                                    {child.linear.split(',')[0]},{child.linear.split(',')[1]}
-                                                                </span>
-                                                            )}
-                                                            <span>{formatPercent(child.displayLinear)}</span>
+                                                            {child.isImproved && child.isLinearChanged && <span className="text-[10px] text-white/20 line-through mb-0.5">{child.linear}</span>}
+                                                            <span>{formatPercent(child.displayLinear)}%</span>
                                                         </div>
                                                         {!row.isImproved && (
                                                             <div className="absolute left-4 -bottom-3 opacity-0 group-hover/cell:opacity-100 transition-opacity z-20">
-                                                                <Button
-                                                                    size="sm"
-                                                                    variant="default"
-                                                                    className="h-5 text-[9px] bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg px-2 rounded-full"
-                                                                    onClick={(e) => {
-                                                                        e.stopPropagation();
-                                                                        setEditingRow(child);
-                                                                        setEditMass(child.displayMass.toString());
-                                                                        setEditLinear(child.displayLinear.toString());
-                                                                        setFocusField('linear');
-                                                                    }}
-                                                                >
-                                                                    Improve
-                                                                </Button>
+                                                                <Button size="sm" className="h-5 text-[9px] bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg px-2 rounded-full font-bold" onClick={(e) => { e.stopPropagation(); setEditingRow(child); setEditMass(child.displayMass.toString()); setEditLinear(child.displayLinear.toString()); setFocusField('linear'); }}>Improve</Button>
                                                             </div>
                                                         )}
                                                     </TableCell>
-                                                    <TableCell className="text-sm text-white/60">
+                                                    <TableCell className="text-sm text-white/40">
                                                         <div className="flex flex-col">
-                                                            {child.isImproved && child.isLinearMassChanged && (
-                                                                <span className="text-[10px] text-white/40 mb-0.5">
-                                                                    {formatMass(child.originalLinearMass || 0)}
-                                                                </span>
-                                                            )}
+                                                            {child.isImproved && child.isLinearMassChanged && <span className="text-[10px] text-white/20 mb-0.5">{formatMass(child.originalLinearMass || 0)}</span>}
                                                             <span>{formatMass(child.displayLinearMass)}</span>
                                                         </div>
                                                     </TableCell>
                                                     <TableCell>
                                                         <div className="flex items-center justify-end gap-4 mr-4">
-                                                            <div className="h-4 w-32 flex bg-white/5 rounded-full overflow-hidden p-0.5">
-                                                                <div className="h-full bg-primary/60 rounded-full transition-all duration-700 ease-out" style={{ width: `${child.displayCircular}%` }}></div>
+                                                            <div className="h-4 w-32 bg-white/5 rounded-full overflow-hidden p-0.5">
+                                                                <div className="h-full bg-primary/60 rounded-full transition-all duration-700" style={{ width: `${child.displayCircular}%` }}></div>
                                                             </div>
-                                                            <div className="text-[10px] font-medium text-white/40 min-w-[65px] leading-tight">
-                                                                <div className="flex justify-between gap-2">{formatPercent(child.displayCircular)}%</div>
-                                                                <div className="flex justify-between gap-2">{formatPercent(child.displayLinear)}%</div>
+                                                            <div className="text-[10px] font-medium text-white/40 min-w-[70px] leading-tight flex flex-col gap-0.5">
+                                                                <div className="flex justify-between">{formatPercent(child.displayCircular)}%</div>
+                                                                <div className="flex justify-between">{formatPercent(child.displayLinear)}%</div>
                                                             </div>
                                                         </div>
                                                     </TableCell>
                                                     <TableCell>
-                                                        <Button variant="ghost" size="icon" className="h-7 w-7 rounded-full border border-white/5 text-white/40 transition-all hover:bg-primary/10 hover:text-primary">
+                                                        <Button variant="ghost" size="icon" className="h-7 w-7 rounded-full border border-white/5 text-white/40 hover:bg-primary/10 hover:text-primary transition-all">
                                                             <FileText className="h-3.5 w-3.5" />
                                                         </Button>
                                                     </TableCell>
@@ -880,25 +565,23 @@ export const PlaygroundBlock = () => {
                                         </React.Fragment>
                                     ))}
                                     <TableRow className="h-16 hover:bg-transparent border-none">
-                                        <TableCell>
-                                            <span className="font-bold text-white/70 ml-7">Uncategorized</span>
-                                        </TableCell>
-                                        <TableCell className="font-bold text-white/70">262,<span className="text-[10px] text-white/30">030000</span></TableCell>
-                                        <TableCell className="font-bold text-white/70">54,<span className="text-[10px] text-white/30">80</span></TableCell>
-                                        <TableCell className="font-bold text-white/70">395,<span className="text-[10px] text-white/30">770000</span></TableCell>
+                                        <TableCell><span className="font-bold text-white/70 ml-7">Uncategorized</span></TableCell>
+                                        <TableCell className="font-bold text-white/70">262,030000</TableCell>
+                                        <TableCell className="font-bold text-white/70">54,80%</TableCell>
+                                        <TableCell className="font-bold text-white/70">395,770000</TableCell>
                                         <TableCell>
                                             <div className="flex items-center justify-end gap-4 mr-4">
-                                                <div className="h-5 w-36 flex bg-white/5 rounded-full overflow-hidden p-0.5">
+                                                <div className="h-5 w-36 bg-white/5 rounded-full overflow-hidden p-0.5">
                                                     <div className="h-full bg-primary rounded-full opacity-50" style={{ width: `50%` }}></div>
                                                 </div>
-                                                <div className="text-[10px] font-bold text-white/40 min-w-[65px] leading-tight">
-                                                    <div className="flex justify-between gap-2">50.0% <span className="text-[8px] font-normal opacity-30">C-I</span></div>
-                                                    <div className="flex justify-between gap-2">50.0% <span className="text-[8px] font-normal opacity-30">L-I</span></div>
+                                                <div className="text-[10px] font-bold text-white/40 min-w-[70px] leading-tight flex flex-col gap-0.5">
+                                                    <div className="flex justify-between">50.00% <span className="text-[8px] font-normal opacity-30">C-I</span></div>
+                                                    <div className="flex justify-between">50.00% <span className="text-[8px] font-normal opacity-30">L-I</span></div>
                                                 </div>
                                             </div>
                                         </TableCell>
                                         <TableCell>
-                                            <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full border border-white/10 text-white/60 transition-all hover:bg-primary/20 hover:text-primary hover:border-primary/50 focus-visible:ring-1 focus-visible:ring-ring">
+                                            <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full border border-white/10 text-white/40 hover:bg-primary/20 hover:text-primary transition-all">
                                                 <FileText className="h-4 w-4" />
                                             </Button>
                                         </TableCell>
@@ -909,75 +592,28 @@ export const PlaygroundBlock = () => {
                     </CardContent>
                 </Card>
 
-                {/* Sticky Footer */}
                 <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4 z-50">
                     <div className="bg-[#1a1d2e]/80 backdrop-blur-xl border border-white/10 rounded-full p-2 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex items-center justify-between">
                         <div className="flex items-center">
                             <div className="flex items-center gap-4 px-6 border-r border-white/10">
                                 <div className="text-3xl font-bold text-emerald-500">{improvedCount}</div>
-                                <div className="text-[10px] font-bold uppercase text-muted-foreground leading-tight">
-                                    IMPROVED<br />inflows
-                                </div>
+                                <div className="text-[10px] font-bold uppercase text-white leading-tight">IMPROVED<br />FLOWS</div>
                             </div>
                             <div className="flex items-center gap-4 px-6">
                                 <div className="text-3xl font-bold text-red-500">{regressedCount}</div>
-                                <div className="text-[10px] font-bold uppercase text-muted-foreground leading-tight">
-                                    REGRESSED<br />inflows
-                                </div>
+                                <div className="text-[10px] font-bold uppercase text-white leading-tight">REGRESSED<br />FLOWS</div>
                             </div>
                         </div>
-
                         <div className="flex items-center gap-2">
-                            <Button className="rounded-full bg-white/5 hover:bg-white/10 text-white border-white/5 h-11 px-8 font-bold text-sm transition-colors focus-visible:ring-1 focus-visible:ring-ring">
-                                SAVE CHANGES
-                            </Button>
-                            <Button
-                                className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground border-none h-11 px-8 font-bold text-sm transition-colors focus-visible:ring-1 focus-visible:ring-ring shadow-[0_0_20px_rgba(16,185,129,0.3)]"
-                                onClick={() => setIsCreateDialogOpen(true)}
-                            >
-                                CREATE NEW SCENARIO
-                            </Button>
-                            <Button variant="outline" size="icon" className="h-11 w-11 rounded-full border-white/10 bg-[#1a1d2e] text-muted-foreground transition-colors hover:bg-white/5 hover:text-white focus-visible:ring-1 focus-visible:ring-ring">
+                            <Button className="rounded-full bg-white/5 hover:bg-white/10 text-white border-white/10 h-11 px-8 font-bold text-sm transition-colors">SAVE CHANGES</Button>
+                            <Button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground border-none h-11 px-8 font-bold text-sm shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-colors">CREATE NEW SCENARIO</Button>
+                            <Button variant="outline" size="icon" className="h-11 w-11 rounded-full border-white/10 bg-[#1a1d2e] text-white hover:bg-white/5 transition-colors">
                                 <X className="h-5 w-5" />
                             </Button>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
-                <DialogContent className="sm:max-w-[425px] bg-[#1a1d2e] border-white/10 text-white">
-                    <DialogHeader>
-                        <DialogTitle>Create New Scenario</DialogTitle>
-                        <DialogDescription className="text-white/60">
-                            Give your new scenario a name. This will start with a fresh set of data.
-                        </DialogDescription>
-                    </DialogHeader>
-                    <div className="grid gap-4 py-4">
-                        <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="name" className="text-right text-white/80">
-                                Name
-                            </Label>
-                            <Input
-                                id="name"
-                                value={newScenarioName}
-                                onChange={(e) => setNewScenarioName(e.target.value)}
-                                className="col-span-3 bg-[#0f111a] border-white/10 text-white"
-                                placeholder="Scenario Name"
-                            />
-                        </div>
-                    </div>
-                    <DialogFooter>
-                        <Button
-                            type="submit"
-                            onClick={handleCreateScenario}
-                            className="bg-primary hover:bg-primary/90 text-primary-foreground"
-                        >
-                            Create
-                        </Button>
-                    </DialogFooter>
-                </DialogContent>
-            </Dialog>
         </div>
     );
 };
