@@ -1,38 +1,39 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
-import { fileURLToPath } from 'url'
-import PrerenderWrap from '@prerenderer/rollup-plugin'
-import Renderer from '@prerenderer/renderer-puppeteer'
+import fs from 'fs'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+// Custom plugin to inject AI Context into the HTML shell for fetchers
+function aiFriendlyPlugin() {
+  return {
+    name: 'ai-friendly-injection',
+    transformIndexHtml(html: string) {
+      try {
+        const contextPath = path.resolve(__dirname, '../AI_CONTEXT.md')
+        if (fs.existsSync(contextPath)) {
+          const content = fs.readFileSync(contextPath, 'utf-8')
+          // Inject content into a hidden div so AI fetchers can see it in the initial HTML
+          return html.replace(
+            '</body>',
+            `<div id="ai-context-static" style="display:none" aria-hidden="true">
+${content}
+</div>
+</body>`
+          )
+        }
+      } catch (e) {
+        console.warn('AI Context injection failed:', e)
+      }
+      return html
+    }
+  }
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    PrerenderWrap({
-      routes: [
-        '/',
-        '/component-preview',
-        '/ai-tips/ai',
-        '/ai-tips/devs',
-        '/playground',
-        '/elevenlabs',
-        '/github',
-        '/vercel',
-        '/chatgpt'
-      ],
-      renderer: new Renderer({
-        headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
-      }),
-      rendererOptions: {
-        maxConcurrentRoutes: 1,
-        renderAfterTime: 1000,
-      }
-    }),
+    aiFriendlyPlugin()
   ],
   resolve: {
     alias: {

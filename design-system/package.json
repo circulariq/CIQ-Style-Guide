@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npx puppeteer browsers install chrome && vite build",
+    "build": "npm run sync-ai && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "sync-tokens": "node scripts/sync-tokens.cjs",
-    "postinstall": "npx puppeteer browsers install chrome"
+    "sync-ai": "cp ../AI_CONTEXT.md ./public/ai-context.txt"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -63,8 +63,6 @@
     "zod": "^4.3.5"
   },
   "devDependencies": {
-    "@prerenderer/renderer-puppeteer": "^1.2.4",
-    "@prerenderer/rollup-plugin": "^0.3.12",
     "@types/node": "^25.0.3",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
@@ -76,7 +74,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "postcss": "^8.4.35",
-    "puppeteer": "^24.37.3",
     "shadcn": "^3.6.3",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.2.2",
