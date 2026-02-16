@@ -13,7 +13,6 @@ export default defineConfig({
   plugins: [
     react(),
     PrerenderWrap({
-      staticDir: path.join(__dirname, 'dist'),
       routes: [
         '/',
         '/component-preview',
@@ -25,10 +24,13 @@ export default defineConfig({
         '/vercel',
         '/chatgpt'
       ],
-      renderer: new Renderer(),
+      renderer: new Renderer({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+      }),
       rendererOptions: {
         maxConcurrentRoutes: 1,
-        renderAfterTime: 500,
+        renderAfterTime: 1000,
       }
     }),
   ],

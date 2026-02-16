@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npx puppeteer browsers install chrome && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "sync-tokens": "node scripts/sync-tokens.cjs"
+    "sync-tokens": "node scripts/sync-tokens.cjs",
+    "postinstall": "npx puppeteer browsers install chrome"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
