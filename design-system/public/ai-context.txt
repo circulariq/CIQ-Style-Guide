@@ -1,13 +1,81 @@
 # AI Context: CIQ Style Guide
-
 **📋 Paste this into any LLM before requesting UI work to ensure consistency.**
 
 ---
 
+## 🗺️ Site Navigation Map (For AI Agents)
+
+**Before proceeding, familiarize yourself with available resources:**
+
+| Page URL | Content Type | What You'll Find | When to Use |
+|----------|--------------|------------------|-------------|
+| `/ai-tips/ai` | **AI Context Guide** | Complete overview, rules, tokens, patterns | First stop - read this before any UI work |
+| `/components/{name}` | **Individual Component Pages** | Live examples, variants, code snippets for specific components | When you need details about a specific component (e.g., `/components/button`) |
+| `/component-preview` | **Component Gallery** | Overview of all available components | When browsing all components |
+| `/design-tokens/tokens.json` | **Design Tokens (JSON)** | Source of truth for colors, spacing, typography values | When implementing specific design values |
+| `/design-specs/interaction-rules.md` | **Interaction Patterns** | Hover, focus, disabled, active state specifications | When creating interactive elements |
+| `/components/ui/` | **Component Source Code** | Actual React component implementations | When you need to see/modify component code |
+| `http://localhost:5174` | **Local Development Server** | Live preview environment | For testing changes in real-time |
+
+### 📖 How AI Should Use This Guide
+
+**Step 1: READ THIS PAGE FIRST**
+- Understand the tech stack, rules, and patterns
+- Note the critical ❌ NEVER and ✅ ALWAYS rules
+
+**Step 2: CHECK SPECIFIC RESOURCES**
+- For exact color values → Fetch `/design-tokens/tokens.json`
+- For component examples → Visit `/components/{component-name}` (see list below)
+- For interaction behavior → Read `/design-specs/interaction-rules.md`
+
+**Step 3: IMPLEMENT WITH CONFIDENCE**
+- Use only approved tokens and patterns
+- Follow the Quick Decision Trees below
+- Reference Common Patterns section
+
+### 📦 Available Components
+
+The following components are available at `/components/{name}`:
+
+**Layout & Structure**: Accordion, Aspect Ratio, Breadcrumb, Card, Carousel, Collapsible, Resizable, Scroll Area, Separator, Tabs
+
+**Buttons & Actions**: Button, Toggle, Toggle Group
+
+**Form Elements**: Calendar, Checkbox, Form, Input, Input OTP, Label, Radio Group, Select, Slider, Switch, Textarea
+
+**Feedback & Overlays**: Alert, Alert Dialog, Dialog, Drawer, Hover Card, Popover, Sheet, Sonner, Tooltip
+
+**Data Display**: Avatar, Badge, Progress, Skeleton, Table
+
+**Navigation**: Command, Context Menu, Dropdown Menu, Menubar, Navigation Menu, Pagination
+
+---
+
+## 🤖 Instructions for AI Agents
+
+### When Working on UI Tasks:
+
+1. **Always fetch these resources in order:**
+   ```
+   FETCH: https://ciq-style-guide.vercel.app/ai-tips/ai
+   FETCH: https://ciq-style-guide.vercel.app/design-tokens/tokens.json
+   OPTIONAL: https://ciq-style-guide.vercel.app/design-specs/interaction-rules.md
+   ```
+
+2. **For component-specific work:**
+   - Fetch the component preview to see visual examples
+   - Check if shadcn/ui has the component: `npx shadcn add [component-name]`
+   - Review existing implementations in `/components/ui/`
+
+3. **Before submitting code:**
+   - Run through the Testing Checklist at the bottom of this page
+   - Verify all values come from tokens.json
+   - Ensure accessibility patterns are followed
+
+---
+
 ## Tech Stack
-
 This project uses:
-
 - **Framework**: React 18 + TypeScript
 - **Build Tool**: Vite
 - **CSS Framework**: Tailwind CSS (JIT mode)
@@ -22,6 +90,7 @@ This project uses:
 ## Design System Tokens
 
 ### Color System
+
 **Primary Scale**: Emerald/Green
 - `primary-50`: `#ecfdf5` (lightest)
 - `primary-100`: `#d1fae5`
@@ -35,7 +104,7 @@ This project uses:
 
 ### Spacing Scale
 - `xs`: 4px
-- `sm`: 8px  
+- `sm`: 8px
 - `md`: 16px ⭐ (default)
 - `lg`: 24px
 - `xl`: 32px
@@ -83,17 +152,17 @@ This project uses:
 ```
 CIQ-Style-Guide-01/
 ├── design-tokens/
-│   └── tokens.json              ← Source of truth for all design values
+│   └── tokens.json ← Source of truth for all design values
 ├── design-specs/
-│   └── interaction-rules.md     ← Interaction patterns and state rules
+│   └── interaction-rules.md ← Interaction patterns and state rules
 ├── design-system/
 │   ├── src/
 │   │   ├── components/
-│   │   │   └── ui/              ← shadcn components (Button, Card, etc.)
-│   │   ├── index.css            ← Global styles + CSS variables
-│   │   └── tailwind.config.ts   ← Tailwind configuration
+│   │   │   └── ui/ ← shadcn components (Button, Card, etc.)
+│   │   ├── index.css ← Global styles + CSS variables
+│   │   └── tailwind.config.ts ← Tailwind configuration
 │   └── scripts/
-│       └── sync-tokens.cjs      ← Generates tokens.css from tokens.json
+│       └── sync-tokens.cjs ← Generates tokens.css from tokens.json
 ```
 
 ---
@@ -102,11 +171,10 @@ CIQ-Style-Guide-01/
 
 ### Button
 ```tsx
-<Button variant="default" size="md">
+<Button variant="default" size="default">
   Click me
 </Button>
 ```
-
 **Available Variants**: `default`, `destructive`, `outline`, `secondary`, `ghost`, `link`  
 **Available Sizes**: `sm`, `default`, `lg`, `icon`
 
@@ -120,14 +188,12 @@ CIQ-Style-Guide-01/
   <CardContent>Content</CardContent>
 </Card>
 ```
-
 **Standard Padding**: `p-6` (24px)
 
 ### Input
 ```tsx
 <Input type="text" placeholder="Enter text..." />
 ```
-
 **Standard Height**: `h-9` (36px)  
 **Standard Padding**: `px-3 py-1`
 
@@ -244,21 +310,79 @@ Before submitting any UI work, verify:
 
 ---
 
-## Version
+## ❓ Common AI Agent Questions
+
+**Q: Where do I find the exact hex code for primary-600?**  
+→ Fetch `/design-tokens/tokens.json` and look under `colors.primary[600]`
+
+**Q: How do I know what component variants are available?**  
+→ Visit `/components/{component-name}` (e.g., `/components/button`) to see all variants and examples
+
+**Q: Can I use a custom color for this special case?**  
+→ ❌ NO. See Critical Rules #1. Request design approval first.
+
+**Q: What's the difference between `/design-tokens/tokens.json` and the tokens shown on this page?**  
+→ This page shows commonly used values. `/design-tokens/tokens.json` is the complete source of truth with ALL values.
+
+**Q: Where are the interaction rules for hover states?**  
+→ `/design-specs/interaction-rules.md` OR use the Quick Decision Tree above for common cases
+
+**Q: I need to see how a Button looks with all its variants. Where do I go?**  
+→ Visit `/components/button` to see live interactive examples with code snippets
+
+**Q: Can I use arbitrary Tailwind values like `p-[17px]` just this once?**  
+→ ❌ NO. This is Critical Rule #2. Use the defined spacing scale only.
+
+**Q: Do I need to add focus states manually to every button?**  
+→ Yes, unless using the pre-built Button component which includes them already
+
+**Q: What components are available in the design system?**  
+→ See the "Available Components" list above, or visit `/component-preview` for a visual gallery
+
+**Q: How do I know if a component has specific props or customization options?**  
+→ Check the individual component page at `/components/{component-name}` for usage examples and API details
+
+---
+
+## Version & Updates
 
 **Version**: 1.0.0  
 **Last Updated**: 2026-02-11  
 **Status**: Active
 
+### 📝 Change Log
+
+**v1.0.0** (2026-02-11)
+- Initial release
+- Established core design tokens
+- Defined critical rules and patterns
+- Created AI context documentation
+- Added comprehensive navigation map for AI agents
+- Included explicit fetch instructions
+- Added Common AI Questions section
+
+### For AI: Check this section on each visit
+If version number has changed, re-read the entire document to understand updates.
+
 ---
 
-## Quick Links
+## 🔗 Resource Quick Access
 
-- **Design Tokens**: `/design-tokens/tokens.json`
-- **Interaction Rules**: `/design-specs/interaction-rules.md`
-- **Component Library**: `design-system/src/components/ui/`
-- **Tailwind Config**: `design-system/tailwind.config.ts`
-- **Live Demo**: `http://localhost:5174`
+### For AI Agents (URLs to fetch):
+- **This Context Guide**: `https://ciq-style-guide.vercel.app/ai-tips/ai`
+- **Design Tokens (JSON)**: `https://ciq-style-guide.vercel.app/design-tokens/tokens.json`
+- **Component Pages**: `https://ciq-style-guide.vercel.app/components/{component-name}`
+  - Example: `https://ciq-style-guide.vercel.app/components/button`
+  - Example: `https://ciq-style-guide.vercel.app/components/card`
+- **Component Gallery**: `https://ciq-style-guide.vercel.app/component-preview`
+- **Interaction Rules**: `https://ciq-style-guide.vercel.app/design-specs/interaction-rules.md`
+
+### For Local Development (File paths):
+- Design Tokens: `/design-tokens/tokens.json`
+- Interaction Rules: `/design-specs/interaction-rules.md`
+- Component Library: `design-system/src/components/ui/`
+- Tailwind Config: `design-system/tailwind.config.ts`
+- Live Demo: `http://localhost:5174`
 
 ---
 

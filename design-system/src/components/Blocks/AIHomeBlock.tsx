@@ -125,23 +125,23 @@ export function AIHomeBlock() {
                         <div className="space-y-1.5 p-3 rounded-md bg-muted/30">
                             <div className="font-semibold text-foreground flex items-center gap-1.5">
                                 <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                                Layout
+                                Layout & Data
                             </div>
-                            <p className="text-muted-foreground leading-relaxed">Accordion, Breadcrumb, Card, Carousel, Tabs, Separator</p>
+                            <p className="text-muted-foreground leading-relaxed">Accordion, Aspect Ratio, Breadcrumb, Card, Carousel, Collapsible, Resizable, Scroll Area, Separator, Tabs, Avatar, Badge, Progress, Skeleton, Table</p>
                         </div>
                         <div className="space-y-1.5 p-3 rounded-md bg-muted/30">
                             <div className="font-semibold text-foreground flex items-center gap-1.5">
                                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                                Actions & Forms
+                                Form & Actions
                             </div>
-                            <p className="text-muted-foreground leading-relaxed">Button, Input, Calendar, Checkbox, Select, Slider, Switch</p>
+                            <p className="text-muted-foreground leading-relaxed">Button, Toggle, Toggle Group, Calendar, Checkbox, Form, Input, Input OTP, Label, Radio Group, Select, Slider, Switch, Textarea</p>
                         </div>
                         <div className="space-y-1.5 p-3 rounded-md bg-muted/30">
                             <div className="font-semibold text-foreground flex items-center gap-1.5">
                                 <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
-                                Feedback & Data
+                                Overlays & Nav
                             </div>
-                            <p className="text-muted-foreground leading-relaxed">Alert, Dialog, Popover, Badge, Data Table, Skeleton</p>
+                            <p className="text-muted-foreground leading-relaxed">Alert, Alert Dialog, Dialog, Drawer, Hover Card, Popover, Sheet, Sonner, Tooltip, Command, Context Menu, Dropdown, Menubar, Navigation, Pagination</p>
                         </div>
                     </div>
                 </CardContent>

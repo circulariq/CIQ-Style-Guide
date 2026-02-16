@@ -37,17 +37,17 @@
 
 The following components are available at `/components/{name}`:
 
-**Layout & Structure**: Accordion, Aspect Ratio, Breadcrumb, Card, Carousel, Collapsible, Separator, Tabs
+**Layout & Structure**: Accordion, Aspect Ratio, Breadcrumb, Card, Carousel, Collapsible, Resizable, Scroll Area, Separator, Tabs
 
-**Buttons & Actions**: Button, Button Group
+**Buttons & Actions**: Button, Toggle, Toggle Group
 
-**Form Elements**: Calendar, Checkbox, Combobox, Form, Input, Input OTP, Label, Radio Group, Select, Slider, Switch, Textarea
+**Form Elements**: Calendar, Checkbox, Form, Input, Input OTP, Label, Radio Group, Select, Slider, Switch, Textarea
 
-**Feedback & Overlays**: Alert, Alert Dialog, Dialog, Drawer, Hover Card, Popover, Sheet, Toast, Tooltip
+**Feedback & Overlays**: Alert, Alert Dialog, Dialog, Drawer, Hover Card, Popover, Sheet, Sonner, Tooltip
 
-**Data Display**: Avatar, Badge, Chart, Data Table, Progress, Skeleton, Table
+**Data Display**: Avatar, Badge, Progress, Skeleton, Table
 
-**Navigation**: Command, Context Menu, Dropdown Menu, Menubar, Navigation Menu, Pagination, Resizable, Scroll Area, Sidebar, Sonner
+**Navigation**: Command, Context Menu, Dropdown Menu, Menubar, Navigation Menu, Pagination
 
 ---
 
