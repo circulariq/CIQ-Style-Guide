@@ -6,6 +6,11 @@ export interface BlockData {
 
 export const blocksData: BlockData[] = [
   {
+    id: "ai-home",
+    name: "AI Home",
+    description: "Primary entrance for AI agents and developers with core system rules"
+  },
+  {
     id: "component-preview",
     name: "Component Preview",
     description: "Dashboard preview with cards, forms, and data displays"

@@ -1,3 +1,4 @@
+export { AIHomeBlock } from './AIHomeBlock';
 export { ComponentPreviewBlock } from './ComponentPreviewBlock';
 export { ElevenlabsBlock } from './ElevenlabsBlock';
 export { GitHubBlock } from './GitHubBlock';

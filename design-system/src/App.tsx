@@ -13,6 +13,7 @@ const BlockPreview = () => {
   const block = blocksData.find(b => b.id === blockId);
 
   const blockMap: Record<string, React.ComponentType> = {
+    'ai-home': BlockComponents.AIHomeBlock,
     'component-preview': BlockComponents.ComponentPreviewBlock,
     'ai-tips': BlockComponents.AITipsBlock,
     'elevenlabs': BlockComponents.ElevenlabsBlock,
@@ -99,7 +100,7 @@ function App() {
 
         <main className="flex-1 flex flex-col overflow-hidden relative">
           <Routes>
-            <Route path="/" element={<Navigate to="/component-preview" replace />} />
+            <Route path="/" element={<Navigate to="/ai-home" replace />} />
             <Route path="/ai-tips" element={<Navigate to="/ai-tips/ai" replace />} />
             <Route path="/:blockId/:subpage?" element={<BlockPreview />} />
             <Route path="/components/:componentId" element={<ComponentPreview />} />
