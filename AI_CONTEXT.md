@@ -9,8 +9,9 @@
 
 | Page URL | Content Type | What You'll Find | When to Use |
 |----------|--------------|------------------|-------------|
-| `/ai-tips/ai` | **AI Context Guide** (this page) | Complete overview, rules, tokens, patterns | First stop - read this before any UI work |
-| `/component-preview` | **Live Component Gallery** | Interactive examples of all components with variants | When you need to see how components look/behave |
+| `/ai-tips/ai` | **AI Context Guide** | Complete overview, rules, tokens, patterns | First stop - read this before any UI work |
+| `/components/{name}` | **Individual Component Pages** | Live examples, variants, code snippets for specific components | When you need details about a specific component (e.g., `/components/button`) |
+| `/component-preview` | **Component Gallery** | Overview of all available components | When browsing all components |
 | `/design-tokens/tokens.json` | **Design Tokens (JSON)** | Source of truth for colors, spacing, typography values | When implementing specific design values |
 | `/design-specs/interaction-rules.md` | **Interaction Patterns** | Hover, focus, disabled, active state specifications | When creating interactive elements |
 | `/components/ui/` | **Component Source Code** | Actual React component implementations | When you need to see/modify component code |
@@ -24,13 +25,29 @@
 
 **Step 2: CHECK SPECIFIC RESOURCES**
 - For exact color values → Fetch `/design-tokens/tokens.json`
-- For component examples → Visit `/component-preview`
+- For component examples → Visit `/components/{component-name}` (see list below)
 - For interaction behavior → Read `/design-specs/interaction-rules.md`
 
 **Step 3: IMPLEMENT WITH CONFIDENCE**
 - Use only approved tokens and patterns
 - Follow the Quick Decision Trees below
 - Reference Common Patterns section
+
+### 📦 Available Components
+
+The following components are available at `/components/{name}`:
+
+**Layout & Structure**: Accordion, Aspect Ratio, Breadcrumb, Card, Carousel, Collapsible, Separator, Tabs
+
+**Buttons & Actions**: Button, Button Group
+
+**Form Elements**: Calendar, Checkbox, Combobox, Form, Input, Input OTP, Label, Radio Group, Select, Slider, Switch, Textarea
+
+**Feedback & Overlays**: Alert, Alert Dialog, Dialog, Drawer, Hover Card, Popover, Sheet, Toast, Tooltip
+
+**Data Display**: Avatar, Badge, Chart, Data Table, Progress, Skeleton, Table
+
+**Navigation**: Command, Context Menu, Dropdown Menu, Menubar, Navigation Menu, Pagination, Resizable, Scroll Area, Sidebar, Sonner
 
 ---
 
@@ -299,7 +316,7 @@ Before submitting any UI work, verify:
 → Fetch `/design-tokens/tokens.json` and look under `colors.primary[600]`
 
 **Q: How do I know what component variants are available?**  
-→ Visit `/component-preview` or check the Component Standards section above
+→ Visit `/components/{component-name}` (e.g., `/components/button`) to see all variants and examples
 
 **Q: Can I use a custom color for this special case?**  
 → ❌ NO. See Critical Rules #1. Request design approval first.
@@ -311,13 +328,19 @@ Before submitting any UI work, verify:
 → `/design-specs/interaction-rules.md` OR use the Quick Decision Tree above for common cases
 
 **Q: I need to see how a Button looks with all its variants. Where do I go?**  
-→ Visit `/component-preview` to see live interactive examples
+→ Visit `/components/button` to see live interactive examples with code snippets
 
 **Q: Can I use arbitrary Tailwind values like `p-[17px]` just this once?**  
 → ❌ NO. This is Critical Rule #2. Use the defined spacing scale only.
 
 **Q: Do I need to add focus states manually to every button?**  
 → Yes, unless using the pre-built Button component which includes them already
+
+**Q: What components are available in the design system?**  
+→ See the "Available Components" list above, or visit `/component-preview` for a visual gallery
+
+**Q: How do I know if a component has specific props or customization options?**  
+→ Check the individual component page at `/components/{component-name}` for usage examples and API details
 
 ---
 
@@ -348,6 +371,9 @@ If version number has changed, re-read the entire document to understand updates
 ### For AI Agents (URLs to fetch):
 - **This Context Guide**: `https://ciq-style-guide.vercel.app/ai-tips/ai`
 - **Design Tokens (JSON)**: `https://ciq-style-guide.vercel.app/design-tokens/tokens.json`
+- **Component Pages**: `https://ciq-style-guide.vercel.app/components/{component-name}`
+  - Example: `https://ciq-style-guide.vercel.app/components/button`
+  - Example: `https://ciq-style-guide.vercel.app/components/card`
 - **Component Gallery**: `https://ciq-style-guide.vercel.app/component-preview`
 - **Interaction Rules**: `https://ciq-style-guide.vercel.app/design-specs/interaction-rules.md`
 

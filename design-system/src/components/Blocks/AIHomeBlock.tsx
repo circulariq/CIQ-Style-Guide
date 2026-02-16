@@ -105,10 +105,47 @@ export function AIHomeBlock() {
                     <CardContent className="text-sm text-muted-foreground space-y-2">
                         <p>1. Fetch AI Context Guide</p>
                         <p>2. Fetch Design Tokens</p>
-                        <p>3. Preview Components</p>
+                        <p>3. Visit Component Pages</p>
+                        <p>4. Implementation</p>
                     </CardContent>
                 </Card>
             </div>
+
+            {/* Available Components Section (v01 additions) */}
+            <Card className="border-border bg-card/50">
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                        <Zap className="h-5 w-5 text-amber-500" />
+                        Available Components
+                    </CardTitle>
+                    <CardDescription>Directly accessible via <code className="bg-muted px-1 rounded">/components/{"{name}"}</code></CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+                        <div className="space-y-1.5 p-3 rounded-md bg-muted/30">
+                            <div className="font-semibold text-foreground flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                                Layout
+                            </div>
+                            <p className="text-muted-foreground leading-relaxed">Accordion, Breadcrumb, Card, Carousel, Tabs, Separator</p>
+                        </div>
+                        <div className="space-y-1.5 p-3 rounded-md bg-muted/30">
+                            <div className="font-semibold text-foreground flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                                Actions & Forms
+                            </div>
+                            <p className="text-muted-foreground leading-relaxed">Button, Input, Calendar, Checkbox, Select, Slider, Switch</p>
+                        </div>
+                        <div className="space-y-1.5 p-3 rounded-md bg-muted/30">
+                            <div className="font-semibold text-foreground flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+                                Feedback & Data
+                            </div>
+                            <p className="text-muted-foreground leading-relaxed">Alert, Dialog, Popover, Badge, Data Table, Skeleton</p>
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
 
             {/* Raw Context for AI / Human Reference */}
             <Card className="border-border">
